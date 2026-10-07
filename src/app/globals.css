@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Force cache invalidation */
+
+@layer base {
+  :root {
+    --background: 40 20% 97%; --foreground: 220 20% 14%;
+    --card: 0 0% 100%; --card-foreground: 220 20% 14%;
+    --popover: 0 0% 100%; --popover-foreground: 220 20% 14%;
+    --primary: 172 50% 36%; --primary-foreground: 0 0% 100%;
+    --secondary: 40 15% 92%; --secondary-foreground: 220 20% 14%;
+    --muted: 40 10% 94%; --muted-foreground: 220 10% 46%;
+    --accent: 172 40% 92%; --accent-foreground: 172 50% 20%;
+    --destructive: 0 72% 51%; --destructive-foreground: 0 0% 100%;
+    --border: 220 10% 88%; --input: 220 10% 88%; --ring: 172 50% 36%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 98%; --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%; --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%; --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%; --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 220 20% 8%; --foreground: 40 15% 92%;
+    --card: 220 18% 12%; --card-foreground: 40 15% 92%;
+    --popover: 220 18% 12%; --popover-foreground: 40 15% 92%;
+    --primary: 172 50% 42%; --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 18%; --secondary-foreground: 40 15% 92%;
+    --muted: 220 12% 16%; --muted-foreground: 220 10% 58%;
+    --accent: 172 30% 16%; --accent-foreground: 172 50% 70%;
+    --destructive: 0 62.8% 30.6%; --destructive-foreground: 0 0% 100%;
+    --border: 220 12% 20%; --input: 220 12% 20%; --ring: 172 50% 42%;
+    --sidebar-background: 240 5.9% 10%; --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%; --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%; --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%; --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-display), sans-serif;
+  }
+  code, pre, textarea { font-family: var(--font-mono), monospace; }
+}
+
+@layer utilities {
+  .bg-primary {
+    background-image: linear-gradient(135deg, #2E8A7E 0%, #3FB0A5 50%, #4FD1C5 100%) !important;
+  }
+  .hover\:bg-primary\/90:hover {
+    opacity: 0.9;
+  }
+  .hover\:bg-primary\/80:hover {
+    opacity: 0.8;
+  }
+  .hover-brand:hover {
+    color: hsl(var(--primary));
+  }
+  .group-hover-brand {
+    /* To support group-hover */
+  }
+  .group:hover .group-hover-brand {
+    color: hsl(var(--primary));
+  }
+}
