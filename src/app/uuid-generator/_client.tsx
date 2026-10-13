@@ -9,7 +9,7 @@ export default function ClientPage() {
   
   const seo = getSeoContent("uuid-generator", "UUID Generator");
 
-  return <RandomToolLayout titleKey="uuidGenerator" subtitleKey="uuidGeneratorSubtitle" actionLabelKey="uuidGeneratorAction" output={output} onGenerate={handleGenerate} onClear={()=>setOutput("")} seoTitle={seo.title} seoContent={seo.content} seoFaqs={seo.faqs}>
+  return <RandomToolLayout titleKey="uuidGenerator" subtitleKey="uuidGeneratorSubtitle" actionLabelKey="uuidGeneratorAction" output={output} onGenerate={handleGenerate} onClear={()=>setOutput("")} seoTitle={seo.title} seoContent={seo.content} seoFaqs={seo.faqs} relatedPostSlugs={["what-is-a-uuid", "uuid-v4-vs-auto-increment-ids", "when-to-use-uuid-v4"]} relatedPostsTitle="UUID and Developer Guides">
     <div className="flex flex-wrap items-center justify-center gap-3">
       <label className="text-sm text-foreground font-medium">Quantity:</label><input type="number" min={1} max={500} value={count} onChange={e=>setCount(Math.max(1,Math.min(500,Number(e.target.value))))} className="w-20 px-3 py-2 rounded-lg border border-border bg-card text-foreground text-sm" />
     </div>

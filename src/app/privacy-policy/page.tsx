@@ -6,7 +6,10 @@ import SearchButton from "@/components/SearchButton";
 
 export const metadata = {
   title: "Privacy Policy | Casetivo",
-  description: "Privacy Policy for Casetivo"
+  description: "Read Casetivo's Privacy Policy to learn how our browser-based tools process data and protect your privacy.",
+  alternates: {
+    canonical: "https://www.casetivo.com/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicy() {

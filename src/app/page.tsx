@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import HomeClientPage from "./_home_client";
 import Link from "next/link";
-import { Type, Wrench, Code, Image as ImageIcon, Dices } from "lucide-react";
+import { Check, Code, Dices, Image as ImageIcon, Wrench } from "lucide-react";
+import { getSortedPostsData } from "@/lib/blog";
 
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Free Online Case Converter & 60+ Text Tools | Casetivo",
-  description: "Casetivo's free online case converter instantly changes text to uppercase, lowercase, sentence case, and more. Format text quickly for docs, coding & blogs.",
-  keywords: "case converter, convert case, uppercase to lowercase, sentence case, title case, toggle case, free online tools, text case converter, Casetivo",
+  title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+  description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free, private online case converter with no sign-up.",
+  keywords: "case converter, online case converter, convert case, uppercase converter, lowercase converter, sentence case converter, title case converter, capitalized case, inverse case, text case converter",
   alternates: {
     canonical: BASE,
   },
   openGraph: {
-    title: "Free Online Case Converter & 60+ Text Tools | Casetivo",
-    description: "Casetivo's free online case converter instantly changes text to uppercase, lowercase, sentence case, and more. Format text quickly for docs, coding & blogs.",
+    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     url: BASE,
     siteName: "Casetivo",
     type: "website",
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online Case Converter & 60+ Text Tools | Casetivo",
-    description: "Casetivo's free online case converter instantly changes text to uppercase, lowercase, sentence case, and more. Format text quickly for docs, coding & blogs.",
+    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     images: ["/og-image.png"],
   },
 };
@@ -69,15 +70,101 @@ const RANDOM_TOOLS = [
   ["/strong-password-generator","Password Generator"],["/uuid-generator","UUID Generator"],
 ] as const;
 
+const FEATURED_CASE_TOOLS = [
+  { href: "/sentence-case", title: "Sentence Case Converter", description: "Capitalize the first word of each sentence and make text easier to read." },
+  { href: "/upper-case", title: "Uppercase Converter", description: "Turn any text into capital letters instantly." },
+  { href: "/lower-case", title: "Lowercase Converter", description: "Convert capital letters to lowercase in one click." },
+  { href: "/title-case", title: "Title Case Converter", description: "Format article titles, headings, and subject lines correctly." },
+] as const;
+
+function FeaturedCaseTools() {
+  return (
+    <section className="mt-10" aria-labelledby="featured-case-tools">
+      <div className="flex flex-col items-center text-center mb-6">
+        <h2 id="featured-case-tools" className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>
+          Choose a Case Converter
+        </h2>
+        <p className="mt-2 text-sm sm:text-base text-muted-foreground max-w-2xl">
+          Pick the exact text format you need, or use the converter above to switch between all six formats.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {FEATURED_CASE_TOOLS.map((tool) => (
+          <Link key={tool.href} href={tool.href} className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/60 hover:shadow-md">
+            <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">{tool.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tool.description}</p>
+            <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">Try tool →</span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    "Paste or type your text into the converter.",
+    "Choose the case format you want to apply.",
+    "Copy or download the converted text instantly.",
+  ];
+
+  return (
+    <section className="mt-16 pt-8 border-t border-border/40" aria-labelledby="how-it-works">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 id="how-it-works" className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>
+          How to Convert Text Case
+        </h2>
+        <ol className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          {steps.map((step, index) => (
+            <li key={step} className="rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
+              <span className="mb-3 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">{index + 1}</span>
+              {step}
+            </li>
+          ))}
+        </ol>
+        <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground"><Check className="h-4 w-4 text-primary" /> Free to use, no sign-up, and processed in your browser.</p>
+      </div>
+    </section>
+  );
+}
+
+function LatestGuides() {
+  const posts = getSortedPostsData().slice(0, 3);
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="mt-16 pt-8 border-t border-border/40" aria-labelledby="latest-guides">
+      <div className="flex flex-col items-center text-center mb-6">
+        <h2 id="latest-guides" className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>Latest Text &amp; Formatting Guides</h2>
+        <p className="mt-2 text-sm sm:text-base text-muted-foreground">Helpful guides for choosing the right format and using text tools well.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {posts.map((post) => (
+          <article key={post.id} className="rounded-xl border border-border bg-card p-5 flex flex-col">
+            <p className="text-xs text-muted-foreground">{new Date(post.publish_date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</p>
+            <h3 className="mt-2 text-lg font-semibold leading-snug text-foreground"><Link href={`/blog/${post.slug}`} className="hover:text-primary">{post.title}</Link></h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground flex-1">{post.meta_description}</p>
+            <Link href={`/blog/${post.slug}`} className="mt-4 text-sm font-medium text-primary hover:underline">Read guide →</Link>
+          </article>
+        ))}
+      </div>
+      <div className="mt-6 text-center"><Link href="/blog" className="text-sm font-semibold text-primary hover:underline">View all articles →</Link></div>
+    </section>
+  );
+}
+
 function HomeSeoSection() {
   return (
     <section className="mt-16 pt-8 border-t border-border/40">
       <div className="max-w-3xl mx-auto text-center px-4 mb-10">
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-4" style={{ fontFamily: "var(--font-display)" }}>
-          Why People Love Using Casetivo
+          A Free Online Case Converter That Keeps Your Text Private
         </h2>
         <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-          Let's be real: sometimes you just need to format a messy JSON file, convert an image to WebP, or quickly change text to UPPERCASE without downloading heavy software. That's exactly why we built Casetivo. It gives you 60+ handy, browser-based utilities that just work. Since everything runs directly on your device, your data stays private and you don't have to deal with annoying server uploads or paywalls. Whether you're a developer pushing code, a writer drafting content, or a student organizing notes, we've got a free tool to save you time.
+          Paste your text above and change it to sentence case, lowercase, UPPERCASE, Title Case, Capitalized Case, or iNVERSE cASE in one click. Casetivo runs in your browser, so the text you convert stays on your device. It is free to use, needs no account, and works on desktop and mobile.
+        </p>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Need one specific format? Try our <Link href="/sentence-case" className="text-primary hover:underline">Sentence Case Converter</Link>, <Link href="/upper-case" className="text-primary hover:underline">Uppercase Converter</Link>, <Link href="/lower-case" className="text-primary hover:underline">Lowercase Converter</Link>, or <Link href="/title-case" className="text-primary hover:underline">Title Case Converter</Link>.
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto px-4 mb-10">
@@ -103,27 +190,27 @@ function HomeSeoSection() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <h3 className="font-semibold text-foreground mb-1">JSON Formatter</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/json-formatter" className="hover:text-primary">JSON Formatter</Link></h3>
             <p className="text-muted-foreground">Paste minified or broken JSON and instantly format it with proper indentation, syntax highlighting, and error detection.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-foreground mb-1">Base64 Encoder &amp; Decoder</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/base64-encoder-decoder" className="hover:text-primary">Base64 Encoder &amp; Decoder</Link></h3>
             <p className="text-muted-foreground">Encode any string to Base64 or decode Base64 back to plain text. Supports UTF-8 and binary data.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-foreground mb-1">UUID Generator</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/uuid-generator" className="hover:text-primary">UUID Generator</Link></h3>
             <p className="text-muted-foreground">Generate RFC 4122 compliant UUIDs (v1 and v4) in bulk. Copy individual or all at once for use in databases and APIs.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-foreground mb-1">Case Converters</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/sentence-case" className="hover:text-primary">Case Converters</Link></h3>
             <p className="text-muted-foreground">Convert text to sentence case, UPPER CASE, lower case, Title Case, Capitalized Case, or iNVERSE cASE in one click.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-foreground mb-1">Image Converters</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/jpg-to-webp-converter" className="hover:text-primary">Image Converters</Link></h3>
             <p className="text-muted-foreground">Convert between JPG, PNG, WebP, and SVG formats directly in your browser. No file size limits, no server uploads.</p>
           </div>
           <div>
-            <h3 className="font-semibold text-foreground mb-1">Duplicate Line Remover</h3>
+            <h3 className="font-semibold text-foreground mb-1"><Link href="/duplicate-line-remover" className="hover:text-primary">Duplicate Line Remover</Link></h3>
             <p className="text-muted-foreground">Remove duplicate lines from any list or dataset, preserving original order. Ideal for email list cleaning and data deduplication.</p>
           </div>
         </div>
@@ -134,32 +221,28 @@ function HomeSeoSection() {
 
 const FAQ_ITEMS = [
   {
-    q: "What is Casetivo?",
-    a: "Casetivo is a free suite of 60+ browser-based utilities, including text case converters, JSON formatters, image converters, and developer tools."
+    q: "What is an online case converter?",
+    a: "An online case converter changes the capitalization of pasted text. You can turn text into uppercase, lowercase, sentence case, title case, capitalized case, or inverse case without retyping it."
   },
   {
-    q: "Who is it for?",
-    a: "It's built for developers, copywriters, students, and anyone else who needs to quickly format data, text, or images without installing new software."
+    q: "How do I convert text to uppercase or lowercase?",
+    a: "Paste or type your text into the converter at the top of this page, then choose UPPER CASE or lower case. Your converted text appears instantly and can be copied or downloaded."
   },
   {
-    q: "How secure is my data?",
-    a: "Extremely secure. All processing runs entirely locally inside your web browser. We never upload your text, files, or data to our servers."
+    q: "What is the difference between sentence case and title case?",
+    a: "Sentence case capitalizes the first word of a sentence and proper nouns. Title case capitalizes the major words in a heading or title. Use sentence case for regular writing and title case for article headings, book titles, and subject lines."
   },
   {
-    q: "Can I manage multiple cases?",
-    a: "Yes! Our case converter tool supports multiple text formats, including sentence case, UPPER CASE, lower case, Title Case, Capitalized Case, and iNVERSE cASE."
+    q: "Which text cases can I convert to?",
+    a: "You can convert text to sentence case, lowercase, UPPERCASE, Capitalized Case, Title Case, and iNVERSE cASE."
   },
   {
-    q: "Does it work on mobile?",
-    a: "Absolutely. Casetivo is fully responsive and works seamlessly directly from your smartphone or tablet browser."
+    q: "Is this case converter free and private?",
+    a: "Yes. Casetivo is free, requires no sign-up, and processes your text locally in your browser. Your text is not uploaded to our servers."
   },
   {
-    q: "Can I import existing cases?",
-    a: "You can easily paste any existing text, code snippets, or data directly into our tools to convert or format them instantly."
-  },
-  {
-    q: "Is there a free trial?",
-    a: "You don't need one! Casetivo is 100% free forever. There are no accounts to create, no subscriptions to buy, and no annoying rate limits."
+    q: "Does the case converter work on mobile?",
+    a: "Yes. You can paste, convert, copy, and download text from a phone, tablet, or desktop browser."
   }
 ];
 
@@ -198,7 +281,7 @@ function ToolsDirectory() {
           </div>
           <ul className="space-y-1.5">
             {TEXT_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-muted-foreground hover-brand transition-colors text-xs">{label}</Link></li>
+              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
             ))}
           </ul>
         </div>
@@ -210,7 +293,7 @@ function ToolsDirectory() {
           </div>
           <ul className="space-y-1.5">
             {CODE_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-muted-foreground hover-brand transition-colors text-xs">{label}</Link></li>
+              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
             ))}
           </ul>
         </div>
@@ -222,7 +305,7 @@ function ToolsDirectory() {
           </div>
           <ul className="space-y-1.5">
             {IMAGE_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-muted-foreground hover-brand transition-colors text-xs">{label}</Link></li>
+              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
             ))}
           </ul>
         </div>
@@ -234,7 +317,7 @@ function ToolsDirectory() {
           </div>
           <ul className="space-y-1.5">
             {RANDOM_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-muted-foreground hover-brand transition-colors text-xs">{label}</Link></li>
+              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
             ))}
           </ul>
         </div>
@@ -294,16 +377,25 @@ export default function Page() {
         heading={
           <div className="text-center mb-4">
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground mb-3" style={{ fontFamily: "var(--font-display)" }}>
-              Free Online Tools to Edit, Convert & Optimize Text, Code & Images
+              Free Online Case Converter
             </h1>
             <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-              Easily convert text between uppercase, lowercase, title case, sentence case, and other formats instantly. 
+              Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case free, private, and no sign-up required.
             </p>
+            <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-medium text-muted-foreground" aria-label="Case converter benefits">
+              <li>Free forever</li>
+              <li>No sign-up</li>
+              <li>Private browser processing</li>
+              <li>Works on mobile</li>
+            </ul>
           </div>
         }
       >
+        <FeaturedCaseTools />
+        <HowItWorks />
         <HomeSeoSection />
         <HomeFaqSection />
+        <LatestGuides />
         <ToolsDirectory />
       </HomeClientPage>
     </>

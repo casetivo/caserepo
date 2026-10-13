@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ToolSeoContent } from "../../seoContent";
 
 export const strongPasswordSeo: ToolSeoContent = {
@@ -15,7 +16,7 @@ export const strongPasswordSeo: ToolSeoContent = {
           Casetivo's <strong>free strong password generator</strong> helps you create secure passwords instantly — no login required. You can customize the password length, include uppercase letters, lowercase letters, numbers, and special symbols to generate passwords that meet the security requirements of websites, banking apps, email services, and enterprise systems.
         </p>
         <p className="text-muted-foreground mb-3">
-          Unlike manually created passwords, this <strong>random password generator online</strong> produces strings with no predictable patterns, making them significantly harder to guess. Since every password is generated directly in your browser, your data remains completely private and is never stored on our servers — making it the safest <strong>secure password maker</strong> you can use.
+          This <strong>random password generator online</strong> uses your browser's Web Crypto API to select characters. It includes at least one character from every category you enable, then shuffles the result. Passwords are generated locally in your browser and are not uploaded or stored by Casetivo.
         </p>
         <p className="text-muted-foreground">
           Whether you need a <strong>password generator with no login</strong> for social media, online banking, work accounts, or a password manager, this tool provides a quick and reliable way to improve your online security in seconds.
@@ -170,6 +171,16 @@ export const strongPasswordSeo: ToolSeoContent = {
           Your privacy is important. This password generator works entirely within your browser. No generated passwords are uploaded, stored, or shared with our servers, allowing you to create secure passwords without compromising your personal information.
         </p>
       </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4 text-foreground">If a Website Rejects Your Password</h2>
+        <p className="text-muted-foreground mb-3">
+          Websites have different password rules. Check the required length and whether the site permits symbols or requires a particular character type, then adjust the options and generate a new password. Never reuse a password from another account.
+        </p>
+        <p className="text-muted-foreground">
+          Save accepted passwords in a trusted password manager. For more practical advice, read our <Link href="/blog/how-to-create-a-strong-password" className="text-primary hover:underline font-medium">guide to creating a strong password</Link>.
+        </p>
+      </section>
     </>
   ),
   faqs: [
@@ -191,7 +202,19 @@ export const strongPasswordSeo: ToolSeoContent = {
     },
     {
       question: "Can I use these passwords for banking?",
-      answer: "Absolutely. Randomly generated passwords are suitable for banking, email, cloud storage, business systems, and other sensitive accounts."
+      answer: "A long, unique generated password can be used wherever the site's password policy accepts it. Store it in a trusted password manager and enable multi-factor authentication or a passkey when available."
+    },
+    {
+      question: "Does selecting symbols or numbers guarantee they are included?",
+      answer: "Yes. The generator adds at least one character from every enabled category—uppercase letters, lowercase letters, numbers, and symbols—then securely shuffles the final password."
+    },
+    {
+      question: "Why did a website reject my generated password?",
+      answer: "The site may have a different length limit or prohibit certain symbols. Check its password requirements, adjust the selected character types or length, and generate a new unique password."
+    },
+    {
+      question: "Is a password generator the same as a password manager?",
+      answer: "No. A generator creates a password; a password manager securely stores unique passwords and helps fill them in. Using both together is a practical way to avoid password reuse."
     }
   ]
 };

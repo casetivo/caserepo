@@ -7,30 +7,30 @@ const BASE = "https://www.casetivo.com";
 const URL = `${BASE}/strong-password-generator`;
 
 export const metadata: Metadata = {
-  title: "Strong Password Generator — Free & Secure | No Login Required",
-  description: "Generate secure random passwords instantly — no login, no tracking. Customize length and character types (uppercase, lowercase, numbers, symbols). Free online random password generator.",
+  title: "Strong Password Generator - Create Random Passwords Online",
+  description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser. Free, no sign-up required.",
   alternates: {
     canonical: URL,
   },
   openGraph: {
-    title: "Strong Password Generator — Free & Secure | No Login Required",
-    description: "Generate secure random passwords instantly — no login, no tracking. Customize length and character types. Free online random password generator.",
+    title: "Strong Password Generator - Create Random Passwords Online",
+    description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser.",
     url: URL,
     siteName: "Casetivo",
-    type: "article",
+    type: "website",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Strong Password Generator — Free Secure Password Maker by Casetivo",
+        alt: "Strong Password Generator by Casetivo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Strong Password Generator — Free & Secure | No Login Required",
-    description: "Generate secure random passwords instantly — no login, no tracking. Free online random password generator by Casetivo.",
+    title: "Strong Password Generator - Create Random Passwords Online",
+    description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser.",
     images: ["/og-image.png"],
   },
 };
@@ -49,19 +49,19 @@ export default function Page() {
         "@type": "HowToStep",
         "position": 1,
         "name": "Choose Password Length",
-        "text": "Select your desired password length. Security experts recommend at least 12–16 characters for personal accounts and 16–24 characters for sensitive accounts such as banking or business systems.",
+        "text": "Select a length accepted by the website. Longer, unique passwords are generally harder to guess; many accounts accept 12 or more characters.",
       },
       {
         "@type": "HowToStep",
         "position": 2,
         "name": "Select Character Types",
-        "text": "Toggle which character sets to include: uppercase letters (A–Z), lowercase letters (a–z), numbers (0–9), and special symbols (!@#$%^&*). More types = higher complexity.",
+        "text": "Toggle the character sets required by the website: uppercase letters, lowercase letters, numbers, and special symbols. The generator includes at least one character from every enabled set.",
       },
       {
         "@type": "HowToStep",
         "position": 3,
         "name": "Click Generate Password",
-        "text": "Click the Generate Password button. The tool instantly creates a cryptographically random password based on your selected options.",
+        "text": "Click Generate Password. The tool uses your browser's Web Crypto API to generate a password based on the selected options.",
       },
       {
         "@type": "HowToStep",
@@ -74,11 +74,10 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="sr-only">Strong Password Generator</h1>
       <SchemaMarkup
         toolName="Strong Password Generator"
         url={URL}
-        description="Generate secure random passwords with custom length and character types. Free online random password generator — no login required."
+        description="Generate random passwords with custom length and character types using your browser's Web Crypto API. Free, no sign-up required."
         faqs={seo.faqs}
       />
       <script

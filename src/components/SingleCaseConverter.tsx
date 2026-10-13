@@ -35,12 +35,13 @@ interface SingleCaseConverterProps {
   converterKey: ConverterKey;
   downloadName: string;
   subtitle?: string;
+  heading?: string;
   seoTitle?: string;
   seoContent?: React.ReactNode;
   seoFaqs?: FAQ[];
 }
 
-const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, seoTitle, seoContent, seoFaqs }: SingleCaseConverterProps) => {
+const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, heading, seoTitle, seoContent, seoFaqs }: SingleCaseConverterProps) => {
   const { locale, setLocale, t } = useI18n("base");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
@@ -115,7 +116,7 @@ const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, seoTit
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-8 flex flex-col gap-6">
         <div className="text-center">
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground mb-2" style={{ fontFamily: "var(--font-display)" }}>
-            {title}
+            {heading || title}
           </h1>
           <p className="text-muted-foreground text-base">{subtitle || t.subtitle}</p>
         </div>

@@ -10,7 +10,7 @@ export const caseConvertersSeo: Record<string, ToolSeoContent> = {
         <section>
           <h3 className="text-xl font-semibold mb-3 text-foreground">What is Sentence Case?</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Sentence case</strong> is a standard text formatting and capitalization style where only the first letter of the first word in a sentence is capitalized. According to standard English capitalization rules, sentence case capitalizes the first word after sentence-ending punctuation (periods, question marks, exclamation marks) while preserving the capitalization of proper nouns and acronyms. 
+            <strong>Sentence case</strong> is a standard capitalization style where the first word of a sentence is capitalized and the remaining ordinary words are lowercase. This converter also preserves URLs, email addresses, and common technical terms such as API, HTML, JSON, and JavaScript.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Major editorial frameworks, including the APA Style Guide and the Microsoft Writing Style Guide, recommend this writing style for its high readability. It is easier to read than <Link href="/upper-case" className="text-primary hover:underline font-medium">UPPERCASE</Link> and looks more modern and conversational than <Link href="/title-case" className="text-primary hover:underline font-medium">Title Case</Link>.
@@ -19,14 +19,21 @@ export const caseConvertersSeo: Record<string, ToolSeoContent> = {
 
         <section>
           <h3 className="text-xl font-semibold mb-3 text-foreground">Sentence Case Rules</h3>
-          <p className="mb-3 text-muted-foreground">To achieve perfect English grammar and text formatting, follow these core capitalization rules:</p>
+          <p className="mb-3 text-muted-foreground">Use these rules to produce clear, readable English text:</p>
           <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
             <li><strong>Capitalize the first word</strong> of every sentence.</li>
-            <li><strong>Capitalize proper nouns</strong> (names, places, brands).</li>
+            <li><strong>Capitalize proper nouns</strong> (names, places, and brands) during your final review.</li>
             <li><strong>Keep common nouns lowercase</strong> (unless they start a sentence).</li>
             <li><strong>Capitalize after punctuation</strong> (periods, question marks, and exclamation marks).</li>
-            <li><strong>Preserve acronyms</strong> (e.g., NASA, HTML, ROI).</li>
+            <li><strong>Keep acronyms consistent</strong> (for example, NASA, HTML, and ROI).</li>
           </ul>
+        </section>
+
+        <section className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5">
+          <h3 className="text-xl font-semibold mb-2 text-foreground">Review Names and Uncommon Brands</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            The converter protects common technical terms, URLs, and email addresses, but no automatic case converter can identify every personal name, company, or niche product. Proofread the result and restore any specialized capitalization before publishing.
+          </p>
         </section>
 
         <section>
@@ -142,7 +149,14 @@ export const caseConvertersSeo: Record<string, ToolSeoContent> = {
             <li><strong>ChatGPT</strong> (Brands)</li>
           </ul>
           <p className="text-muted-foreground">
-            <em>Note on automatic tools:</em> While human editors naturally recognize names, most automatic online text formatting tools (including this one) aggressively convert text to lowercase before capitalizing the first word. If your text contains proper nouns, you should review the final output and manually re-capitalize names and brands.
+            This tool preserves common technical terms and protects URLs and email addresses. Review uncommon names, brands, and specialist terminology after conversion, because they may need manual capitalization.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">More Capitalization Guides</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Need help choosing the right format? Read <Link href="/blog/how-to-fix-all-caps-text-instantly" className="text-primary hover:underline font-medium">how to fix ALL CAPS text without retyping</Link>, <Link href="/blog/sentence-case-vs-title-case" className="text-primary hover:underline font-medium">Sentence Case vs. Title Case</Link>, or <Link href="/blog/uppercase-vs-lowercase-when-to-use-each" className="text-primary hover:underline font-medium">Uppercase vs. Lowercase</Link>.
           </p>
         </section>
 

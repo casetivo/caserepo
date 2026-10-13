@@ -6,26 +6,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, ArrowRight, FileText } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
 
-const RecentBlogPosts = memo(() => {
+interface RecentBlogPostsProps {
+  postSlugs?: string[];
+  title?: string;
+}
+
+const RecentBlogPosts = memo(({ postSlugs, title = "Latest from the Blog" }: RecentBlogPostsProps) => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/blog/recent")
+    const query = postSlugs?.length ? `?slugs=${encodeURIComponent(postSlugs.join(","))}` : "";
+    fetch(`/api/blog/recent${query}`)
       .then(res => res.json())
       .then(data => {
         setPosts(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [postSlugs]);
 
   if (loading || posts.length === 0) return null;
 
   return (
     <div className="mt-12 pt-8 border-t border-border/60">
       <h3 className="text-2xl font-bold tracking-tight text-foreground mb-6" style={{ fontFamily: "var(--font-display)" }}>
-        Latest from the Blog
+        {title}
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {posts.map((post) => (

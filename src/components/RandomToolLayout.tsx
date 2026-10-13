@@ -27,9 +27,11 @@ interface RandomToolLayoutProps {
   seoTitle?: string;
   seoContent?: ReactNode;
   seoFaqs?: FAQ[];
+  relatedPostSlugs?: string[];
+  relatedPostsTitle?: string;
 }
 
-const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, children, onGenerate, onClear, seoTitle, seoContent, seoFaqs }: RandomToolLayoutProps) => {
+const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, children, onGenerate, onClear, seoTitle, seoContent, seoFaqs, relatedPostSlugs, relatedPostsTitle }: RandomToolLayoutProps) => {
   const { locale, setLocale, t } = useI18n("random");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
@@ -138,7 +140,7 @@ const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, 
             { href: "/random-month-generator", title: "Random Month Generator", description: "Pick a random month of the year." }
           ].filter(t => t.href !== pathname).slice(0, 8)} 
         />
-        <RecentBlogPosts />
+        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
       </main>
       <Footer />
     </div>
