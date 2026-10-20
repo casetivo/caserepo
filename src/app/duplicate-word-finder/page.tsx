@@ -6,24 +6,24 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Duplicate Word Finder — Free Online Tool",
-  description: "Find and count all duplicate words in your text instantly. Shows frequency of each repeated word. Free online duplicate word finder and counter.",
-  keywords: "duplicate word finder, find duplicate words, word frequency counter, repeated words finder online",
+  title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+  description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
+  keywords: "duplicate word finder, find duplicate words, word frequency counter, repeated words finder, overused words checker, text word counter online, word repetition tool",
   alternates: {
     canonical: `${BASE}/duplicate-word-finder`,
   },
   openGraph: {
-    title: "Duplicate Word Finder — Free Online Tool",
-    description: "Find and count all duplicate words in your text instantly. Shows frequency of each repeated word. Free online duplicate word finder and counter.",
+    title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+    description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
     url: `${BASE}/duplicate-word-finder`,
     siteName: "Casetivo",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Duplicate Word Finder — Free Online Tool" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Duplicate Word Finder – Free Online Tool" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Duplicate Word Finder — Free Online Tool",
-    description: "Find and count all duplicate words in your text instantly. Shows frequency of each repeated word. Free online duplicate word finder and counter.",
+    title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+    description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
     images: ["/og-image.png"],
   },
 };
@@ -31,8 +31,12 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Duplicate Word Finder</h1>
-      <SchemaMarkup toolName="Duplicate Word Finder" url={`${BASE}/duplicate-word-finder`} description="Find and count all duplicate words in your text instantly. Shows frequency of each repeated word. Free online duplicate word finder and counter." faqs={getSeoContent("duplicate-word-finder", "Duplicate Word Finder").faqs} />
+      <SchemaMarkup
+        toolName="Duplicate Word Finder"
+        url={`${BASE}/duplicate-word-finder`}
+        description="Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. Free online tool."
+        faqs={getSeoContent("duplicateWordFinder", "Duplicate Word Finder").faqs}
+      />
       <ClientPage />
     </>
   );

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Roman Numeral Date Converter</h1>
       <SchemaMarkup toolName="Roman Numeral Date Converter" url={`${BASE}/roman-numeral-date-converter`} description="Convert any date or number to Roman numerals instantly. Supports dates like MM/DD/YYYY and standalone numbers 1–3999. Free online tool." faqs={getSeoContent("roman-numeral-date-converter", "Roman Numeral Date Converter").faqs} />
       <ClientPage />
     </>

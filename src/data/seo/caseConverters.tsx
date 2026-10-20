@@ -617,49 +617,412 @@ export const caseConvertersSeo: Record<string, ToolSeoContent> = {
     ]
   },
   capitalizedCase: {
-    title: "How does the Capitalized Case Converter work?",
+    title: "Guide to Capitalized Case: Rules, Examples & Best Practices",
     content: (
-      <>
-        <p>The <strong>Capitalized Case Converter</strong> automatically capitalizes the first letter of <em>every single word</em> in your text, leaving the rest of the letters lowercase. This is useful for formatting names, specific titles, or standardizing lists.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Capitalized Case vs Title Case</h3>
-        <p className="mt-2">Unlike Title Case, which smartly ignores small words like "and", "or", and "the", Capitalized Case blindly capitalizes the first letter of every word regardless of grammar rules. It is best used for names (e.g., "John Doe") or lists of items rather than article titles.</p>
-      </>
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">What is Capitalized Case?</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Capitalized Case</strong> (often referred to in design and computing as <em>Start Case</em> or <em>Initial Capitals</em>) is a straightforward text format where the very first letter of every single word is capitalized, and all subsequent letters in that word are forced into lowercase.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Unlike <Link href="/sentence-case" className="text-primary hover:underline font-medium">Sentence Case</Link>, which only capitalizes the first word of each sentence, or <Link href="/title-case" className="text-primary hover:underline font-medium">Title Case</Link>, which uses grammatical rules to leave minor prepositions and conjunctions lowercase, Capitalized Case treats every word equally. It applies uniform initial capitalization from the first word to the last.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Capitalized Case vs. Title Case vs. Sentence Case</h3>
+          <p className="mb-3 text-muted-foreground">
+            Writers and editors often debate which case to pick. Here is how they differ in practice when applied to the same raw phrases:
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-muted/50 text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3 font-medium border-b border-border">Raw Input</th>
+                  <th className="px-4 py-3 font-medium border-b border-border text-primary font-semibold">Capitalized Case</th>
+                  <th className="px-4 py-3 font-medium border-b border-border">Title Case</th>
+                  <th className="px-4 py-3 font-medium border-b border-border">Sentence Case</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-foreground">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">the lord of the rings</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">The Lord Of The Rings</td>
+                  <td className="px-4 py-3 font-mono text-xs">The Lord of the Rings</td>
+                  <td className="px-4 py-3 font-mono text-xs">The lord of the rings</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">JOHNATHAN DOE</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">Johnathan Doe</td>
+                  <td className="px-4 py-3 font-mono text-xs">Johnathan Doe</td>
+                  <td className="px-4 py-3 font-mono text-xs">Johnathan doe</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">senior software architect</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">Senior Software Architect</td>
+                  <td className="px-4 py-3 font-mono text-xs">Senior Software Architect</td>
+                  <td className="px-4 py-3 font-mono text-xs">Senior software architect</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">a beginner guide to coding</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">A Beginner Guide To Coding</td>
+                  <td className="px-4 py-3 font-mono text-xs">A Beginner Guide to Coding</td>
+                  <td className="px-4 py-3 font-mono text-xs">A beginner guide to coding</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Where Capitalized Case Works Best</h3>
+          <p className="mb-3 text-muted-foreground">
+            Because this style doesn't worry about editorial grammar rules, it is ideal for structured data, names, and short labels:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-muted-foreground">
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">👥 Customer &amp; Contact Directories</h4>
+              <p className="text-xs leading-relaxed">Fix names submitted through web forms in all-caps or all-lowercase (e.g., turning <span className="font-mono">SARAH JANE SMITH</span> into <span className="font-mono">Sarah Jane Smith</span>) before importing into a CRM or running an email mail-merge.</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">🏷️ E-Commerce &amp; Product Catalogs</h4>
+              <p className="text-xs leading-relaxed">Standardize product variants, color options, SKU descriptions, and category tags across an online store inventory (e.g., <span className="font-mono">vintage leather jacket - dark brown</span> → <span className="font-mono">Vintage Leather Jacket - Dark Brown</span>).</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">💼 Job Titles &amp; Resumes</h4>
+              <p className="text-xs leading-relaxed">Ensure uniform capitalization across resumes, LinkedIn experience sections, team roster tables, and organizational charts.</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">📍 Geographic &amp; Address Normalization</h4>
+              <p className="text-xs leading-relaxed">Quickly clean up lists of cities, countries, street names, and postal regions exported from raw database tables or spreadsheets.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5">
+          <h3 className="text-xl font-semibold mb-2 text-foreground">Things to Keep in Mind Before Converting</h3>
+          <p className="text-muted-foreground leading-relaxed text-sm mb-3">
+            Automatic case conversion is incredibly fast for bulk tasks, but keep these two common language quirks in mind:
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5 text-xs text-muted-foreground">
+            <li><strong>Acronyms will be lowered after the first letter:</strong> Acronyms like <span className="font-mono">NASA</span>, <span className="font-mono">HTML</span>, or <span className="font-mono">USA</span> will convert to <span className="font-mono">Nasa</span>, <span className="font-mono">Html</span>, and <span className="font-mono">Usa</span>. If your list contains abbreviations, do a quick pass after converting to restore them.</li>
+            <li><strong>Unusual family names:</strong> Names with interior capitals like <span className="font-mono">McDonald</span>, <span className="font-mono">O'Connor</span>, or <span className="font-mono">van Gogh</span> may convert to <span className="font-mono">Mcdonald</span>, <span className="font-mono">O'connor</span>, and <span className="font-mono">Van Gogh</span>. A 10-second proofread protects special heritage names.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Common Inconsistent Capitalization Mistakes</h3>
+          <p className="mb-3 text-muted-foreground">Messy, mixed-case text looks rushed and unprofessional. Here is how our converter cleans up common data entry issues:</p>
+          <ul className="space-y-3 bg-muted/30 p-4 rounded-lg border border-border">
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">jOhN sMiTh (Accidental mixed case)</span>
+                <p className="text-xs text-muted-foreground">Commonly happens from mobile autocorrect or accidental Shift key toggles.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">FRONT DESK COORDINATOR (ALL CAPS job title)</span>
+                <p className="text-xs text-muted-foreground">Aggressive and hard to scan in resumes or company directory pages.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">new york city, new york (All lowercase location)</span>
+                <p className="text-xs text-muted-foreground">Looks unpolished in official correspondence and address labels.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2 pt-2 border-t border-border">
+              <span className="text-green-500 mt-0.5">✅</span>
+              <div>
+                <span className="font-medium text-foreground">John Smith / Front Desk Coordinator / New York City, New York</span>
+                <p className="text-xs text-muted-foreground">Clean, consistent, and instantly readable output.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Guides &amp; Further Reading</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Want to learn more about English capitalization conventions? Read our deep-dive guide on <Link href="/blog/what-is-capitalized-case" className="text-primary hover:underline font-medium">What Is Capitalized Case and When to Use It</Link>, learn <Link href="/blog/how-to-capitalize-a-title-correctly" className="text-primary hover:underline font-medium">How to Capitalize Titles Correctly</Link>, or explore <Link href="/blog/sentence-case-vs-title-case" className="text-primary hover:underline font-medium">Sentence Case vs. Title Case</Link>.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Related Text Case Tools</h3>
+          <p className="mb-3 text-muted-foreground">Need a different capitalization format? Check out our other free text utilities:</p>
+          <div className="flex flex-wrap gap-2.5">
+            <Link href="/title-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Title Case Converter</Link>
+            <Link href="/sentence-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Sentence Case</Link>
+            <Link href="/upper-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">UPPER CASE</Link>
+            <Link href="/lower-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">lower case</Link>
+            <Link href="/sort-words-alphabetically" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Sort Words Alphabetically</Link>
+          </div>
+        </section>
+      </div>
     ),
     faqs: [
       {
-        question: "What is capitalized case used for?",
-        answer: "It is most commonly used for formatting lists of names, cities, or places where every word requires capitalization."
+        question: "What is capitalized case, and how does it work?",
+        answer: "Capitalized case (often called Start Case or Initial Capitals) capitalizes the first letter of every individual word while turning all remaining letters into lowercase. If you paste 'the quick brown fox', the output becomes 'The Quick Brown Fox'."
       },
       {
-        question: "Will it capitalize small words like 'a' and 'the'?",
-        answer: "Yes, Capitalized Case capitalizes the first letter of every word. If you want to skip small words, use the Title Case converter instead."
+        question: "How is capitalized case different from title case?",
+        answer: "The main difference is how small connecting words are treated. Title case follows editorial stylebooks (such as AP or Chicago) and keeps minor prepositions, articles, and conjunctions (like 'and', 'the', 'of', 'in') lowercase in the middle of a sentence. Capitalized case ignores grammar rules and capitalizes every single word without exception."
+      },
+      {
+        question: "Why did my acronyms (like NASA or HTML) change to 'Nasa' and 'Html'?",
+        answer: "The converter capitalizes the first letter of each word and converts all subsequent characters to lowercase. Because of this, acronyms and abbreviations will have their subsequent letters lowered. If your list includes acronyms, simply do a quick scan to re-capitalize them after converting."
+      },
+      {
+        question: "How does this tool handle names with apostrophes, like O'Connor or D'Angelo?",
+        answer: "Standard word boundaries treat apostrophes inside words as continuous text, so 'o'connor' will convert to 'O'connor'. If you need the letter immediately following the apostrophe capitalized ('O'Connor'), a quick manual edit for those specific names is recommended."
+      },
+      {
+        question: "Will numbers, symbols, or punctuation be affected?",
+        answer: "No. Numbers, special characters, punctuation marks, emojis, and symbols do not have upper or lower cases, so they stay exactly as they were in your original text."
+      },
+      {
+        question: "Is my text saved, tracked, or sent to a server?",
+        answer: "Never. All text conversion happens 100% locally in your web browser using JavaScript. None of your text, client names, or sensitive documents are ever uploaded, stored, or sent across the internet."
+      },
+      {
+        question: "Can I paste a huge list with thousands of names?",
+        answer: "Yes! There are no artificial limits. You can copy an entire column of hundreds or thousands of rows from Excel or Google Sheets, paste it into the converter, click 'Capitalized Case', and paste the clean column right back."
+      },
+      {
+        question: "Does it preserve line breaks and paragraph spacing?",
+        answer: "Yes. Line breaks, empty lines, and indentation tabs are preserved exactly in their original positions."
+      },
+      {
+        question: "Should I use capitalized case for blog posts and article headings?",
+        answer: "Generally, no. Most publishing and academic standards (such as AP, APA, or Chicago style) prefer proper Title Case or Sentence Case for headlines. Capitalized case is better suited for lists, names, product tags, navigation bars, and data tables."
+      },
+      {
+        question: "Can I download the capitalized text as a file?",
+        answer: "Yes. Once your text is converted, click the 'Download' button below the text area to save a clean .txt file directly to your device."
+      },
+      {
+        question: "Is there any fee or word limit to use this tool?",
+        answer: "None at all. The tool is completely free, runs without ads blocking your view, and has no character limits or account requirements."
+      },
+      {
+        question: "Can I use this converter on mobile phones?",
+        answer: "Yes, Casetivo is built to work smoothly on mobile browsers. You can paste text from your iPhone, iPad, or Android device, format it, and copy it back to your clipboard with a single tap."
       }
     ]
   },
-  titleCase: {
-    title: "How does the Title Case Converter work?",
+    titleCase: {
+    title: "The Comprehensive Guide to Title Case: Rules, Standards & Examples",
     content: (
-      <>
-        <p>The <strong>Title Case Converter</strong> formats your text perfectly for essay titles, blog post headlines, and book covers. It capitalizes the major words while keeping minor words (like "a", "an", "the", "and", "but") in lowercase, adhering to standard editorial guidelines.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Why use a Title Capitalization Tool?</h3>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Editorial Standards:</strong> Ensure your blog titles and essays follow AP, APA, or Chicago style guidelines automatically.</li>
-          <li><strong>Professionalism:</strong> Correctly formatted headlines look much more professional than randomly capitalized words.</li>
-        </ul>
-      </>
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">What is Title Case (Headline Style)?</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Title case</strong>—often referred to in publishing as <em>headline style</em>—is the capitalization standard used for titles of books, articles, blog posts, essays, movies, and songs. Rather than capitalizing every letter indiscriminately or only capitalizing the first letter of a sentence, title case distinguishes between <strong>major words</strong> that carry meaning and <strong>minor words</strong> that serve grammatical functions.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Major stylebooks—including the Chicago Manual of Style (CMOS), the Associated Press Stylebook (AP), the American Psychological Association (APA), and the Modern Language Association (MLA)—all rely on title case for headlines because it provides a visual hierarchy that makes headings immediately recognizable and easy to scan.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">The Core Rules of Title Capitalization</h3>
+          <p className="mb-3 text-muted-foreground">
+            While specific academic manuals differ slightly on edge cases, title capitalization generally follows these universal guidelines:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+            <li><strong>Always capitalize the first and last word:</strong> No matter what part of speech it is, the first word and the final word of any title are always capitalized. For example, in <em>&quot;What We Are Looking For&quot;</em>, the word &quot;For&quot; is capitalized because it ends the title.</li>
+            <li><strong>Capitalize all major parts of speech:</strong> This includes nouns (<em>Mountain</em>, <em>Student</em>), verbs (<em>Write</em>, <em>Create</em>), pronouns (<em>He</em>, <em>She</em>, <em>What</em>, <em>Who</em>), adjectives (<em>Silent</em>, <em>Quick</em>), and adverbs (<em>Quickly</em>, <em>Never</em>).</li>
+            <li><strong>Forms of the verb &quot;to be&quot; are always capitalized:</strong> Words like <strong>Is</strong>, <strong>Are</strong>, <strong>Was</strong>, <strong>Were</strong>, <strong>Be</strong>, and <strong>Been</strong> are verbs. Even though &quot;is&quot; has only two letters, it is always capitalized in title case.</li>
+            <li><strong>Keep minor function words lowercase:</strong> Articles (<em>a</em>, <em>an</em>, <em>the</em>), coordinating conjunctions (<em>and</em>, <em>but</em>, <em>or</em>, <em>for</em>, <em>nor</em>), and short prepositions (<em>at</em>, <em>by</em>, <em>in</em>, <em>of</em>, <em>on</em>, <em>to</em>, <em>up</em>, <em>as</em>, <em>via</em>) remain lowercase in the middle of a title.</li>
+            <li><strong>The Subtitle Rule:</strong> The first word following a colon (<em>:</em>), em-dash (<em>—</em>), or question mark is always capitalized, as it introduces a new subtitle or independent clause.</li>
+            <li><strong>Hyphenated compound words:</strong> Major words within hyphenated compounds are capitalized (e.g., <em>&quot;State-of-the-Art&quot;</em> or <em>&quot;Self-Driving Vehicles&quot;</em>).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Title Case vs. Sentence Case vs. Capitalized Case</h3>
+          <p className="mb-3 text-muted-foreground">
+            Choosing the correct capitalization style depends heavily on where your text will appear. Here is how they compare across identical phrases:
+          </p>
+          <div className="overflow-x-auto rounded-lg border border-border bg-card">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-muted/50 text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3 font-medium border-b border-border">Raw Input</th>
+                  <th className="px-4 py-3 font-medium border-b border-border text-primary font-semibold">Title Case (Editorial)</th>
+                  <th className="px-4 py-3 font-medium border-b border-border">Capitalized Case</th>
+                  <th className="px-4 py-3 font-medium border-b border-border">Sentence Case</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-foreground">
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">the catcher in the rye</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">The Catcher in the Rye</td>
+                  <td className="px-4 py-3 font-mono text-xs">The Catcher In The Rye</td>
+                  <td className="px-4 py-3 font-mono text-xs">The catcher in the rye</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">there is no place like home</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">There Is No Place Like Home</td>
+                  <td className="px-4 py-3 font-mono text-xs">There Is No Place Like Home</td>
+                  <td className="px-4 py-3 font-mono text-xs">There is no place like home</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">war of the worlds: a modern guide</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">War of the Worlds: A Modern Guide</td>
+                  <td className="px-4 py-3 font-mono text-xs">War Of The Worlds: A Modern Guide</td>
+                  <td className="px-4 py-3 font-mono text-xs">War of the worlds: A modern guide</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-mono text-xs">what are you waiting for</td>
+                  <td className="px-4 py-3 font-mono text-xs text-primary font-semibold">What Are You Waiting For</td>
+                  <td className="px-4 py-3 font-mono text-xs">What Are You Waiting For</td>
+                  <td className="px-4 py-3 font-mono text-xs">What are you waiting for</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Where Title Case is Mandatory</h3>
+          <p className="mb-3 text-muted-foreground">
+            Title case is the standard convention in numerous professional and creative scenarios:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-muted-foreground">
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">📰 Blog Posts &amp; Editorial Headlines</h4>
+              <p className="text-xs leading-relaxed">Articles and online newsletters use title case to command visual authority in RSS readers, search engine results pages (SERPs), and social media shares.</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">📚 Books, Academic Essays &amp; Papers</h4>
+              <p className="text-xs leading-relaxed">CMOS and MLA standards mandate title case for book titles, thesis submissions, research paper chapter headers, and bibliographies.</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">🎬 Entertainment &amp; Creative Media</h4>
+              <p className="text-xs leading-relaxed">Movie titles, album names, song tracks, podcast episode names, and theatrical works follow headline capitalization conventions.</p>
+            </div>
+            <div className="p-4 rounded-xl border border-border bg-card">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">📊 Conference &amp; Keynote Presentations</h4>
+              <p className="text-xs leading-relaxed">Slide titles, workshop names, and webinar topics formatted in title case look clean, structured, and polished to attendees.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">The 4 Most Common Title Case Mistakes</h3>
+          <p className="mb-3 text-muted-foreground">Even experienced copywriters stumble on these tricky nuances. Our converter prevents them automatically:</p>
+          <ul className="space-y-3 bg-muted/30 p-4 rounded-lg border border-border">
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">Why Content is King (&quot;is&quot; kept in lowercase)</span>
+                <p className="text-xs text-muted-foreground">People mistake &quot;is&quot; for a minor word due to its length. However, &quot;is&quot; is a verb and must always be capitalized.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">A Place to Stand in (&quot;in&quot; kept in lowercase at the end)</span>
+                <p className="text-xs text-muted-foreground">The final word of a title must always be capitalized, regardless of whether it is a preposition or article.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-destructive mt-0.5">❌</span>
+              <div>
+                <span className="font-mono text-sm">Design Systems: a Practical Guide (Lowercase &quot;a&quot; after colon)</span>
+                <p className="text-xs text-muted-foreground">Words starting a subtitle after a colon or em-dash must always begin with a capital letter.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2 pt-2 border-t border-border">
+              <span className="text-green-500 mt-0.5">✅</span>
+              <div>
+                <span className="font-medium text-foreground">Why Content Is King / A Place to Stand In / Design Systems: A Practical Guide</span>
+                <p className="text-xs text-muted-foreground">Properly structured, grammatically accurate headline formatting.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Guides &amp; Further Reading</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Want to master headline capitalization? Check out our detailed editorial guides: learn <Link href="/blog/how-to-capitalize-a-title-correctly" className="text-primary hover:underline font-medium">How to Capitalize Titles Correctly</Link>, explore the key differences in <Link href="/blog/sentence-case-vs-title-case" className="text-primary hover:underline font-medium">Sentence Case vs. Title Case</Link>, or read <Link href="/blog/what-is-capitalized-case" className="text-primary hover:underline font-medium">What Is Capitalized Case and When to Use It</Link>.
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-semibold mb-3 text-foreground">Related Text Formatting Tools</h3>
+          <p className="mb-3 text-muted-foreground">Need to convert text into other case formats? Explore our free companion utilities:</p>
+          <div className="flex flex-wrap gap-2.5">
+            <Link href="/sentence-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Sentence Case</Link>
+            <Link href="/capitalized-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Capitalized Case</Link>
+            <Link href="/upper-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">UPPER CASE</Link>
+            <Link href="/lower-case" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">lower case</Link>
+            <Link href="/sort-words-alphabetically" className="px-3 py-1.5 bg-muted rounded-md text-sm font-medium hover:bg-primary/10 hover:text-primary transition-colors">Sort Words Alphabetically</Link>
+          </div>
+        </section>
+      </div>
     ),
     faqs: [
       {
-        question: "Which words are kept lowercase in Title Case?",
-        answer: "Articles (a, an, the), coordinating conjunctions (and, but, or), and short prepositions (in, on, at, to) are typically kept lowercase unless they are the first or last word of the title."
+        question: "What is title case, and when should I use it?",
+        answer: "Title case is a headline capitalization standard where major words (nouns, verbs, adjectives, adverbs, and pronouns) are capitalized, while minor connecting words (short articles, conjunctions, and prepositions) remain lowercase unless they appear at the very beginning or end of the title. It is predominantly used for article headlines, book titles, essays, and creative works."
       },
       {
-        question: "Is this suitable for APA style?",
-        answer: "Yes, our algorithm closely mimics standard editorial rules, making it a great starting point for APA and Chicago style titles."
+        question: "Which words should NOT be capitalized in title case?",
+        answer: "Minor function words stay lowercase in the middle of a title. These include short articles ('a', 'an', 'the'), coordinating conjunctions ('and', 'but', 'for', 'nor', 'or'), and short prepositions ('at', 'by', 'in', 'of', 'on', 'to', 'up', 'as', 'via'). However, if any of these words start or end the title, they must be capitalized."
+      },
+      {
+        question: "Why is the word 'Is' capitalized in title case if it only has two letters?",
+        answer: "Because 'is' is a verb (a form of the verb 'to be'). In title case grammar rules across all major stylebooks, verbs are always capitalized regardless of length. The same rule applies to 'Are', 'Was', 'Were', 'Be', and 'Been'."
+      },
+      {
+        question: "Should the last word of a headline always be capitalized?",
+        answer: "Yes, absolutely. Under both Chicago and AP style standards, the very first word and the very last word of a title are always capitalized, even if the final word happens to be a short preposition (e.g., 'What I Am Looking For')."
+      },
+      {
+        question: "How should subtitles after a colon be capitalized?",
+        answer: "The first word following a colon, em-dash, or question mark must always begin with an uppercase letter because it introduces a new subtitle or independent clause (e.g., 'Mastering Writing: A Guide for Beginners')."
+      },
+      {
+        question: "How does the tool handle hyphenated words like 'Long-Term' or 'State-of-the-Art'?",
+        answer: "Our converter capitalizes major words within hyphenated compounds while keeping minor connecting words lowercase, adhering to modern editorial guidelines."
+      },
+      {
+        question: "What is the difference between Title Case and Capitalized Case?",
+        answer: "Capitalized case blindly capitalizes the first letter of every single word without exception ('The Catcher In The Rye'). Title case applies intelligent editorial rules, keeping minor prepositions and conjunctions lowercase ('The Catcher in the Rye'). Title case is standard for article and book titles, while capitalized case is better suited for lists, names, and data tables."
+      },
+      {
+        question: "Which style guide does this title case converter follow?",
+        answer: "Our converter implements standard headline capitalization aligned with the Chicago Manual of Style (CMOS) and APA guidelines, with built-in support for verbs, last-word capitalization, and subtitle detection."
+      },
+      {
+        question: "Can I convert multiple headlines or an entire document outline at once?",
+        answer: "Yes! The tool supports multi-line text seamlessly. You can paste an entire outline, list of blog titles, or curriculum syllabus, and each line will be formatted as an independent headline."
+      },
+      {
+        question: "Is my draft or manuscript saved or sent to a server?",
+        answer: "Never. All conversion runs entirely within your web browser using JavaScript. No text is ever uploaded, tracked, or stored on external servers, keeping your unpublished work completely private."
+      },
+      {
+        question: "Can I download my formatted headlines as a plain text file?",
+        answer: "Yes. Once your headlines are converted, simply click the 'Download' button below the text box to save your clean text as a .txt file directly to your device."
+      },
+      {
+        question: "Is this title case tool completely free?",
+        answer: "Yes, it is 100% free with no sign-ups, no subscription tiers, and no character limits. You can use it as often as you need for both personal and commercial projects."
       }
     ]
   },
-  inverseCase: {
+    inverseCase: {
     title: "How does the Inverse Case Converter work?",
     content: (
       <>

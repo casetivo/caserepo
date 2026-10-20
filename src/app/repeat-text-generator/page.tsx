@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Repeat Text Generator</h1>
       <SchemaMarkup toolName="Repeat Text Generator" url={`${BASE}/repeat-text-generator`} description="Repeat any text multiple times with custom separator. Set repetitions from 1 to 1000. Free online repeat text generator tool." faqs={getSeoContent("repeat-text-generator", "Repeat Text Generator").faqs} />
       <ClientPage />
     </>

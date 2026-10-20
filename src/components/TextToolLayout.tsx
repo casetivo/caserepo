@@ -29,12 +29,15 @@ interface TextToolLayoutProps {
   seoTitle?: string;
   seoContent?: React.ReactNode;
   seoFaqs?: FAQ[];
+  relatedPostSlugs?: string[];
+  relatedPostsTitle?: string;
 }
 
 const TextToolLayout = memo(({
   titleKey, subtitleKey, actionLabelKey,
   inputText, onInputChange, outputText,
   children, onAction, seoTitle, seoContent, seoFaqs,
+  relatedPostSlugs, relatedPostsTitle,
 }: TextToolLayoutProps) => {
   const { locale, setLocale, t } = useI18n("text");
   const pathname = usePathname();
@@ -166,7 +169,7 @@ const TextToolLayout = memo(({
             { href: "/em-dash-remover", title: "Em Dash Remover", description: "Quickly remove or replace em dashes in your text." }
           ].filter(t => t.href !== pathname).slice(0, 8)} 
         />
-        <RecentBlogPosts />
+        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
       </main>
       <Footer />
     </div>

@@ -26,8 +26,38 @@ export const toSentenceCase = (text: string) => {
 export const toLowerCaseText = (t: string) => t.toLowerCase();
 export const toUpperCaseText = (t: string) => t.toUpperCase();
 export const toCapitalizedCase = (t: string) => t.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-export const toTitleCase = (t: string) => {
-  const minor = new Set(["a","an","the","and","but","or","for","nor","on","at","to","by","in","of","up","as","is"]);
-  return t.toLowerCase().split(" ").map((w,i) => i===0||!minor.has(w) ? w.charAt(0).toUpperCase()+w.slice(1) : w).join(" ");
+const TITLE_CASE_MINOR_WORDS = new Set(["a", "an", "the", "and", "but", "or", "nor", "for", "yet", "so", "at", "by", "in", "of", "off", "on", "to", "up", "as", "per", "via"]);
+
+export const toTitleCase = (text: string) => {
+  return text
+    .split("\n")
+    .map(line => {
+      const words = line.split(/(\s+)/);
+      const nonWhitespaceIndices = words
+        .map((w, idx) => (/\S/.test(w) ? idx : -1))
+        .filter(idx => idx !== -1);
+
+      const firstIdx = nonWhitespaceIndices[0];
+      const lastIdx = nonWhitespaceIndices[nonWhitespaceIndices.length - 1];
+
+      return words.map((w, i) => {
+        if (!/\S/.test(w)) return w;
+        const lower = w.toLowerCase();
+
+        let isAfterColon = false;
+        for (let prev = i - 1; prev >= 0; prev--) {
+          if (/\S/.test(words[prev])) {
+            isAfterColon = /[:\-—–]$/.test(words[prev]);
+            break;
+          }
+        }
+
+        if (i === firstIdx || i === lastIdx || isAfterColon || !TITLE_CASE_MINOR_WORDS.has(lower)) {
+          return lower.replace(/(^|[-—/])(\p{L})/gu, (_, sep, char) => `${sep}${char.toUpperCase()}`);
+        }
+        return lower;
+      }).join("");
+    })
+    .join("\n");
 };
 export const toInverseCase = (t: string) => t.split("").map(c => c===c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join("");

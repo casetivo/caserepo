@@ -39,9 +39,11 @@ interface SingleCaseConverterProps {
   seoTitle?: string;
   seoContent?: React.ReactNode;
   seoFaqs?: FAQ[];
+  relatedPostSlugs?: string[];
+  relatedPostsTitle?: string;
 }
 
-const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, heading, seoTitle, seoContent, seoFaqs }: SingleCaseConverterProps) => {
+const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, heading, seoTitle, seoContent, seoFaqs, relatedPostSlugs, relatedPostsTitle }: SingleCaseConverterProps) => {
   const { locale, setLocale, t } = useI18n("base");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
@@ -162,7 +164,7 @@ const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, headin
             { href: "/inverse-case", title: "Inverse Case", description: "Reverse the case of each letter." }
           ].filter(t => t.href !== pathname)} 
         />
-        <RecentBlogPosts />
+        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
       </main>
       <Footer />
     </div>

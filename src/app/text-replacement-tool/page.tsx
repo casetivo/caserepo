@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Text Replacement Tool</h1>
       <SchemaMarkup toolName="Text Replacement Tool" url={`${BASE}/text-replacement-tool`} description="Find and replace any word or phrase in your text instantly. No regex needed — simple find and replace. Free online text replacement tool." faqs={getSeoContent("text-replacement-tool", "Text Replacement Tool").faqs} />
       <ClientPage />
     </>

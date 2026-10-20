@@ -22,8 +22,17 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
 };
 
 export function getSeoContent(toolKey: string, fallbackName: string): ToolSeoContent {
+  const camelKey = toolKey.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  const kebabKey = toolKey.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+
   if (toolSeoContent[toolKey]) {
     return toolSeoContent[toolKey];
+  }
+  if (toolSeoContent[camelKey]) {
+    return toolSeoContent[camelKey];
+  }
+  if (toolSeoContent[kebabKey]) {
+    return toolSeoContent[kebabKey];
   }
 
   // Fallback content if unique content hasn't been written yet

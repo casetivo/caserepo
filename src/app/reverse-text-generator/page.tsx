@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Reverse Text Generator</h1>
       <SchemaMarkup toolName="Reverse Text Generator" url={`${BASE}/reverse-text-generator`} description="Reverse any text string instantly. Mirror your text character by character or word by word. Free online reverse text generator." faqs={getSeoContent("reverse-text-generator", "Reverse Text Generator").faqs} />
       <ClientPage />
     </>

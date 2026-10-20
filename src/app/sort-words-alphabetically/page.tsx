@@ -6,15 +6,15 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Sort Words Alphabetically — Free Online Tool",
-  description: "Sort words, lines, or lists alphabetically in ascending or descending order. Free online word sorter and alphabetizer tool.",
-  keywords: "sort words alphabetically, alphabetize words, word sorter online, alphabetical order tool free",
+  title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+  description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
+  keywords: "sort words alphabetically, alphabetize list, word sorter online, sort lines alphabetically, alphabetical order tool, a to z sorter, natural sort online",
   alternates: {
     canonical: `${BASE}/sort-words-alphabetically`,
   },
   openGraph: {
-    title: "Sort Words Alphabetically — Free Online Tool",
-    description: "Sort words, lines, or lists alphabetically in ascending or descending order. Free online word sorter and alphabetizer tool.",
+    title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+    description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
     url: `${BASE}/sort-words-alphabetically`,
     siteName: "Casetivo",
     type: "website",
@@ -22,17 +22,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sort Words Alphabetically — Free Online Tool",
-    description: "Sort words, lines, or lists alphabetically in ascending or descending order. Free online word sorter and alphabetizer tool.",
+    title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+    description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
     images: ["/og-image.png"],
   },
 };
 
 export default function Page() {
+  const seoData = getSeoContent("sort-words-alphabetically", "Sort Words Alphabetically");
+
   return (
     <>
-      <h1 className="sr-only">Sort Words Alphabetically</h1>
-      <SchemaMarkup toolName="Sort Words Alphabetically" url={`${BASE}/sort-words-alphabetically`} description="Sort words, lines, or lists alphabetically in ascending or descending order. Free online word sorter and alphabetizer tool." faqs={getSeoContent("sort-words-alphabetically", "Sort Words Alphabetically").faqs} />
+      <SchemaMarkup
+        toolName="Sort Words Alphabetically"
+        url={`${BASE}/sort-words-alphabetically`}
+        description="Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication."
+        faqs={seoData.faqs}
+      />
       <ClientPage />
     </>
   );
