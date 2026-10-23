@@ -1341,69 +1341,746 @@ export const textToolsSeo: Record<string, ToolSeoContent> = {
     ]
   },
   repeatTextGenerator: {
-    title: "How does the Repeat Text Generator work?",
+    title: "The Complete Guide to Repeating Text: Testing Layouts, Stress-Testing Systems, and Automating Repetitive Data",
     content: (
       <>
-        <p>The <strong>Repeat Text Generator</strong> takes a single string of text and duplicates it as many times as you want, separated by a space, comma, or new line. This is incredibly useful for generating placeholder text or testing layout constraints.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Creating Placeholder Data</h3>
-        <p className="mt-2">Web developers often need massive blocks of text to test how a website container expands or handles scrollbars. Instead of copying and pasting 'Lorem Ipsum' manually, you can generate 10,000 repetitions of a word instantly with this tool.</p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is there a limit to how many times I can repeat text?",
-        answer: "The tool can handle thousands of repetitions, but generating millions of characters at once may slow down your web browser."
-      }
-    ]
-  },
-  reverseTextGenerator: {
-    title: "How does the Reverse Text Generator work?",
-    content: (
-      <>
-        <p>The <strong>Reverse Text Generator</strong> flips your entire string of text backward. The first letter becomes the last, and the last letter becomes the first. It is a fun utility for creating mirror text, generating passwords, or solving word puzzles.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Common Uses for Mirror Text</h3>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Security:</strong> Take a memorable word and reverse it to create a harder-to-guess password base.</li>
-          <li><strong>Puzzles & Escapes:</strong> Create backwards clues that can only be read by holding them up to a mirror.</li>
+        <p>
+          Whether you are a frontend developer stress-testing CSS grid containers, a database administrator evaluating text column payload limits, a digital marketer formatting repetitive ad lines, or a student crafting decorative patterns, generating repeated strings manually is an inefficient waste of time.
+        </p>
+        <p className="mt-3">
+          Casetivo&apos;s <strong>Repeat Text Generator</strong> allows you to duplicate any character, word, sentence, or multi-line block up to 10,000 times in a single click. With configurable separators (newlines, commas, tabs, or custom delimiters) and optional line numbering, you can create perfectly structured repetitive datasets directly in your browser without writing a line of code.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Top Real-World Use Cases for Text Repetition</h3>
+        <p>
+          Duplicating text is far more than a novelty—it is an indispensable everyday utility across engineering, quality assurance, and content publishing:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">1. Frontend UI &amp; Stress Testing</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Designers and web developers need to know how layouts behave under extreme content loads. Generating 500 lines of sample text verifies whether scrollbars appear correctly, modal windows clip content, or responsive flexboxes break on mobile viewports.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">2. Database &amp; API Payload Benchmarking</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Testing backend database columns (like <code>VARCHAR(255)</code> vs <code>TEXT</code>) requires exact character boundaries. Repeating strings allows QA engineers to verify string truncation, buffer limits, and REST API payload limits under edge-case conditions.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">3. Automated Mock Data &amp; CSV Stubs</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When creating mock CSV data or dummy customer rows, repeating baseline placeholder values (such as dummy SKUs, default statuses, or test emails) provides structured test beds without having to build custom seeding scripts.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">4. Rapid Social &amp; Messaging Formatting</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Content creators and community managers frequently need repetitive divider lines (e.g., <code>====================</code> or <code>&bull; &bull; &bull; &bull; &bull;</code>) or decorative text patterns for Discord announcements, Telegram updates, and newsletter section headers.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Text Repetition Methods Compared: Casetivo vs. Excel vs. Code</h3>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Capability</th>
+                <th className="border border-border p-3 font-semibold text-primary">Casetivo Text Repeater</th>
+                <th className="border border-border p-3 font-semibold">Excel / Sheets (REPT)</th>
+                <th className="border border-border p-3 font-semibold">Python (&quot;text&quot; * n)</th>
+                <th className="border border-border p-3 font-semibold">JavaScript (.repeat)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Zero Coding Required</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Visual UI in browser</td>
+                <td className="border border-border p-3">&check; Formula based</td>
+                <td className="border border-border p-3">&cross; Requires Python console</td>
+                <td className="border border-border p-3">&cross; Requires DevTools console</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Custom Separators (Newlines, Tabs, Delimiters)</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Built-in selector</td>
+                <td className="border border-border p-3">Requires complex CHAR(10) joins</td>
+                <td className="border border-border p-3">Requires delimiter.join([...])</td>
+                <td className="border border-border p-3">Requires Array.fill().join()</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Automatic Line Numbering / Indexing</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; 1. , [1] , #1 presets</td>
+                <td className="border border-border p-3">Requires helper ROW() columns</td>
+                <td className="border border-border p-3">Requires list comprehension loop</td>
+                <td className="border border-border p-3">Requires .map((_, i) =&gt; ...)</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">One-Click Copy &amp; Live Word Counts</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Live character &amp; line metrics</td>
+                <td className="border border-border p-3">&cross; Separate LEN() formula</td>
+                <td className="border border-border p-3">&cross; len() call needed</td>
+                <td className="border border-border p-3">&cross; .length property</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Data Privacy</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; 100% Client-side local</td>
+                <td className="border border-border p-3">&check; Local desktop</td>
+                <td className="border border-border p-3">&check; Local runtime</td>
+                <td className="border border-border p-3">&check; Local browser</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Best Practices for Clean Text Repetition</h3>
+        <ul className="list-disc pl-6 mt-3 space-y-2">
+          <li>
+            <strong>Choose the Right Separator:</strong> If you are generating a list of database IDs or keywords, select <em>New Line (
+)</em> so each item occupies its own row. If creating a comma-delimited SQL IN query (e.g., <code>&apos;test&apos;, &apos;test&apos;</code>), select <em>Comma (, )</em>.
+          </li>
+          <li>
+            <strong>Leverage Indexing for Ordered Test Lists:</strong> When mocking user test data, enabling <em>Numbered List (1. Item)</em> allows testers to instantly cite specific row numbers when filing bug tickets.
+          </li>
+          <li>
+            <strong>Watch Browser Memory on Extreme Repetitions:</strong> While Casetivo easily handles up to 10,000 repetitions, repeating a 5,000-word essay 50,000 times will generate hundreds of megabytes of memory that can temporarily freeze low-end mobile devices.
+          </li>
         </ul>
       </>
     ),
     faqs: [
       {
-        question: "Does it reverse the order of words or letters?",
-        answer: "It reverses every single character. For example, 'Hello World' becomes 'dlroW olleH'."
+        question: "How does the Repeat Text Generator work?",
+        answer: "The tool takes your input string, clones it as many times as you specify (up to 10,000 times), inserts your selected separator (like newlines, spaces, or commas), and outputs the formatted text instantly in your browser."
+      },
+      {
+        question: "Can I add numbers to each repeated line?",
+        answer: "Yes! You can choose an indexing style such as '1. ', '1) ', '[1] ', or '#1 '. You can also choose whether your numbering starts at 1 (standard human count) or 0 (zero-indexed programmer count)."
+      },
+      {
+        question: "What separators can I use between repeated text?",
+        answer: "You can choose from standard presets including New Line, Space, Comma, Semicolon, Tab, or None. You can also specify any custom separator string, such as ' | ' or '---'."
+      },
+      {
+        question: "Is there a limit on how many times I can repeat text?",
+        answer: "The tool supports up to 10,000 repetitions per generation. This limit ensures instant performance and prevents browser memory crashes while easily satisfying 99.9% of testing and formatting needs."
+      },
+      {
+        question: "Can I repeat multi-line paragraphs or code snippets?",
+        answer: "Yes. You can paste multi-line paragraphs, HTML templates, or JSON objects into the input field. The generator will repeat the entire multi-line block cleanly."
+      },
+      {
+        question: "How do I repeat text without any spaces or separators?",
+        answer: "In the separator options, select 'None (Concat)'. The tool will glue all repeated instances directly together (e.g. repeating 'abc' 4 times produces 'abcabcabcabc')."
+      },
+      {
+        question: "Does repeating text consume internet data or send my text to a server?",
+        answer: "No. All text generation is executed 100% client-side inside your browser's JavaScript engine. Your text is never transmitted over the internet or saved to any external database."
+      },
+      {
+        question: "How does this compare to Excel's REPT function?",
+        answer: "Excel's REPT(text, number) formula is great for simple character duplication, but adding newlines or sequential numbering requires cumbersome helper formulas like REPT(A1 & CHAR(10), 10). Casetivo handles newlines, custom delimiters, and sequential line numbering in a single click."
+      },
+      {
+        question: "Can I copy the generated text in one click?",
+        answer: "Yes. Simply click the 'Copy' button located on the top right of the output box to copy the entire generated string directly to your clipboard."
+      },
+      {
+        question: "Can I repeat emojis or special characters?",
+        answer: "Yes. Full Unicode and emoji characters (like 🚀, ❤️, or ★) are fully supported."
+      },
+      {
+        question: "How can I test UI responsiveness using this tool?",
+        answer: "Repeat a 10-word sentence 200 times with a New Line separator, paste it into your web application's modal or container, and verify whether the container scrolls cleanly or overflows."
+      },
+      {
+        question: "Can I download the output as a text file?",
+        answer: "Yes. Click the 'Download' button above the output area to instantly save your repeated text as a plain text (.txt) file to your local computer."
+      }
+    ]
+  },
+  reverseTextGenerator: {
+    title: "The Complete Guide to Reverse Text: Mirror Writing, Palindromes, and String Manipulation",
+    content: (
+      <>
+        <p>
+          Reversing text is one of the most intriguing operations in linguistics and computer science. From Leonardo da Vinci&apos;s famous mirror-written notebooks to modern data structures, cryptography puzzles, and UI stress testing, manipulating strings in reverse provides both practical utility and creative expression.
+        </p>
+        <p className="mt-3">
+          Casetivo&apos;s <strong>Reverse Text Generator</strong> goes far beyond simple backward lettering. It provides five distinct reversal modes&mdash;including character-by-character mirroring, word order inversion, in-place word flipping, multi-line list reversal, and upside-down text&mdash;alongside an automatic palindrome detector, all operating 100% locally within your browser.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The 5 Modes of Text Reversal Explained</h3>
+        <p>
+          Depending on your task, reversing text can mean several different things. Our tool gives you complete control over which structural layer is flipped:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">1. Full Character Reversal (Mirror Mode)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Every single character in your string is flipped from right to left. <em>&ldquo;Hello World&rdquo;</em> becomes <em>&ldquo;dlroW olleH&rdquo;</em>. This is classic mirror writing, ideal for cipher puzzles, escape room clues, and checking character symmetry.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">2. Reverse Word Order</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Individual words remain spelled correctly, but their sequence within the sentence is reversed. <em>&ldquo;The quick brown fox&rdquo;</em> becomes <em>&ldquo;fox brown quick The&rdquo;</em>. Highly useful for linguistic analysis and syntax experiments.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">3. Reverse Each Word Individually (In-Place)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              The sentence word order stays in its original place, but the letters within each individual word are spelled backwards. <em>&ldquo;Hello World&rdquo;</em> becomes <em>&ldquo;olleH dlroW&rdquo;</em>.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">4. Reverse Line Order (Bottom to Top)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              For lists of names, changelogs, server logs, or chronological event lists, line reversal flips the vertical order so the newest or last item appears at the very top, matching Unix <code>tac</code> functionality.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Palindromes: The Magic of Symmetrical Text</h3>
+        <p>
+          A <strong>palindrome</strong> is a word, phrase, number, or sequence of characters that reads identically forward and backward (ignoring punctuation, spaces, and capitalization). Our tool features a real-time palindrome analyzer that automatically detects whether your input possesses mirror symmetry.
+        </p>
+        <p className="mt-3">
+          Famous English palindromes include single words like <em>racecar</em>, <em>level</em>, <em>kayak</em>, and <em>rotator</em>, as well as complex literary sentences:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-1 text-sm text-muted-foreground">
+          <li>&ldquo;A man, a plan, a canal, Panama!&rdquo;</li>
+          <li>&ldquo;Was it a car or a cat I saw?&rdquo;</li>
+          <li>&ldquo;Do geese see God?&rdquo;</li>
+          <li>&ldquo;Never odd or even.&rdquo;</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Reversal Methods Compared: Casetivo vs. Programming vs. Terminal</h3>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Capability</th>
+                <th className="border border-border p-3 font-semibold text-primary">Casetivo Reverse Tool</th>
+                <th className="border border-border p-3 font-semibold">Python</th>
+                <th className="border border-border p-3 font-semibold">Excel / Sheets</th>
+                <th className="border border-border p-3 font-semibold">Linux Terminal</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Character Reverse</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; One-click toggle</td>
+                <td className="border border-border p-3"><code>text[::-1]</code></td>
+                <td className="border border-border p-3">&cross; Complex MID loop formula</td>
+                <td className="border border-border p-3"><code>rev file.txt</code></td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Line-by-Line Reverse</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; One-click toggle</td>
+                <td className="border border-border p-3"><code>lines[::-1]</code></td>
+                <td className="border border-border p-3">Requires helper row sort</td>
+                <td className="border border-border p-3"><code>tac file.txt</code></td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Word Order Inversion</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Built-in selector</td>
+                <td className="border border-border p-3"><code>&quot; &quot;.join(text.split()[::-1])</code></td>
+                <td className="border border-border p-3">&cross; Not supported</td>
+                <td className="border border-border p-3">Complex awk script</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Live Palindrome Detection</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Instant live badge</td>
+                <td className="border border-border p-3">Custom function required</td>
+                <td className="border border-border p-3">&cross; Not supported</td>
+                <td className="border border-border p-3">&cross; Not supported</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Data Privacy</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; 100% Client-side local</td>
+                <td className="border border-border p-3">&check; Local execution</td>
+                <td className="border border-border p-3">&check; Local desktop</td>
+                <td className="border border-border p-3">&check; Local terminal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Everyday Applications of Text Reversal</h3>
+        <ul className="list-disc pl-6 mt-3 space-y-2">
+          <li>
+            <strong>Social Media &amp; Gamertags:</strong> Craft unique usernames, flipped bios, and upside-down status updates on Instagram, TikTok, or Discord.
+          </li>
+          <li>
+            <strong>Data Engineering &amp; Log Analysis:</strong> Invert chronological server logs so the most recent error traces appear at the top of your document.
+          </li>
+          <li>
+            <strong>Classroom Linguistics:</strong> Teach students about mirror writing, phonetic reversal, and palindrome word puzzles.
+          </li>
+          <li>
+            <strong>Obfuscating Spoilers:</strong> Write book, movie, or puzzle spoilers in reverse text so casual readers don&apos;t accidentally read the ending without actively holding it to a mirror.
+          </li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How does the reverse text generator work?",
+        answer: "The tool processes your text character-by-character or word-by-word, reversing the index positions according to your selected mode. Everything executes locally in your browser in milliseconds."
+      },
+      {
+        question: "What is the difference between reversing characters and reversing words?",
+        answer: "Reversing characters turns 'Hello World' into 'dlroW olleH' (every letter is spelled backward). Reversing words keeps the individual word spellings intact but reverses their sequence, producing 'World Hello'."
+      },
+      {
+        question: "Can I reverse a list line by line?",
+        answer: "Yes. Choose the 'Reverse Line Order' mode. This will invert lists of names, URLs, or chronological log entries so that the bottom item becomes the top item without scrambling the letters on each line."
+      },
+      {
+        question: "What is a palindrome?",
+        answer: "A palindrome is a sequence of characters that reads the same backward as forward, such as 'radar', 'level', or 'madam'. Our tool features a live palindrome detector that evaluates your input in real-time."
+      },
+      {
+        question: "Does the palindrome checker ignore spaces and punctuation?",
+        answer: "Yes. The palindrome detector cleans whitespace, punctuation, and capitalization to accurately test phrases like 'A man, a plan, a canal, Panama!' as authentic palindromes."
+      },
+      {
+        question: "How does the upside-down text mode work?",
+        answer: "Upside-down text replaces standard Latin letters with their inverted Unicode equivalents (e.g., 'a' becomes 'ɐ', 'h' becomes 'ɥ'), creating an inverted flip effect that can be copied to social media."
+      },
+      {
+        question: "Is there a limit on text length?",
+        answer: "No. You can reverse short words, full articles, code blocks, or thousands of lines of logs without limitation."
+      },
+      {
+        question: "Can I reverse emojis and foreign characters?",
+        answer: "Yes. The tool uses modern Unicode-aware string iterators, ensuring surrogate pairs, accented characters (like café or über), and multi-byte emojis (like 🚀 or ❤️) do not get corrupted when reversed."
+      },
+      {
+        question: "How do I read reverse text?",
+        answer: "For character-reversed text, you can read it by looking at its reflection in a mirror, reading from right to left, or pasting it back into our Reverse Text Generator to restore the original order."
+      },
+      {
+        question: "Is my text private?",
+        answer: "Yes, 100%. All processing occurs directly on your device inside your web browser. No text is ever uploaded to a remote server or saved in a database."
+      },
+      {
+        question: "How do I copy the reversed text?",
+        answer: "Click the 'Copy' button on the top right of the output box to immediately copy the entire reversed result to your clipboard."
+      },
+      {
+        question: "How does this compare to the Linux 'rev' command?",
+        answer: "The Linux 'rev' utility reverses lines character-by-character, and 'tac' reverses line orders. Casetivo combines both utilities, plus word-level reversal, upside-down text, and palindrome checking into an accessible web interface."
       }
     ]
   },
   romanNumeralDateConverter: {
-    title: "How does the Roman Numeral Converter work?",
+    title: "The Complete Guide to Roman Numeral Dates: Tattoo Formatting, Number Rules, and Historical Conventions",
     content: (
       <>
-        <p>The <strong>Roman Numeral Date Converter</strong> translates standard numbers (Arabic numerals) into classic Roman Numerals (I, V, X, L, C, D, M). It is widely used for stylizing dates for tattoos, copyright years, and movie sequels.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Stylizing Important Dates</h3>
-        <p className="mt-2">Whether you are designing a wedding invitation or getting a tattoo of a birth date, Roman Numerals add a timeless, classic aesthetic to numbers. This tool ensures you get the exact mathematical translation without mistakes.</p>
+        <p>
+          Roman numerals are one of humanity&apos;s oldest enduring numerical systems. Originating in ancient Rome over 2,500 years ago, this classical numbering method remains a global symbol of permanence, timelessness, and prestige.
+        </p>
+        <p className="mt-3">
+          Today, people convert dates into Roman numerals for wedding bands, commemorative tattoos, graduation gifts, architecture cornerstones, luxury watch dials, and movie copyright screens. Casetivo&apos;s <strong>Roman Numeral Date Converter</strong> translates calendar dates and numbers between standard Arabic digits (0&ndash;9) and classic Roman letters (I, V, X, L, C, D, M) in both directions instantly.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The 7 Fundamental Roman Numerals</h3>
+        <p>
+          All Roman numbers are built using combinations of seven primary uppercase letters:
+        </p>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Roman Numeral</th>
+                <th className="border border-border p-3 font-semibold">Arabic Value</th>
+                <th className="border border-border p-3 font-semibold">Historical Origin / Meaning</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">I</td>
+                <td className="border border-border p-3 font-bold">1</td>
+                <td className="border border-border p-3">Represents a single finger (digit) held vertically.</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">V</td>
+                <td className="border border-border p-3 font-bold">5</td>
+                <td className="border border-border p-3">Represents an open human hand showing the &lsquo;V&rsquo; shape between thumb and index finger.</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">X</td>
+                <td className="border border-border p-3 font-bold">10</td>
+                <td className="border border-border p-3">Represents two crossed hands or crossed tally marks.</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">L</td>
+                <td className="border border-border p-3 font-bold">50</td>
+                <td className="border border-border p-3">Derived from the Chalcidian letter &Psi; (psi) which evolved into an L shape.</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">C</td>
+                <td className="border border-border p-3 font-bold">100</td>
+                <td className="border border-border p-3">From the Latin word <em>Centum</em> (&ldquo;one hundred&rdquo;).</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">D</td>
+                <td className="border border-border p-3 font-bold">500</td>
+                <td className="border border-border p-3">Half of the ancient Etruscan circle symbol &Phi; used for 1,000.</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold font-mono text-primary text-base">M</td>
+                <td className="border border-border p-3 font-bold">1,000</td>
+                <td className="border border-border p-3">From the Latin word <em>Mille</em> (&ldquo;one thousand&rdquo;).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Subtractive Notation: How 4 and 9 Are Formed</h3>
+        <p>
+          In early Roman inscriptions, four was written as <code>IIII</code> and nine was written as <code>VIIII</code>. Over centuries of manuscript transcription, the <strong>subtractive principle</strong> became standard: placing a smaller numeral immediately before a larger numeral subtracts its value:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-1">
+          <li><strong>IV</strong> = 5 &minus; 1 = <strong>4</strong> (instead of IIII)</li>
+          <li><strong>IX</strong> = 10 &minus; 1 = <strong>9</strong> (instead of VIIII)</li>
+          <li><strong>XL</strong> = 50 &minus; 10 = <strong>40</strong> (instead of XXXX)</li>
+          <li><strong>XC</strong> = 100 &minus; 10 = <strong>90</strong> (instead of LXXXX)</li>
+          <li><strong>CD</strong> = 500 &minus; 100 = <strong>400</strong> (instead of CCCC)</li>
+          <li><strong>CM</strong> = 1,000 &minus; 100 = <strong>900</strong> (instead of DCCCC)</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">How to Format Dates for Tattoos and Engravings</h3>
+        <p>
+          When turning a special calendar date into a tattoo, wedding ring engraving, or piece of jewelry, format and aesthetics matter immensely:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">1. The Classical Middle Dot (Aesthetic Favorite)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              In ancient Latin stone carvings, words and numbers were separated by a raised centered dot (<code>&middot;</code>). For example, <em>October 24, 2026</em> is formatted as <code>X &middot; XXIV &middot; MMXXVI</code>. This is by far the most popular and elegant style for body art and engravings.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">2. Day vs. Month Order</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Decide between American (Month / Day / Year) and International (Day / Month / Year) order before inking:
+              <br />
+              &bull; <strong>US Order (MM/DD/YYYY):</strong> X &middot; XXIV &middot; MMXXVI
+              <br />
+              &bull; <strong>UK/World Order (DD/MM/YYYY):</strong> XXIV &middot; X &middot; MMXXVI
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">3. Two-Digit vs. Four-Digit Years</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              While modern dates often abbreviate 2026 as &lsquo;26 (<code>XXVI</code>), classical Roman dates traditionally preserve the full four-digit year (<code>MMXXVI</code>). Full years provide better historical permanence and visual balance.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">4. Modern Hyphens &amp; Slashes</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              For print invitations and certificates, hyphens (<code>X-XXIV-MMXXVI</code>) or clean slashes (<code>X / XXIV / MMXXVI</code>) provide sharp, modern clarity.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Recent &amp; Upcoming Years Quick Reference Table</h3>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Year</th>
+                <th className="border border-border p-3 font-semibold text-primary">Roman Numeral</th>
+                <th className="border border-border p-3 font-semibold">Breakdown</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-bold">2000</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MM</td>
+                <td className="border border-border p-3">1000 + 1000</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2010</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMX</td>
+                <td className="border border-border p-3">2000 + 10</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2020</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMXX</td>
+                <td className="border border-border p-3">2000 + 20</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2024</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMXXIV</td>
+                <td className="border border-border p-3">2000 + 20 + 4</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2025</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMXXV</td>
+                <td className="border border-border p-3">2000 + 20 + 5</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2026</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMXXVI</td>
+                <td className="border border-border p-3">2000 + 20 + 6</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-bold">2030</td>
+                <td className="border border-border p-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">MMXXX</td>
+                <td className="border border-border p-3">2000 + 30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </>
     ),
     faqs: [
       {
-        question: "What is the highest number it can convert?",
-        answer: "Standard Roman numerals top out at 3,999 (MMMCMXCIX). Converting numbers higher than this requires specialized overline notation which is not supported in standard text."
+        question: "How do you write a date in Roman numerals?",
+        answer: "Convert the month, day, and year individually into Roman numerals, then separate them with a delimiter such as a middle dot (·), slash (/), or hyphen (-). For example, July 4, 1776 in US order is VII · IV · MDCCLXXVI."
+      },
+      {
+        question: "What is the best separator for Roman numeral date tattoos?",
+        answer: "The middle dot (·) is the most popular separator for tattoos because it mirrors authentic Roman lapidary inscriptions. Other popular choices are clean slashes (/) or subtle hyphens (-)."
+      },
+      {
+        question: "How do you write 2026 in Roman numerals?",
+        answer: "2026 is written as MMXXVI (MM for 2,000, XX for 20, and VI for 6)."
+      },
+      {
+        question: "How do you write 2024 and 2025 in Roman numerals?",
+        answer: "2024 is MMXXIV (2000 + 20 + 4) and 2025 is MMXXV (2000 + 20 + 5)."
+      },
+      {
+        question: "Is there a zero (0) in Roman numerals?",
+        answer: "No. The Romans did not have a numeral for zero. When medieval scholars needed to refer to zero, they used the Latin word 'nulla' (meaning 'none')."
+      },
+      {
+        question: "Why do clocks use IIII instead of IV for 4?",
+        answer: "Many luxury clocks and watch faces (like Rolex and Cartier) use 'IIII' instead of 'IV'. This tradition dates back to the Roman sun god Jupiter (spelled IVPPITER in Latin, which Romans avoided writing on sundials) and offers better visual symmetry with VIII on the opposite side of the dial."
+      },
+      {
+        question: "Can I convert Roman numerals back to regular numbers?",
+        answer: "Yes. Our tool supports two-way conversion. Enter any valid Roman numeral (like MCMLXXXIV or MMXXVI) to instantly calculate its standard Arabic numeral value (1984 or 2026)."
+      },
+      {
+        question: "What is the maximum number supported in standard Roman numerals?",
+        answer: "Standard Roman numerals reach 3,999 (MMMCMXCIX). Numbers of 4,000 and higher originally required specialized vinculum overlines (a line over a letter multiplying it by 1,000), which are not supported by standard Unicode keyboards."
+      },
+      {
+        question: "Should I use Month/Day/Year or Day/Month/Year for my date?",
+        answer: "This is a matter of personal preference. In the United States, Month/Day/Year (e.g. V · XII · MMXX) is most common. In Europe, Latin America, and the UK, Day/Month/Year (e.g. XII · V · MMXX) is the standard convention."
+      },
+      {
+        question: "Can I convert a two-digit year like '99 instead of 1999?",
+        answer: "Yes, 99 translates to XCIX. However, for tattoos, wedding rings, and historical documents, spelling out the full four-digit year (MCMXCIX for 1999) is strongly recommended for timeless elegance."
+      },
+      {
+        question: "Is this Roman Numeral converter free and private?",
+        answer: "Yes, 100% free with no registration required. All calculations run client-side in your browser, ensuring personal dates and names remain completely private."
+      },
+      {
+        question: "How does this tool handle dates with leading zeros?",
+        answer: "Leading zeros (like 05 for May) are automatically normalized to their true integer values (5 becomes V), ensuring clean and mathematically accurate Roman numerals."
       }
     ]
   },
   textReplacementTool: {
-    title: "How does the Text Replacement Tool work?",
+    title: "The Complete Guide to Find and Replace: Safe String Substitution, Regex, and Avoiding Collateral Edits",
     content: (
       <>
-        <p>The <strong>Text Replacement Tool</strong> functions like a mass 'Find and Replace' feature. Enter a target word or phrase, and enter the new text you want to swap it with. The tool scans your document and replaces every single instance instantly.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Mass Editing and Refactoring</h3>
-        <p className="mt-2">If you have written a 10-page essay and realized you misspelled a character's name throughout, or if you need to rename a variable in a massive block of code, this tool will fix it in milliseconds without requiring a complex IDE.</p>
+        <p>
+          Find and replace is one of the most powerful utilities in computing. Whether you are renaming variables across a 2,000-line codebase, updating product pricing across an exported catalog, correcting a character&apos;s misspelled name in a 50,000-word novel, or sanitizing confidential names in legal briefs, automated substitution saves hours of manual labor.
+        </p>
+        <p className="mt-3">
+          However, mass text replacement is also notoriously dangerous. Without precise matching rules, a single careless substitution can permanently ruin a document. Casetivo&apos;s <strong>Text Replacement Tool</strong> provides instant, safe, client-side find and replace with whole-word matching, case sensitivity, regular expression support, and multi-pattern batch replacement.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The Danger of Substring Replacement: The &ldquo;Scunthorpe Problem&rdquo;</h3>
+        <p>
+          In computer science, unintentional collateral replacements are famously illustrated by the <em>Scunthorpe Problem</em>&mdash;where a search filter inadvertently matches substrings inside unrelated words. Consider what happens when you run a naive find-and-replace:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-2">
+          <li>
+            If you replace <strong>&ldquo;cat&rdquo;</strong> with <strong>&ldquo;dog&rdquo;</strong> without whole-word matching:
+            <br />
+            <em>&ldquo;The <strong>cat</strong>egory of va<strong>cat</strong>ion was com<strong>cat</strong>enated.&rdquo;</em>
+            <br />
+            becomes:
+            <br />
+            <em>&ldquo;The <strong>dog</strong>egory of va<strong>dog</strong>ion was com<strong>dog</strong>enated.&rdquo;</em>
+          </li>
+          <li>
+            If you replace <strong>&ldquo;he&rdquo;</strong> with <strong>&ldquo;she&rdquo;</strong>:
+            <br />
+            <em>&ldquo;<strong>He</strong>lp t<strong>he</strong>m t<strong>he</strong>re.&rdquo;</em>
+            <br />
+            becomes:
+            <br />
+            <em>&ldquo;<strong>She</strong>lp t<strong>she</strong>m t<strong>she</strong>re.&rdquo;</em>
+          </li>
+        </ul>
+        <p className="mt-3">
+          This is why our tool provides a dedicated <strong>&ldquo;Match Whole Words Only&rdquo;</strong> toggle. It leverages regex word boundaries (<code>\b</code>) to ensure that only standalone, independent words are replaced while words containing the target sequence remain untouched.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Case Sensitivity vs. Case Preservation</h3>
+        <p>
+          Understanding how letter capitalization is handled prevents messy formatting mismatches:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">1. Case Sensitive Mode (Strict)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When Case Sensitive is turned on, searching for <code>apple</code> will strictly replace lowercase <em>apple</em>. It will completely ignore <em>Apple</em> (capitalized at the start of a sentence) or <em>APPLE</em> (in all caps). This is crucial when refactoring programming variables where <code>User</code> and <code>user</code> refer to different entities.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">2. Case Insensitive Mode (Universal)</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When Case Sensitive is disabled, searching for <code>apple</code> will match <em>apple</em>, <em>Apple</em>, and <em>APPLE</em> anywhere in the document. This is ideal for general prose editing, correcting spelling errors, or updating company brand names.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Text Replacement Tools Compared: Casetivo vs. Word Processors vs. Code Editors</h3>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Capability</th>
+                <th className="border border-border p-3 font-semibold text-primary">Casetivo Replacement Tool</th>
+                <th className="border border-border p-3 font-semibold">MS Word / Google Docs</th>
+                <th className="border border-border p-3 font-semibold">VS Code</th>
+                <th className="border border-border p-3 font-semibold">Terminal (sed -i)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Zero Installation &amp; Free</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Instant in web browser</td>
+                <td className="border border-border p-3">Requires installed app or Google login</td>
+                <td className="border border-border p-3">Heavy IDE installation</td>
+                <td className="border border-border p-3">&check; Built into Unix / macOS</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Whole Word Boundary Match</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; One-click toggle</td>
+                <td className="border border-border p-3">&check; Advanced dialog option</td>
+                <td className="border border-border p-3">&check; Alt+W toggle</td>
+                <td className="border border-border p-3">Requires \b escape sequences</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Regular Expressions (Regex)</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Built-in toggle</td>
+                <td className="border border-border p-3">&cross; Word uses non-standard wildcards</td>
+                <td className="border border-border p-3">&check; Full JS regex</td>
+                <td className="border border-border p-3">&check; POSIX regex</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Multiple Batch Replacements</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; Add multiple find/replace pairs</td>
+                <td className="border border-border p-3">&cross; One replacement at a time</td>
+                <td className="border border-border p-3">&cross; Single pair per search</td>
+                <td className="border border-border p-3">Multiple -e flags</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Privacy (Local Client-Side)</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">&check; 100% Client-side local</td>
+                <td className="border border-border p-3">Docs uploaded to Google cloud</td>
+                <td className="border border-border p-3">&check; Local desktop</td>
+                <td className="border border-border p-3">&check; Local terminal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Common Workflows and Substitution Recipes</h3>
+        <ul className="list-disc pl-6 mt-3 space-y-2">
+          <li>
+            <strong>Convert Delimiters (CSV to Newlines):</strong> Search for <code>, </code> (comma space) and replace with <code>\n</code> (newline) in regex mode to turn a comma-separated row into a clean vertical column.
+          </li>
+          <li>
+            <strong>Sanitize Anonymized Data:</strong> Add multiple batch replacement rules to swap client names (e.g. <em>John Doe</em> &rarr; <em>Client A</em>, <em>Acme Corp</em> &rarr; <em>Company X</em>) before exporting legal disclosures or public case studies.
+          </li>
+          <li>
+            <strong>Standardize Brand Terminology:</strong> Ensure company product names (like changing old legacy product names to newly re-branded trademarks) are consistently updated across marketing decks and documentation.
+          </li>
+        </ul>
       </>
     ),
     faqs: [
       {
+        question: "How does the text replacement tool work?",
+        answer: "The tool scans your text for all occurrences of your target word or phrase and swaps them with your replacement text. You can configure case sensitivity, whole-word matching, or regular expression mode."
+      },
+      {
+        question: "What is whole-word matching and why should I use it?",
+        answer: "Whole-word matching ensures your search word is only replaced when it appears as an independent word, not as part of a larger word. For example, searching for 'car' will not replace the 'car' in 'carpet' or 'scarf'."
+      },
+      {
+        question: "Can I use regular expressions (regex)?",
+        answer: "Yes. Toggle the 'Regex' checkbox to use standard JavaScript regular expressions (such as \\d+ for numbers, \\s+ for whitespace, or capture groups)."
+      },
+      {
+        question: "How do I replace multiple different words at the same time?",
+        answer: "Click the '+ Add Rule' button to create multiple find-and-replace pairs. The tool will execute all replacement rules sequentially across your document in a single click."
+      },
+      {
         question: "Is the find and replace case-sensitive?",
-        answer: "You can toggle case-sensitivity on or off. By default, it looks for exact matches to prevent accidental replacements."
+        answer: "By default, the tool is case-insensitive, meaning searching for 'the' will match 'the', 'The', and 'THE'. You can enable the 'Case Sensitive' toggle to enforce exact letter casing."
+      },
+      {
+        question: "Can I replace text with nothing (delete text)?",
+        answer: "Yes. Simply leave the 'Replace With' field blank. The tool will strip every occurrence of your search term from the document."
+      },
+      {
+        question: "Can I replace line breaks or tabs?",
+        answer: "Yes. In Regex mode, you can search for \\n to match newlines, \\t to match tabs, and \\r to match carriage returns."
+      },
+      {
+        question: "Is there a limit on how long my document can be?",
+        answer: "No. You can paste thousands of lines of text, articles, code files, or CSV data. All substitutions happen locally in your browser in milliseconds."
+      },
+      {
+        question: "Is my text saved or uploaded to your servers?",
+        answer: "No. All text processing is executed 100% locally on your computer via client-side JavaScript. None of your confidential notes, contracts, or code are transmitted over the internet."
+      },
+      {
+        question: "How do I undo a replacement if I make a mistake?",
+        answer: "Your original text remains in your input field until you overwrite it. If you need to re-run with different rules, simply adjust your find/replace fields and click 'Replace Text' again."
+      },
+      {
+        question: "How does this compare to Microsoft Word's Find and Replace?",
+        answer: "Unlike Word, which uses proprietary wildcard syntax and requires multi-click dialogs, Casetivo supports standard web regex, multiple batch replacement pairs simultaneously, and runs instantly in any browser."
+      },
+      {
+        question: "Can I copy or download the replaced text?",
+        answer: "Yes. You can use the one-click 'Copy' button on top of the output box or click 'Download' to save the result as a .txt file directly to your device."
       }
     ]
   }

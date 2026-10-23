@@ -1023,22 +1023,157 @@ export const caseConvertersSeo: Record<string, ToolSeoContent> = {
     ]
   },
     inverseCase: {
-    title: "How does the Inverse Case Converter work?",
+    title: "The Complete Guide to Inverse Case: Fixing Caps Lock Errors, Binary Bit-Flipping, and Typography Rules",
     content: (
       <>
-        <p>The <strong>Inverse Case Converter</strong> flips the capitalization of every letter in your text. If a letter is uppercase, it becomes lowercase, and if it is lowercase, it becomes uppercase. This is the ultimate tool for fixing the "cAPS lOCK" mistake.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The "Caps Lock" Fixer</h3>
-        <p className="mt-2">Have you ever typed a whole paragraph without looking at the screen, only to realize your Caps Lock was on and you held Shift for the first letters? The result looks lIKE tHIS. Instead of retyping everything, just paste it into the Inverse Case converter to instantly fix it.</p>
+        <p>
+          We have all done it: you type an entire paragraph or password while looking down at your keyboard or reference notes, only to look up at your monitor and discover an eyesore that looks <em>&ldquo;lIKE tHIS.&rdquo;</em>
+        </p>
+        <p className="mt-3">
+          This typographical mishap occurs when the <strong>Caps Lock</strong> key is accidentally engaged and your muscle memory instinctively presses the <strong>Shift</strong> key for capital letters. Because Shift inverts active capitalization, the first letter of each sentence becomes lowercase while the rest of the sentence explodes into screaming uppercase letters. Casetivo&apos;s <strong>Inverse Case Converter</strong> (also known as a <em>Toggle Case Tool</em>) flips every single letter&apos;s casing back to where it belongs in one click&mdash;saving you from deleting and retyping your work.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">What Exactly Is Inverse Case?</h3>
+        <p>
+          Unlike case formats that impose a uniform rule (such as Lowercase making everything small, or Uppercase making everything large), <strong>Inverse Case</strong> is an inversion or reflection operator. It evaluates each character individually:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-2">
+          <li>Every <strong>uppercase letter</strong> (A&ndash;Z) is swapped into its <strong>lowercase</strong> counterpart (a&ndash;z).</li>
+          <li>Every <strong>lowercase letter</strong> (a&ndash;z) is swapped into its <strong>uppercase</strong> counterpart (A&ndash;Z).</li>
+          <li>All <strong>numbers</strong> (0&ndash;9), <strong>punctuation marks</strong> (!, ?, -, .), and <strong>whitespace</strong> remain 100% unaltered.</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Inverse Case vs. Alternating Case (Mocking Spongebob Meme)</h3>
+        <p>
+          Writers often confuse <em>Inverse Case</em> with <em>Alternating Case</em>. While both produce mixed-case lettering, their rules and purposes are completely distinct:
+        </p>
+
+        <div className="overflow-x-auto my-6">
+          <table className="w-full text-left border-collapse border border-border text-sm">
+            <thead>
+              <tr className="bg-muted/50 text-foreground">
+                <th className="border border-border p-3 font-semibold">Feature</th>
+                <th className="border border-border p-3 font-semibold text-primary">Inverse Case (Toggle Case)</th>
+                <th className="border border-border p-3 font-semibold">Alternating Case (Mocking Meme)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Primary Purpose</td>
+                <td className="border border-border p-3 text-emerald-600 dark:text-emerald-400 font-semibold">Fixing accidental Caps Lock mistakes &amp; data correction</td>
+                <td className="border border-border p-3">Sarcastic internet memes, gaming usernames &amp; social satire</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Algorithm Rule</td>
+                <td className="border border-border p-3">Flips each letter based on its <em>existing</em> casing</td>
+                <td className="border border-border p-3">Alternates casing predictably (e.g. index % 2 === 0)</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Example Input</td>
+                <td className="border border-border p-3 font-mono">tHIS IS AN eXAMPLE</td>
+                <td className="border border-border p-3 font-mono">This is an example</td>
+              </tr>
+              <tr>
+                <td className="border border-border p-3 font-medium text-foreground">Converted Output</td>
+                <td className="border border-border p-3 font-mono text-emerald-600 dark:text-emerald-400 font-semibold">This is an Example</td>
+                <td className="border border-border p-3 font-mono">tHiS iS aN eXaMpLe</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The Computer Science Behind Case Inversion</h3>
+        <p>
+          In low-level software engineering and ASCII encoding, letter casing is controlled by a single binary bit. In standard 7-bit ASCII:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-1 text-sm font-mono text-muted-foreground">
+          <li>Uppercase &lsquo;A&rsquo; = <code>01000001</code> (decimal 65)</li>
+          <li>Lowercase &lsquo;a&rsquo; = <code>01100001</code> (decimal 97)</li>
+        </ul>
+        <p className="mt-3">
+          Notice that the only difference between uppercase &lsquo;A&rsquo; and lowercase &lsquo;a&rsquo; is the <strong>sixth bit (0x20)</strong>. In assembly language or C programming, an inverse case converter is performed with lightning-fast bitwise XOR operations (<code>char ^ 0x20</code>). Casetivo implements modern Unicode-aware character mapping so accented letters (&eacute; &rarr; &Eacute;, &ntilde; &rarr; &Ntilde;, &ouml; &rarr; &Ouml;) are inverted with 100% precision across international languages.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">When to Use the Inverse Case Converter</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">1. The Caps Lock Typo Lifesaver</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When working in dark rooms, using mechanical keyboards without LED Caps Lock indicators, or touch-typing quickly, inverted text is inevitable. Paste the inverted block into Casetivo, hit Convert, and restore standard capitalization in a fraction of a second.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">2. Cybersecurity &amp; Password Testing</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              When users report &ldquo;invalid password&rdquo; login errors, authentication systems frequently check whether the password was entered with inverted Caps Lock. QA testers use inverse case tools to generate test dictionaries that verify smart login alerts.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">3. Creative Stylization &amp; Gamertags</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Gamers, Discord community leaders, and digital artists frequently use inverted text patterns for guild banners, server channels, and aesthetic screen names that stand out from conventional formatting.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1">4. Normalizing Fragmented OCR Scans</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Optical Character Recognition (OCR) tools scanning old historical documents or receipt thermal paper often invert letter cases due to uneven ink contrast. An inverse toggle quickly rights inverted OCR blocks.
+            </p>
+          </div>
+        </div>
       </>
     ),
     faqs: [
       {
-        question: "What happens to numbers and punctuation?",
-        answer: "Numbers and punctuation marks do not have 'cases', so they are completely ignored and remain exactly as they were."
+        question: "What is an inverse case converter?",
+        answer: "An inverse case converter (or toggle case tool) is an online utility that flips the capitalization of every letter in your text: uppercase letters become lowercase, and lowercase letters become uppercase."
+      },
+      {
+        question: "How do I fix text typed with accidental Caps Lock on?",
+        answer: "Copy the inverted text (which looks like 'tHIS IS A MISTAKE'), paste it into Casetivo's Inverse Case Converter, and click Convert. The tool will instantly flip it back to standard 'This is a mistake'."
+      },
+      {
+        question: "What happens to numbers, symbols, and punctuation marks?",
+        answer: "Numbers (0-9) and punctuation marks (!, ?, -, @, etc.) have no grammatical casing. They are left completely untouched and preserve their exact positions."
       },
       {
         question: "Is inverse case the same as alternating case?",
-        answer: "No. Inverse case flips existing capitalization (a -> A, B -> b). Alternating case (also known as mock text) forces letters into an alternating pattern (e.g., hElLo wOrLd)."
+        answer: "No. Inverse case flips existing capitalization based on how each character was originally typed. Alternating case (the Mocking Spongebob meme) forces every other letter to switch between lowercase and uppercase regardless of the original text."
+      },
+      {
+        question: "Does it support international accented letters like é, ü, or ñ?",
+        answer: "Yes. Our tool is fully Unicode-compliant and correctly inverts accented letters, umlauts, and international alphabets (e.g., 'é' becomes 'É' and 'Ü' becomes 'ü')."
+      },
+      {
+        question: "Why does Caps Lock invert letters when Shift is pressed?",
+        answer: "In computer keyboard controller architecture, pressing Shift reverses the current Caps Lock state for that keystroke. If Caps Lock is ON, pressing Shift produces a lowercase letter, which causes the classic 'tHIS' typo."
+      },
+      {
+        question: "Is there a limit on how much text I can invert at once?",
+        answer: "There are no arbitrary character or word limits. You can paste individual sentences, email drafts, or entire multi-page documents."
+      },
+      {
+        question: "Can I convert inverted text back again?",
+        answer: "Yes! Because inverse case is a symmetrical mathematical operation, running the converted text through the tool a second time will revert it back to its previous state."
+      },
+      {
+        question: "Does this tool work on mobile phones and tablets?",
+        answer: "Yes. Casetivo is fully responsive and runs smoothly in web browsers on iOS, Android, macOS, Windows, and Linux."
+      },
+      {
+        question: "Is my text private and secure?",
+        answer: "Yes, 100%. The conversion runs locally inside your browser's JavaScript engine. Your text is never sent over the internet or saved on any remote server."
+      },
+      {
+        question: "How do I copy the converted text?",
+        answer: "Click the 'Copy' button on the top right of the text area to copy your cleaned text directly to your clipboard in a single click."
+      },
+      {
+        question: "Can I download the result as a text file?",
+        answer: "Yes. Click the 'Download' button above the tool to save the inverted output as a clean plain text (.txt) file directly to your device."
       }
     ]
   }

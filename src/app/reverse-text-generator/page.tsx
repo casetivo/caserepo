@@ -6,32 +6,39 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Reverse Text Generator — Free Online Tool",
-  description: "Reverse any text string instantly. Mirror your text character by character or word by word. Free online reverse text generator.",
-  keywords: "reverse text, mirror text, backwards text generator, reverse string online free",
+  title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+  description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
+  keywords: "reverse text generator, backwards text generator, mirror text online, reverse word order, flip text upside down, palindrome checker, reverse lines online",
   alternates: {
     canonical: `${BASE}/reverse-text-generator`,
   },
   openGraph: {
-    title: "Reverse Text Generator — Free Online Tool",
-    description: "Reverse any text string instantly. Mirror your text character by character or word by word. Free online reverse text generator.",
+    title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+    description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
     url: `${BASE}/reverse-text-generator`,
     siteName: "Casetivo",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Reverse Text Generator — Free Online Tool" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Reverse Text Generator Online" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reverse Text Generator — Free Online Tool",
-    description: "Reverse any text string instantly. Mirror your text character by character or word by word. Free online reverse text generator.",
+    title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+    description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
     images: ["/og-image.png"],
   },
 };
 
 export default function Page() {
+  const seoData = getSeoContent("reverse-text-generator", "Reverse Text Generator");
+
   return (
     <>
-      <SchemaMarkup toolName="Reverse Text Generator" url={`${BASE}/reverse-text-generator`} description="Reverse any text string instantly. Mirror your text character by character or word by word. Free online reverse text generator." faqs={getSeoContent("reverse-text-generator", "Reverse Text Generator").faqs} />
+      <SchemaMarkup
+        toolName="Reverse Text Generator"
+        url={`${BASE}/reverse-text-generator`}
+        description="Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included."
+        faqs={seoData.faqs}
+      />
       <ClientPage />
     </>
   );
