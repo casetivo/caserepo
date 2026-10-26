@@ -60,18 +60,48 @@ export const imageToolsSeo: Record<string, ToolSeoContent> = {
     title: "How does the AI Image to Text tool work?",
     content: (
       <>
-        <p>The <strong>AI Image to Text (OCR) Converter</strong> uses advanced Optical Character Recognition (OCR) to extract readable text from any image. Simply upload a screenshot, scanned document, or photograph, and our AI will instantly digitize the text.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Why use an OCR tool?</h3>
+        <p>The <strong>AI Image to Text Converter</strong> uses Optical Character Recognition (OCR) to turn the text inside an image into editable, copyable text. It runs the open-source Tesseract engine, which uses an LSTM neural network to recognize lines of text. Everything happens in your browser: the image is never uploaded to a server.</p>
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">How to extract text from an image</h3>
+        <ol className="list-decimal pl-5 space-y-2">
+          <li>Choose the language the text is written in.</li>
+          <li>Drop a PNG, JPG, WebP, BMP, or GIF image into the upload area, or click to pick a file.</li>
+          <li>Click <strong>Extract</strong>. The recognized text appears below the image, ready to select and copy.</li>
+        </ol>
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">What it works best on</h3>
         <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Digitize Documents:</strong> Convert scanned PDFs or physical receipts into editable text formats.</li>
-          <li><strong>Extract Code:</strong> Quickly copy code snippets from YouTube tutorials or screenshots without manual typing.</li>
+          <li><strong>Screenshots:</strong> Copy text from error messages, chat logs, slides, or code shown in a video.</li>
+          <li><strong>Scanned documents:</strong> Digitize printed letters, receipts, and book pages so you can edit or search them.</li>
+          <li><strong>Photos of printed text:</strong> Signs, labels, and posters photographed straight on and in good light.</li>
+        </ul>
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Tips for better accuracy</h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Use the sharpest, highest-resolution image you have. Text should be at least 10–12 pixels tall.</li>
+          <li>Crop away backgrounds, photos, and decorations so only the text remains.</li>
+          <li>Prefer dark text on a light, even background. Shadows, glare, and tilted pages lower accuracy.</li>
+          <li>Pick the correct language. Recognizing French text with the English model will miss accents and special letters.</li>
         </ul>
       </>
     ),
     faqs: [
       {
+        question: "Is my image uploaded to a server?",
+        answer: "No. Text recognition runs locally in your browser. The image never leaves your device. The only download is the OCR engine and language data, which your browser caches after the first use."
+      },
+      {
         question: "Does it support handwritten text?",
-        answer: "Yes, our AI engine is trained to recognize clear handwriting, though printed text yields the most accurate results."
+        answer: "Only partly. The engine is trained on printed text, so neat block capitals may work, but cursive and messy handwriting usually produce poor results."
+      },
+      {
+        question: "Which languages are supported?",
+        answer: "English, Spanish, French, German, Portuguese, Italian, Dutch, Polish, Turkish, Hindi, Arabic, and Urdu. Select the language before extracting for the best results."
+      },
+      {
+        question: "Why is the first extraction slower?",
+        answer: "The first time you use a language, your browser downloads the OCR engine and that language's data, which takes a few seconds. Later extractions reuse the cached files and start faster."
+      },
+      {
+        question: "Can I extract text from a PDF?",
+        answer: "Not directly. Take a screenshot of the PDF page, or export the page as a PNG or JPG, then upload that image."
       }
     ]
   },
