@@ -64,8 +64,15 @@ export default function PrivacyPolicy() {
             <li><strong>Image to Text (OCR):</strong> the text-recognition language data, cached so later extractions start faster.</li>
           </ul>
 
-          <h2>4. Cookies, Advertising, and Analytics</h2>
-          <p>Casetivo does not use cookies, does not show advertising, and does not use analytics or tracking tools. If we add any of these in the future, we will update this policy before doing so.</p>
+          <h2>4. Cookies and Advertising</h2>
+          <p>Casetivo may display advertising served by Google AdSense to keep our tools free. When ads are shown, Google and its partners may use cookies and similar technologies:</p>
+          <ul>
+            <li>Third-party vendors, including Google, use cookies to serve ads based on a user&apos;s prior visits to this website or other websites.</li>
+            <li>Google&apos;s use of advertising cookies enables it and its partners to serve ads to users based on their visits to this site and/or other sites on the Internet.</li>
+            <li>You may opt out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>. You can also opt out of some third-party vendors&apos; use of cookies for personalized advertising at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
+            <li>To learn more, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from sites that use its services</a>.</li>
+          </ul>
+          <p>Ad cookies are set by Google, not by Casetivo, and never receive the text, images, or files you process with our tools. Casetivo does not currently use analytics tools.</p>
 
           <h2>5. Third-Party Services</h2>
           <ul>
