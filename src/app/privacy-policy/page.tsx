@@ -10,6 +10,14 @@ export const metadata = {
   alternates: {
     canonical: "https://www.casetivo.com/privacy-policy",
   },
+  openGraph: {
+    description: "Read Casetivo's Privacy Policy to learn how our browser-based tools process data and protect your privacy.",
+    title: "Privacy Policy | Casetivo",
+    url: "https://www.casetivo.com/privacy-policy",
+    siteName: "Casetivo",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Privacy Policy | Casetivo" }],
+  },
 };
 
 export default function PrivacyPolicy() {

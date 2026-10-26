@@ -162,7 +162,7 @@ export default function HomeClientPage({ children, heading }: { children?: React
         {children}
       </main>
 
-      <Footer />
+      <Footer showToolDirectory={false} />
     </div>
   );
 }

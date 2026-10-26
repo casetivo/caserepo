@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Shield, Zap, Lock } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -9,10 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.casetivo.com/about',
   },
+  openGraph: {
+    description: "Learn about Casetivo, our mission, and our commitment to privacy and fast, local processing for developers and creators.",
+    title: "About Casetivo",
+    url: "https://www.casetivo.com/about",
+    siteName: "Casetivo",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Casetivo" }],
+  },
 };
 
 export default function AboutPage() {
   return (
+    <>
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 max-w-4xl">
       <div className="space-y-12">
         {/* Header Section */}
@@ -91,5 +101,7 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

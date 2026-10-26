@@ -10,6 +10,14 @@ export const metadata = {
   alternates: {
     canonical: "https://www.casetivo.com/terms-of-service",
   },
+  openGraph: {
+    description: "Read Casetivo's Terms of Service, including the conditions for using our free browser-based text, code, and image tools.",
+    title: "Terms of Service | Casetivo",
+    url: "https://www.casetivo.com/terms-of-service",
+    siteName: "Casetivo",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Terms of Service | Casetivo" }],
+  },
 };
 
 export default function TermsOfService() {
