@@ -15,6 +15,10 @@ const InvoicePreview = memo(({ invoice }: { invoice: InvoiceData }) => {
         {/* Header */}
         <div className="flex justify-between items-start mb-8">
           <div>
+            {invoice.logo && invoice.logo.startsWith("data:image/") && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={invoice.logo} alt="" style={{ maxHeight: 48, maxWidth: 160, objectFit: "contain", marginBottom: 8 }} />
+            )}
             <div style={{ fontSize: 22, fontWeight: 700, color }}>{invoice.fromName || "Your Company"}</div>
             {invoice.fromEmail && <div style={{ color: "#6b7280", fontSize: 12, marginTop: 2 }}>{invoice.fromEmail}</div>}
             {invoice.fromPhone && <div style={{ color: "#6b7280", fontSize: 12 }}>{invoice.fromPhone}</div>}
@@ -35,7 +39,7 @@ const InvoicePreview = memo(({ invoice }: { invoice: InvoiceData }) => {
             <div key={label} style={{ background: "#f9fafb", borderRadius: 8, padding: "14px 16px" }}>
               <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6b7280", marginBottom: 6 }}>{label}</div>
               <div style={{ fontWeight: 700, marginBottom: 2 }}>{name || "—"}</div>
-              {addr && <div style={{ color: "#374151", fontSize: 12 }}>{addr}</div>}
+              {addr && <div style={{ color: "#374151", fontSize: 12, whiteSpace: "pre-line" }}>{addr}</div>}
               {email && <div style={{ color: "#374151", fontSize: 12 }}>{email}</div>}
               {phone && <div style={{ color: "#374151", fontSize: 12 }}>{phone}</div>}
             </div>
@@ -101,7 +105,7 @@ const InvoicePreview = memo(({ invoice }: { invoice: InvoiceData }) => {
             {invoice.notes && (
               <div>
                 <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6b7280", marginBottom: 6 }}>Notes</div>
-                <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.6 }}>{invoice.notes}</div>
+                <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.6, whiteSpace: "pre-line" }}>{invoice.notes}</div>
               </div>
             )}
             {invoice.paymentTerms && (
@@ -110,6 +114,13 @@ const InvoicePreview = memo(({ invoice }: { invoice: InvoiceData }) => {
                 <div style={{ fontSize: 12, color: "#374151" }}>{invoice.paymentTerms}</div>
               </div>
             )}
+          </div>
+        )}
+
+        {invoice.paymentInfo && (
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6b7280", marginBottom: 6 }}>Payment Details</div>
+            <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.6, whiteSpace: "pre-line" }}>{invoice.paymentInfo}</div>
           </div>
         )}
 

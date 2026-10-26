@@ -2,6 +2,10 @@
 import type { InvoiceData } from "./types";
 import { formatCurrency, calcTotals, CURRENCIES } from "./types";
 
+const escapeHtml = (v: string | number | undefined | null): string =>
+  String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const multiline = (v: string | undefined | null): string => escapeHtml(v).replace(/\n/g, "<br/>");
+
 export function generateInvoiceHTML(invoice: InvoiceData): string {
   const { subtotal, discountAmt, taxAmt, total } = calcTotals(invoice);
   const currency = CURRENCIES.find(c => c.code === invoice.currency);
@@ -10,7 +14,7 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
 
   const itemRows = invoice.items.map(item => `
     <tr>
-      <td style="padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:13px;color:#374151;">${item.description || "—"}</td>
+      <td style="padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:13px;color:#374151;">${escapeHtml(item.description) || "—"}</td>
       <td style="padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:13px;text-align:center;color:#374151;">${item.quantity}</td>
       <td style="padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:13px;text-align:right;color:#374151;">${fmt(item.rate)}</td>
       <td style="padding:10px 8px;border-bottom:1px solid #f0f0f0;font-size:13px;text-align:right;font-weight:600;color:#111827;">${fmt(item.amount)}</td>
@@ -21,7 +25,7 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Invoice ${invoice.invoiceNumber}</title>
+<title>Invoice ${escapeHtml(invoice.invoiceNumber)}</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111827;background:#fff;font-size:14px;line-height:1.5;}
@@ -60,14 +64,15 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
   <!-- Header -->
   <div class="header">
     <div>
-      <div class="brand">${invoice.fromName || "Your Company"}</div>
-      ${invoice.fromEmail ? `<div style="color:#6b7280;font-size:13px;margin-top:4px;">${invoice.fromEmail}</div>` : ""}
-      ${invoice.fromPhone ? `<div style="color:#6b7280;font-size:13px;">${invoice.fromPhone}</div>` : ""}
+      ${invoice.logo && invoice.logo.startsWith("data:image/") ? `<img src="${escapeHtml(invoice.logo)}" alt="" style="max-height:56px;max-width:180px;object-fit:contain;display:block;margin-bottom:10px;"/>` : ""}
+      <div class="brand">${escapeHtml(invoice.fromName) || "Your Company"}</div>
+      ${invoice.fromEmail ? `<div style="color:#6b7280;font-size:13px;margin-top:4px;">${escapeHtml(invoice.fromEmail)}</div>` : ""}
+      ${invoice.fromPhone ? `<div style="color:#6b7280;font-size:13px;">${escapeHtml(invoice.fromPhone)}</div>` : ""}
     </div>
     <div style="text-align:right;">
       <div class="invoice-badge">Invoice</div>
-      <div class="invoice-num">${invoice.invoiceNumber}</div>
-      <div style="color:#6b7280;font-size:12px;margin-top:2px;">Currency: ${invoice.currency} (${currency?.symbol})</div>
+      <div class="invoice-num">${escapeHtml(invoice.invoiceNumber)}</div>
+      <div style="color:#6b7280;font-size:12px;margin-top:2px;">Currency: ${escapeHtml(invoice.currency)} (${escapeHtml(currency?.symbol)})</div>
     </div>
   </div>
 
@@ -76,19 +81,19 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
     <div class="meta-box">
       <div class="meta-label">From</div>
       <div class="meta-value">
-        <strong>${invoice.fromName || "—"}</strong>
-        ${invoice.fromAddress ? invoice.fromAddress.replace(/\n/g, "<br/>") : ""}
-        ${invoice.fromEmail ? `<br/>${invoice.fromEmail}` : ""}
-        ${invoice.fromPhone ? `<br/>${invoice.fromPhone}` : ""}
+        <strong>${escapeHtml(invoice.fromName) || "—"}</strong>
+        ${multiline(invoice.fromAddress)}
+        ${invoice.fromEmail ? `<br/>${escapeHtml(invoice.fromEmail)}` : ""}
+        ${invoice.fromPhone ? `<br/>${escapeHtml(invoice.fromPhone)}` : ""}
       </div>
     </div>
     <div class="meta-box">
       <div class="meta-label">Bill To</div>
       <div class="meta-value">
-        <strong>${invoice.toName || "—"}</strong>
-        ${invoice.toAddress ? invoice.toAddress.replace(/\n/g, "<br/>") : ""}
-        ${invoice.toEmail ? `<br/>${invoice.toEmail}` : ""}
-        ${invoice.toPhone ? `<br/>${invoice.toPhone}` : ""}
+        <strong>${escapeHtml(invoice.toName) || "—"}</strong>
+        ${multiline(invoice.toAddress)}
+        ${invoice.toEmail ? `<br/>${escapeHtml(invoice.toEmail)}` : ""}
+        ${invoice.toPhone ? `<br/>${escapeHtml(invoice.toPhone)}` : ""}
       </div>
     </div>
   </div>
@@ -97,7 +102,7 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
   <div class="dates-grid">
     <div class="date-box">
       <div class="date-label">Invoice No.</div>
-      <div class="date-value">${invoice.invoiceNumber}</div>
+      <div class="date-value">${escapeHtml(invoice.invoiceNumber)}</div>
     </div>
     <div class="date-box">
       <div class="date-label">Issue Date</div>
@@ -134,9 +139,11 @@ export function generateInvoiceHTML(invoice: InvoiceData): string {
 
   <!-- Footer -->
   <div class="footer">
-    ${invoice.notes ? `<div><div class="footer-label">Notes</div><div class="footer-value">${invoice.notes}</div></div>` : "<div></div>"}
-    ${invoice.paymentTerms ? `<div><div class="footer-label">Payment Terms</div><div class="footer-value">${invoice.paymentTerms}</div></div>` : ""}
+    ${invoice.notes ? `<div><div class="footer-label">Notes</div><div class="footer-value">${multiline(invoice.notes)}</div></div>` : "<div></div>"}
+    ${invoice.paymentTerms ? `<div><div class="footer-label">Payment Terms</div><div class="footer-value">${escapeHtml(invoice.paymentTerms)}</div></div>` : ""}
   </div>
+
+  ${invoice.paymentInfo ? `<div style="margin-top:20px;"><div class="footer-label">Payment Details</div><div class="footer-value">${multiline(invoice.paymentInfo)}</div></div>` : ""}
 
   <div class="watermark">Generated with Casetivo Invoice Generator · casetivo.com</div>
 </div>

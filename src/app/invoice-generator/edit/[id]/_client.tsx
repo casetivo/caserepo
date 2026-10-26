@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { FileText, Download, Save, Eye, EyeOff, ArrowLeft, CheckCircle } from "lucide-react";
+import ToolHeader from "@/components/ToolHeader";
 import InvoiceForm from "@/components/invoice/InvoiceForm";
 import InvoicePreview from "@/components/invoice/InvoicePreview";
 import type { InvoiceData } from "@/components/invoice/types";
@@ -66,40 +67,24 @@ export default function InvoiceEditClient() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border/60 bg-card/50 backdrop-blur-sm sticky top-0 z-20">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            <Link href="/invoice-generator"
-              className="w-8 h-8 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:bg-accent transition-colors flex-shrink-0">
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0" style={{ background: invoice.accentColor }}>
-              <FileText className="w-4 h-4 text-white" />
-            </div>
-            <div className="min-w-0">
-              <h1 className="text-base font-bold text-foreground leading-tight truncate">
-                Editing: {invoice.invoiceNumber}
-              </h1>
-              <p className="text-xs text-muted-foreground truncate">
-                {invoice.toName ? `Client: ${invoice.toName}` : "No client set"} · Last saved {new Date(invoice.updatedAt).toLocaleTimeString()}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 flex-shrink-0">
+      <ToolHeader brand icon={<FileText />} title={`Editing ${invoice.invoiceNumber}`} />
+      <div className="border-b border-border/60 bg-card/50">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-3">
+          <Link href="/invoice-generator" className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="w-4 h-4" />All invoices
+          </Link>
+          <div className="flex items-center gap-2">
             <button onClick={() => setShowPreview(!showPreview)}
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-accent transition-colors">
               {showPreview ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              <span className="hidden sm:inline">{showPreview ? "Hide" : "Preview"}</span>
+              <span className="hidden sm:inline">{showPreview ? "Hide preview" : "Preview"}</span>
             </button>
             <button onClick={handleSave}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                saveStatus === "saved" ? "border-green-500 bg-green-50 text-green-700" :
-                saveStatus === "saving" ? "border-border bg-muted text-muted-foreground" :
-                "border-border bg-card text-foreground hover:bg-accent"
+                saveStatus === "saved" ? "border-green-500 bg-green-50 text-green-700" : "border-border bg-card text-foreground hover:bg-accent"
               }`}>
               {saveStatus === "saved" ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-              <span className="hidden sm:inline">{saveStatus === "saved" ? "Saved!" : saveStatus === "saving" ? "Saving..." : "Save"}</span>
+              <span className="hidden sm:inline">{saveStatus === "saved" ? "Saved!" : "Save"}</span>
             </button>
             <button onClick={handleDownload}
               className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 active:scale-[0.97] transition-all shadow-sm">
@@ -108,7 +93,7 @@ export default function InvoiceEditClient() {
             </button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Unsaved changes indicator */}
       {saveStatus === "idle" && invoice.updatedAt !== getInvoice(id)?.updatedAt && (
