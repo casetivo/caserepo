@@ -2,6 +2,7 @@
 import SearchButton from "@/components/SearchButton";
 import { memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import SubHeaderNav from "@/components/SubHeaderNav";
 import { ArrowLeft, LayoutGrid, Search } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -9,14 +10,23 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 interface ToolHeaderProps {
   icon: React.ReactNode;
-  title: string;
+  title?: string;
+  /** Show the Casetivo logo and name (linking home) instead of the back arrow and tool icon. */
+  brand?: boolean;
   relatedTools?: Array<{ href: string; label: string }>;
 }
 
-const ToolHeader = memo(({ icon, title, relatedTools }: ToolHeaderProps) => (
+const ToolHeader = memo(({ icon, title, brand, relatedTools }: ToolHeaderProps) => (
   <header className="border-b border-border/60 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
     <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between xl:justify-start gap-4">
       <div className="flex items-center gap-3 shrink-0">
+        {brand ? (
+          <Link href="/" prefetch={true} className="flex items-center gap-3">
+            <Image src="/icon-512.png" alt="" width={28} height={28} className="rounded-lg object-contain" />
+            <span className="text-lg font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>Casetivo</span>
+          </Link>
+        ) : (
+          <>
         <Link
           href="/"
           prefetch={true}
@@ -28,9 +38,13 @@ const ToolHeader = memo(({ icon, title, relatedTools }: ToolHeaderProps) => (
         <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4 [&>svg]:text-primary-foreground">
           {icon}
         </div>
-        <h1 className="text-lg font-bold tracking-tight text-foreground truncate max-w-[200px] sm:max-w-none" style={{ fontFamily: "var(--font-display)" }}>
-          {title}
-        </h1>
+          </>
+        )}
+        {title && (
+          <h1 className="text-lg font-bold tracking-tight text-foreground truncate max-w-[200px] sm:max-w-none" style={{ fontFamily: "var(--font-display)" }}>
+            {title}
+          </h1>
+        )}
       </div>
       
       <div className="hidden xl:flex flex-1 overflow-hidden justify-center">

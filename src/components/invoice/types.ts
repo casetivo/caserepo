@@ -30,6 +30,7 @@ export interface InvoiceData {
   discountRate: number;
   notes: string;
   paymentTerms: string;
+  paymentInfo?: string;
   // Style
   accentColor: string;
   logo?: string;
@@ -88,6 +89,21 @@ export function calcTotals(invoice: InvoiceData) {
   const taxAmt      = taxableAmt * (invoice.taxRate / 100);
   const total       = taxableAmt + taxAmt;
   return { subtotal, discountAmt, taxAmt, total };
+}
+
+export const PAYMENT_TERMS = [
+  { label: "Due on receipt", days: 0 },
+  { label: "Net 7", days: 7 },
+  { label: "Net 15", days: 15 },
+  { label: "Net 30", days: 30 },
+  { label: "Net 60", days: 60 },
+] as const;
+
+export function addDays(isoDate: string, days: number): string {
+  const d = new Date(isoDate);
+  if (Number.isNaN(d.getTime())) return isoDate;
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
 }
 
 export function createDefaultInvoice(): InvoiceData {

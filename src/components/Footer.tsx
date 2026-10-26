@@ -7,11 +7,11 @@ function ToolDirectory() {
     <nav aria-label="All tools" className="max-w-6xl mx-auto px-4 pb-8 mb-6 border-b border-border/40 grid grid-cols-2 md:grid-cols-4 gap-6">
       {TOOL_CATEGORIES.map((category) => (
         <div key={category.name}>
-          <p className="text-sm font-semibold text-foreground mb-3">{category.name}</p>
+          <p className="text-base font-semibold text-foreground mb-3">{category.name}</p>
           <ul className="space-y-1.5">
             {category.tools.map(({ href, label }) => (
               <li key={href}>
-                <Link href={href} prefetch={false} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+                <Link href={href} prefetch={false} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   {label}
                 </Link>
               </li>
@@ -28,10 +28,10 @@ export default function Footer({ showToolDirectory = true }: { showToolDirectory
     <footer className="py-6 mt-auto border-t border-border/40 bg-card/30">
       {showToolDirectory && <ToolDirectory />}
       <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-base text-muted-foreground">
           &copy; {new Date().getFullYear()} Casetivo. All rights reserved.
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-base font-medium text-muted-foreground">
           <Link href="/invoice-generator" className="hover:text-foreground transition-colors">
             Invoice Generator
           </Link>
