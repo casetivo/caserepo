@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, User, Clock, ArrowUpRight, Share2, Twitter, Linked
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
+import { getAuthor } from "@/data/authors";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -57,6 +58,8 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const author = getAuthor(post.author);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -70,7 +73,9 @@ export default async function BlogPostPage({ params }: Props) {
     "datePublished": post.publish_date,
     "dateModified": post.updated_date || post.publish_date,
     "description": post.meta_description,
-    "author": { "@type": "Organization", "name": "Casetivo", "url": "https://www.casetivo.com" },
+    "author": author
+      ? { "@type": "Person", "name": author.name, "jobTitle": author.role, "description": author.bio, "sameAs": author.sameAs }
+      : { "@type": "Organization", "name": "Casetivo", "url": "https://www.casetivo.com" },
     "publisher": {
       "@type": "Organization",
       "name": "Casetivo",
@@ -124,7 +129,14 @@ export default async function BlogPostPage({ params }: Props) {
             <h1 className="text-4xl font-extrabold mb-6 tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>
               {post.title}
             </h1>
-            
+
+            {author && (
+              <p className="-mt-2 mb-8 flex items-center gap-2 text-sm text-muted-foreground">
+                <User className="w-4 h-4" />
+                <span>By <span className="font-semibold text-foreground">{author.name}</span> · {author.role}</span>
+              </p>
+            )}
+
             {heroImage && (
               <Image src={heroImage} alt={post.title} width={800} height={400} className="w-full rounded-2xl mb-10 object-cover border border-border shadow-sm max-h-[400px]" />
             )}
@@ -137,6 +149,31 @@ export default async function BlogPostPage({ params }: Props) {
                 prose-pre:bg-muted prose-pre:border prose-pre:border-border"
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
+
+            {author && (
+              <aside id="about-the-author" aria-label="About the author" className="mt-12 flex gap-4 rounded-2xl border border-border bg-card p-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground" aria-hidden="true">
+                  {author.name.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase()}
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Written by</p>
+                  <p className="mt-1 text-lg font-bold text-foreground">{author.name}</p>
+                  <p className="text-sm text-muted-foreground">{author.role}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
+                  {author.sameAs.length > 0 && (
+                    <ul className="mt-3 flex flex-wrap gap-4 text-sm">
+                      {author.sameAs.map((url) => (
+                        <li key={url}>
+                          <a href={url} rel="me noopener" target="_blank" className="font-medium text-primary hover:underline">
+                            {new URL(url).hostname.replace(/^www\./, "")}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </aside>
+            )}
           </article>
         </main>
         <Footer />

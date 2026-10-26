@@ -3,6 +3,7 @@ title: "How to Encode and Decode Base64"
 publish_date: "2026-10-06T09:00:00Z"
 meta_description: "Learn what Base64 encoding is, when to use it, and how to encode or decode text online without confusing it with encryption."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Base64 converts data into a text-safe sequence of letters, numbers, and symbols. Developers often use it when sending binary content through systems designed for plain text, such as JSON payloads, email attachments, and data URLs.

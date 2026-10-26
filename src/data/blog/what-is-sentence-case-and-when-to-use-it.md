@@ -3,6 +3,7 @@ title: "What is Sentence Case and When Should You Use It?"
 publish_date: "2026-07-08T10:00:00Z"
 meta_description: "Learn the grammar rules of sentence case, why it improves readability, and the best scenarios to use this capitalization style in your writing."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Capitalization might seem like a minor detail, but it profoundly impacts how readers perceive your text. One of the most common and readable styles is **Sentence Case**.

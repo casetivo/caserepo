@@ -3,6 +3,7 @@ title: "Why You Need a Strong Password Generator in 2026"
 publish_date: "2026-06-29T10:00:00Z"
 meta_description: "Discover why human-created passwords are no longer secure, and how using a Strong Password Generator protects your digital identity against modern brute-force attacks."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 With the exponential rise in computing power and the availability of leaked password databases on the dark web, securing your online accounts has never been more critical. The days of using "Password123!" or your dog's name followed by a birth year are completely over.

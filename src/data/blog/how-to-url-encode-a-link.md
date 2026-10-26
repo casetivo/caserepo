@@ -3,6 +3,7 @@ title: "How to URL Encode a Link and Why It Matters"
 publish_date: "2026-10-05T09:00:00Z"
 meta_description: "Learn how URL encoding works, why special characters need encoding, and how to encode or decode links safely online."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 URLs cannot safely contain every character as plain text. URL encoding replaces reserved characters with percent-based codes so a browser and server can interpret a link correctly.

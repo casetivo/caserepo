@@ -3,6 +3,7 @@ title: "Uppercase vs. Lowercase: When to Use Each"
 publish_date: "2026-10-13T09:00:00Z"
 meta_description: "Learn the difference between uppercase and lowercase letters, when each format works best, and how to convert text instantly without retyping."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Uppercase and lowercase are simple text formats, but choosing the wrong one can make writing look difficult to read, overly informal, or unintentionally aggressive. This guide explains the difference, the best use cases for each style, and how to switch between them quickly.

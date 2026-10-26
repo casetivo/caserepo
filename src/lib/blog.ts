@@ -13,6 +13,7 @@ export interface BlogPostMeta {
   updated_date?: string;
   meta_description: string;
   featured_image_url?: string;
+  author?: string;
   slug: string;
 }
 

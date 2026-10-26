@@ -3,6 +3,7 @@ title: "How to Create a Strong Password: A Practical Guide"
 publish_date: "2026-10-04T09:00:00Z"
 meta_description: "Create stronger passwords with length, uniqueness, and a password manager. Learn what to avoid and generate a secure password online."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 A strong password is long, unique, and difficult to guess. The most important rule is not complexity alone: do not reuse the same password across different services.

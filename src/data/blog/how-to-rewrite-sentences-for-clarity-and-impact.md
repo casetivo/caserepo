@@ -3,6 +3,7 @@ title: "How to Rewrite Weak Sentences for Clarity and Impact"
 publish_date: "2026-10-20T11:00:00Z"
 meta_description: "Learn how to transform wordy, hesitant, and flabby sentences into crisp, authoritative prose. Practical before-and-after examples and self-editing guide."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Most weak writing doesn't suffer from bad grammar or poor vocabulary. It suffers from **hesitation and fluff**.

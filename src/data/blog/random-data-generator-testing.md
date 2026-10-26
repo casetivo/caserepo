@@ -3,6 +3,7 @@ title: "The Importance of Generating Random Data for Software Testing"
 publish_date: "2026-06-29T10:30:00Z"
 meta_description: "Stop using 'Lorem Ipsum' and test user 1. Discover why procedurally generating random mock data is crucial for robust UI design and database stress testing."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 For decades, designers and developers have relied on standard placeholder text to fill out new application interfaces. The ubiquitous *Lorem Ipsum* has adorned countless wireframes, while developers lazily populate staging databases with users named "Test Testerson" living at "123 Main St."

@@ -3,6 +3,7 @@ title: "Why Websites Reject Passwords and How to Fix It"
 publish_date: "2026-09-30T09:00:00Z"
 meta_description: "Find out why a website rejected your password, from length limits to unsupported symbols, and learn how to generate an accepted unique password."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 It is frustrating when a password generator creates a password that a website refuses. The password may still be strong; the site may simply have different formatting rules.

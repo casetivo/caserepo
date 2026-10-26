@@ -3,6 +3,7 @@ title: "How to Remove Duplicate Lines From Text"
 publish_date: "2026-10-10T09:00:00Z"
 meta_description: "Remove repeated lines from lists, logs, spreadsheets, and copied text without losing the original order. Includes simple steps and examples."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Duplicate lines make lists difficult to audit and can cause errors when you import data. Instead of deleting repeated entries manually, use a tool that compares every line and keeps one clean copy.

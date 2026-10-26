@@ -3,6 +3,7 @@ title: "Sentence Case vs. Title Case: Which Should You Use?"
 publish_date: "2026-07-09T10:00:00Z"
 meta_description: "Understand the key differences between Sentence Case and Title Case, and learn when to use each formatting style for your blog, UI, or academic writing."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 When writing a blog post, designing a user interface, or drafting a formal document, you will inevitably have to choose between the two most popular capitalization styles: **Sentence Case** and **Title Case**. 

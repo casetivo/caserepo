@@ -3,6 +3,7 @@ title: "UUID v4 vs. Auto-Incrementing IDs: Which Should You Use?"
 publish_date: "2026-09-28T09:00:00Z"
 meta_description: "Compare UUID v4 and auto-incrementing IDs for databases, APIs, distributed systems, storage, indexing, and public URLs."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 UUID v4 and auto-incrementing integers both identify records, but they make different trade-offs. UUIDs can be created independently; auto-incrementing IDs are compact and easy to inspect.

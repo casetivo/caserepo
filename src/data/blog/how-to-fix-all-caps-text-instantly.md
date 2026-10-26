@@ -3,6 +3,7 @@ title: "How to Fix ALL CAPS Text Instantly Without Retyping"
 publish_date: "2026-07-10T10:00:00Z"
 meta_description: "Did you accidentally leave Caps Lock on? Learn how to instantly convert ALL CAPS text back to normal sentence case without having to retype a single word."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 We have all been there. You spend five minutes typing out a passionate email or a detailed paragraph, only to look up at your screen and realize **YOUR CAPS LOCK KEY WAS ON THE ENTIRE TIME.**
