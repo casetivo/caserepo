@@ -84,7 +84,7 @@ export default function PrivacyPolicy() {
           <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
 
           <h2>7. Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact us through our website.</p>
+          <p>If you have any questions about this Privacy Policy, please email us at <a href="mailto:casetivo@gmail.com">casetivo@gmail.com</a>.</p>
         </div>
       </main>
 

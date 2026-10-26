@@ -68,6 +68,9 @@ export default function TermsOfService() {
 
           <h2>6. Modifications to Terms</h2>
           <p>Casetivo may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
+
+          <h2>7. Contact Us</h2>
+          <p>If you have any questions about these Terms of Service, please email us at <a href="mailto:casetivo@gmail.com">casetivo@gmail.com</a>.</p>
         </div>
       </main>
 

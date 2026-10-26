@@ -88,6 +88,15 @@ export default function AboutPage() {
           </p>
         </section>
 
+        {/* Contact */}
+        <section className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Contact Us</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Found a bug, have a tool idea, or a question? Email us at{" "}
+            <a href="mailto:casetivo@gmail.com" className="font-semibold text-primary hover:underline">casetivo@gmail.com</a>.
+          </p>
+        </section>
+
         {/* Call to Action */}
         <div className="text-center pt-8 border-t border-border/60">
           <h2 className="text-2xl font-bold text-foreground mb-6">Ready to get started?</h2>

@@ -274,6 +274,7 @@ export default function Page() {
     "name": "Casetivo",
     "url": BASE,
     "logo": `${BASE}/icon-512.png`,
+    "email": "casetivo@gmail.com",
     "description": "Free online text tools, code formatters, image converters, and developer utilities."
   };
 
