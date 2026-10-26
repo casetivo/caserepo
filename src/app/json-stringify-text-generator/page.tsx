@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">JSON Stringify Text Generator</h1>
       <SchemaMarkup toolName="JSON Stringify Text Generator" url={`${BASE}/json-stringify-text-generator`} description="Generate JSON.stringify() output from any plain text. Escapes all special characters for safe use in code. Free online tool." faqs={getSeoContent("json-stringify-text-generator", "JSON Stringify Text Generator").faqs} />
       <ClientPage />
     </>

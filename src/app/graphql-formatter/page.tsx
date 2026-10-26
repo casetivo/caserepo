@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">GraphQL Formatter & Beautifier</h1>
       <SchemaMarkup toolName="GraphQL Formatter & Beautifier" url={`${BASE}/graphql-formatter`} description="Format and beautify GraphQL queries and mutations with proper indentation. Free online GraphQL formatter tool." faqs={getSeoContent("graphql-formatter", "GraphQL Formatter & Beautifier").faqs} />
       <ClientPage />
     </>

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Markdown to HTML Converter</h1>
       <SchemaMarkup toolName="Markdown to HTML Converter" url={`${BASE}/markdown-to-html-converter`} description="Convert Markdown text to HTML instantly. Supports headings, bold, italic, lists, links, and code. Free online Markdown to HTML converter." faqs={getSeoContent("markdown-to-html-converter", "Markdown to HTML Converter").faqs} />
       <ClientPage />
     </>

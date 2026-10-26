@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Morse Code Translator</h1>
       <SchemaMarkup toolName="Morse Code Translator" url={`${BASE}/morse-code-translator`} description="Convert text to Morse code or translate Morse code back to text instantly. Supports all letters, numbers, and punctuation. Free online Morse code translator." faqs={getSeoContent("morse-code-translator", "Morse Code Translator").faqs} />
       <ClientPage />
     </>

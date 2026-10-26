@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Markdown Table Generator</h1>
       <SchemaMarkup toolName="Markdown Table Generator" url={`${BASE}/markdown-table-generator`} description="Generate Markdown tables from CSV, tab-separated, or pipe-delimited data. Auto-aligns columns. Free online Markdown table generator." faqs={getSeoContent("markdown-table-generator", "Markdown Table Generator").faqs} />
       <ClientPage />
     </>

@@ -1,16 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/",
-        has: [{ type: "query", key: "ref" }],
-        destination: "/",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {

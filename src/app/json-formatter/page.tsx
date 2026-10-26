@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
         <>
-      <h1 className="sr-only">JSON Formatter, Validator & Minifier</h1>
       <SchemaMarkup toolName="JSON Formatter, Validator & Minifier" url={`${BASE}/json-formatter`} description="Format, beautify, validate, and minify JSON data instantly. Handles complex nested JSON. Free online JSON formatter and validator." faqs={getSeoContent("json-formatter", "JSON Formatter, Validator & Minifier").faqs} />
       <ClientPage />
     </>

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Markdown Formatter & Previewer</h1>
       <SchemaMarkup toolName="Markdown Formatter & Previewer" url={`${BASE}/markdown-formatter-previewer`} description="Format Markdown with consistent spacing and preview as HTML output. Free online Markdown formatter and live previewer tool." faqs={getSeoContent("markdown-formatter-previewer", "Markdown Formatter & Previewer").faqs} />
       <ClientPage />
     </>

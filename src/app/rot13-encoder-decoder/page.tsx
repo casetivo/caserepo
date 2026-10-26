@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">ROT13 Encoder & Decoder</h1>
       <SchemaMarkup toolName="ROT13 Encoder & Decoder" url={`${BASE}/rot13-encoder-decoder`} description="Encode or decode text using the ROT13 substitution cipher instantly. Free online ROT13 encoder and decoder — the same operation for both." faqs={getSeoContent("rot13-encoder-decoder", "ROT13 Encoder & Decoder").faqs} />
       <ClientPage />
     </>

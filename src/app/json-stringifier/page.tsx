@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">JSON Stringifier</h1>
       <SchemaMarkup toolName="JSON Stringifier" url={`${BASE}/json-stringifier`} description="Convert JSON objects to JSON strings with proper escaping. Free online JSON stringifier — the equivalent of JSON.stringify() in your browser." faqs={getSeoContent("json-stringifier", "JSON Stringifier").faqs} />
       <ClientPage />
     </>

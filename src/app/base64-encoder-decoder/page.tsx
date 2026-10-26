@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Base64 Encoder & Decoder</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebApplication", "name": "Base64 Encoder & Decoder", "url": "https://www.casetivo.com/base64-encoder-decoder", "description": "Encode text to Base64 or decode Base64 strings back to plain text instantly. Free online Base64 encoder and decoder with one click.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "browserRequirements": "Requires JavaScript", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@type": "Organization", "name": "Casetivo", "url": "https://www.casetivo.com" }, "featureList": ["base64 encoder decoder", "base64 encode decode online", "base64 converter"] }) }}

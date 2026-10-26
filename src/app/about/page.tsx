@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Shield, Zap, Lock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us | Casetivo Tools',
+  title: 'About Us',
   description: 'Learn about Casetivo, our mission, and our commitment to privacy and fast, local processing for developers and creators.',
   alternates: {
     canonical: 'https://www.casetivo.com/about',

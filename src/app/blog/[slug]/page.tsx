@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   
   return {
-    title: `${post.title} | Casetivo Blog`,
+    title: post.title,
     description: post.meta_description,
     alternates: {
       canonical: `https://www.casetivo.com/blog/${slug}`,

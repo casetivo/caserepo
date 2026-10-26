@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Random Data Generator</h1>
       <SchemaMarkup toolName="Random Data Generator" url={`${BASE}/random-data-generator`} description="Generate random fake names, email addresses, phone numbers, and addresses for testing. Free online random data generator." faqs={getSeoContent("random-data-generator", "Random Data Generator").faqs} />
       <ClientPage />
     </>

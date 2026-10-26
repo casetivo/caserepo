@@ -5,7 +5,7 @@ import SubHeaderNav from "@/components/SubHeaderNav";
 import SearchButton from "@/components/SearchButton";
 
 export const metadata = {
-  title: "Terms of Service | Casetivo",
+  title: "Terms of Service",
   description: "Read Casetivo's Terms of Service, including the conditions for using our free browser-based text, code, and image tools.",
   alternates: {
     canonical: "https://www.casetivo.com/terms-of-service",

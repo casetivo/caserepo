@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import BlogList from "@/components/BlogList";
 
 export const metadata: Metadata = {
-  title: "Blog — Text Tools Tips & Tutorials | Casetivo",
+  title: "Blog — Text Tools Tips & Tutorials",
   description: "Read articles and tutorials about text processing, formatting tools, coding utilities, and productivity tips from the Casetivo team.",
   keywords: "text tools blog, coding tutorials, text formatting tips, developer tools articles",
   alternates: { canonical: "https://www.casetivo.com/blog" },

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">MD5 Hash Generator</h1>
       <SchemaMarkup toolName="MD5 Hash Generator" url={`${BASE}/md5-hash-generator`} description="Generate MD5 hash from any text string instantly. Free online MD5 hash generator — secure, fast, works entirely in your browser." faqs={getSeoContent("md5-hash-generator", "MD5 Hash Generator").faqs} />
       <ClientPage />
     </>

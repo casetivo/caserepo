@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Binary Code Translator</h1>
       <SchemaMarkup toolName="Binary Code Translator" url={`${BASE}/binary-code-translator`} description="Convert text to binary code (0s and 1s) or translate binary back to text. Free online binary code translator tool." faqs={getSeoContent("binary-code-translator", "Binary Code Translator").faqs} />
       <ClientPage />
     </>

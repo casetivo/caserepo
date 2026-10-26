@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">JavaScript Formatter & Beautifier</h1>
       <SchemaMarkup toolName="JavaScript Formatter & Beautifier" url={`${BASE}/javascript-formatter`} description="Format and beautify JavaScript code with proper indentation. Clean up minified or messy JS instantly. Free online JavaScript formatter." faqs={getSeoContent("javascript-formatter", "JavaScript Formatter & Beautifier").faqs} />
       <ClientPage />
     </>

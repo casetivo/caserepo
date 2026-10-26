@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">URL Encoder & Decoder</h1>
       <SchemaMarkup toolName="URL Encoder & Decoder" url={`${BASE}/url-encoder-decoder`} description="Encode URLs for safe transmission or decode URL-encoded strings back to plain text. Free online URL encoder and decoder tool." faqs={getSeoContent("url-encoder-decoder", "URL Encoder & Decoder").faqs} />
       <ClientPage />
     </>

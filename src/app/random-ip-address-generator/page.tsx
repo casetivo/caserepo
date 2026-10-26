@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Random IP Address Generator</h1>
       <SchemaMarkup toolName="Random IP Address Generator" url={`${BASE}/random-ip-address-generator`} description="Generate random IPv4 or IPv6 addresses for testing and development. Bulk generation supported. Free online IP address generator." faqs={getSeoContent("random-ip-address-generator", "Random IP Address Generator").faqs} />
       <ClientPage />
     </>
