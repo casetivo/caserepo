@@ -3,6 +3,7 @@ title: "What Is Password Entropy and Why Does It Matter?"
 publish_date: "2026-10-01T09:00:00Z"
 meta_description: "Learn what password entropy means, why random and unique passwords are harder to guess, and how password length affects account security."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Password entropy is a way to describe how difficult a password is to guess. In practice, the most useful way to increase it is to use a long, random password that is unique to one account.

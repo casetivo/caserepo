@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+  title: "Reverse Text Generator — Backwards & Upside Down",
   description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
-  keywords: "reverse text generator, backwards text generator, mirror text online, reverse word order, flip text upside down, palindrome checker, reverse lines online",
   alternates: {
     canonical: `${BASE}/reverse-text-generator`,
   },
   openGraph: {
-    title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+    title: "Reverse Text Generator — Backwards & Upside Down",
     description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
     url: `${BASE}/reverse-text-generator`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reverse Text Generator Online — Backward, Mirror & Upside Down",
+    title: "Reverse Text Generator — Backwards & Upside Down",
     description: "Reverse text character-by-character, flip word order, invert lists line-by-line, or generate upside-down text. Free online palindrome checker included.",
     images: ["/og-image.png"],
   },

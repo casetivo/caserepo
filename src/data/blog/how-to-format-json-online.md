@@ -3,6 +3,7 @@ title: "How to Format JSON Online: A Simple Guide"
 publish_date: "2026-10-08T09:00:00Z"
 meta_description: "Learn how to format, validate, and read JSON online. Turn minified JSON into clean indented code and find common syntax errors."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 JSON is easy for computers to exchange but difficult for people to read when it is compressed onto one line. Formatting adds indentation and line breaks without changing the underlying data.

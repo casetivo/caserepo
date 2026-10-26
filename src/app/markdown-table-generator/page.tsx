@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Markdown Table Generator — Free Online Tool",
   description: "Generate Markdown tables from CSV, tab-separated, or pipe-delimited data. Auto-aligns columns. Free online Markdown table generator.",
-  keywords: "markdown table generator, CSV to markdown table, markdown table creator, generate markdown table online free",
   alternates: {
     canonical: `${BASE}/markdown-table-generator`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Markdown Table Generator</h1>
       <SchemaMarkup toolName="Markdown Table Generator" url={`${BASE}/markdown-table-generator`} description="Generate Markdown tables from CSV, tab-separated, or pipe-delimited data. Auto-aligns columns. Free online Markdown table generator." faqs={getSeoContent("markdown-table-generator", "Markdown Table Generator").faqs} />
       <ClientPage />
     </>

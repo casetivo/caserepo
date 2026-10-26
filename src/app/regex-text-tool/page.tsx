@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Regex Text Tool — Match & Replace Online Free",
   description: "Test regex patterns against text, find matches, and replace using regular expressions. Free online regex text tool with match and replace modes.",
-  keywords: "regex tool online, regular expression tester, regex match replace, regex text tool free",
   alternates: {
     canonical: `${BASE}/regex-text-tool`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Regex Text Tool</h1>
       <SchemaMarkup toolName="Regex Text Tool" url={`${BASE}/regex-text-tool`} description="Test regex patterns against text, find matches, and replace using regular expressions. Free online regex text tool with match and replace modes." faqs={getSeoContent("regex-text-tool", "Regex Text Tool").faqs} />
       <ClientPage />
     </>

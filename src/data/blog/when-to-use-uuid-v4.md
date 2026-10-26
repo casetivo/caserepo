@@ -3,6 +3,7 @@ title: "When to Use UUID v4: Practical Examples for Developers"
 publish_date: "2026-09-27T09:00:00Z"
 meta_description: "Learn when UUID v4 is useful for APIs, test data, distributed systems, and client-side record creation, plus when another identifier may fit better."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 UUID v4 is a randomly generated 128-bit identifier. It is useful when you need an identifier before a central database can assign one, or when independently running systems need to create records.

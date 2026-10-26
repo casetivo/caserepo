@@ -3,6 +3,7 @@ title: "What is a JSON Formatter and Why Do You Need One?"
 publish_date: "2026-06-11T12:00:00Z"
 meta_description: "Learn how a JSON Formatter can save you hours of debugging, make API responses readable, and prevent syntax errors in your code."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 When working with modern web applications, APIs, or configuration files, you've almost certainly encountered **JSON (JavaScript Object Notation)**. It is the de-facto standard for data exchange on the web.

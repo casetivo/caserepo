@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Choice Generator — Pick a Random Item Free",
   description: "Randomly pick one item from your list. Add as many choices as you want, one per line. Free online random choice picker and decision maker.",
-  keywords: "random choice generator, random picker, pick random item, random decision maker online free",
   alternates: {
     canonical: `${BASE}/random-choice-generator`,
   },

@@ -25,8 +25,10 @@ export default function SchemaMarkup({ toolName, url, description, faqs }: Schem
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://www.casetivo.com/#organization",
       "name": "Casetivo",
-      "url": "https://www.casetivo.com"
+      "url": "https://www.casetivo.com",
+      "logo": "https://www.casetivo.com/icon-512.png"
     }
   };
 

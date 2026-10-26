@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Binary Code Translator — Text to Binary Free",
   description: "Convert text to binary code (0s and 1s) or translate binary back to text. Free online binary code translator tool.",
-  keywords: "binary code translator, text to binary, binary to text, binary converter online free",
   alternates: {
     canonical: `${BASE}/binary-code-translator`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Binary Code Translator</h1>
       <SchemaMarkup toolName="Binary Code Translator" url={`${BASE}/binary-code-translator`} description="Convert text to binary code (0s and 1s) or translate binary back to text. Free online binary code translator tool." faqs={getSeoContent("binary-code-translator", "Binary Code Translator").faqs} />
       <ClientPage />
     </>

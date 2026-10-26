@@ -4,14 +4,13 @@ const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
   title: "Lowercase Converter — Free Online Tool",
-  description: "Convert text to lowercase instantly with our free Lowercase Converter. Fix ALL CAPS, normalize emails, generate URL slugs, and clean up messy text formatting online in seconds.",
-  keywords: "lowercase converter, convert to lowercase, lowercase text, lowercase generator, text to lowercase online, convert uppercase to lowercase, small letters converter, fix all caps, lowercase formatter, text case converter, data normalization tool, email lowercase, URL slug generator, text formatting, capitalization tool",
+  description: "Convert text to lowercase instantly. Fix ALL CAPS, normalize emails, create URL slugs, and clean up messy text. Free, private, no sign-up.",
   alternates: {
     canonical: `${BASE}/lower-case`,
   },
   openGraph: {
     title: "Lowercase Converter — Free Online Tool",
-    description: "Convert text to lowercase instantly with our free Lowercase Converter. Fix ALL CAPS, normalize emails, generate URL slugs, and clean up messy text formatting online in seconds.",
+    description: "Convert text to lowercase instantly. Fix ALL CAPS, normalize emails, create URL slugs, and clean up messy text. Free, private, no sign-up.",
     url: `${BASE}/lower-case`,
     siteName: "Casetivo",
     type: "website",
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Lowercase Converter — Free Online Tool",
-    description: "Convert text to lowercase instantly with our free Lowercase Converter. Fix ALL CAPS, normalize emails, generate URL slugs, and clean up messy text formatting online in seconds.",
+    description: "Convert text to lowercase instantly. Fix ALL CAPS, normalize emails, create URL slugs, and clean up messy text. Free, private, no sign-up.",
     images: ["/og-image.png"],
   },
 };

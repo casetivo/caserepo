@@ -5,7 +5,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "WebP to PNG Converter — Free Online Image Converter",
   description: "Convert WebP images to PNG format instantly in your browser. No file upload. 100% private. Free online WebP to PNG converter.",
-  keywords: "WebP to PNG converter, convert WebP PNG online, WebP PNG image converter free",
   alternates: {
     canonical: `${BASE}/webp-to-png-converter`,
   },
@@ -25,15 +24,14 @@ export const metadata: Metadata = {
   },
 };
 
+import SchemaMarkup from "@/components/SchemaMarkup";
+import { getSeoContent } from "@/data/seoContent";
 import ImagePage from "./ImagePage";
 
 export default function Page() {
-  const _jsonLd = {"@context": "https://schema.org", "@type": "WebApplication", "name": "WebP to PNG Converter", "url": "https://www.casetivo.com/webp-to-png-converter", "description": "Convert WebP images to PNG format instantly.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "All", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Casetivo", "url": "https://www.casetivo.com"}};
-  const _breadcrumb = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.casetivo.com"}, {"@type": "ListItem", "position": 2, "name": "WebP to PNG Converter", "item": "https://www.casetivo.com/webp-to-png-converter"}]};
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(_breadcrumb) }} />
+      <SchemaMarkup toolName="WebP to PNG Converter" url={`${BASE}/webp-to-png-converter`} description="Convert WebP images to PNG format instantly in your browser. No file upload. 100% private. Free online WebP to PNG converter." faqs={getSeoContent("webpToPngConverter", "WebP to PNG Converter").faqs} />
       <ImagePage />
     </>
   );

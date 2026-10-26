@@ -2,17 +2,27 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Shield, Zap, Lock } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'About Us | Casetivo Tools',
+  title: 'About Us',
   description: 'Learn about Casetivo, our mission, and our commitment to privacy and fast, local processing for developers and creators.',
   alternates: {
     canonical: 'https://www.casetivo.com/about',
+  },
+  openGraph: {
+    description: "Learn about Casetivo, our mission, and our commitment to privacy and fast, local processing for developers and creators.",
+    title: "About Casetivo",
+    url: "https://www.casetivo.com/about",
+    siteName: "Casetivo",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Casetivo" }],
   },
 };
 
 export default function AboutPage() {
   return (
+    <>
     <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 max-w-4xl">
       <div className="space-y-12">
         {/* Header Section */}
@@ -59,7 +69,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-lg font-bold text-foreground mb-2">Free & Open</h3>
             <p className="text-sm text-muted-foreground">
-              No paywalls, no limits, no subscriptions. Access over 60 premium formatting and generation tools completely free.
+              No paywalls, no limits, no subscriptions. Access more than 55 formatting and generation tools completely free.
             </p>
           </div>
         </section>
@@ -71,10 +81,19 @@ export default function AboutPage() {
             Casetivo started as a simple case converter tool for a small team of developers tired of fixing capitalization errors in large JSON payloads. When we realized that most online tools were either logging our data or bombarding us with pop-ups, we decided to expand the project.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Today, Casetivo hosts over 60 specialized utilities ranging from Markdown parsers and Base64 encoders to random generators and image converters. Every single tool is built using modern web standards (React and Next.js) to ensure maximum performance and accessibility.
+            Today, Casetivo hosts more than 55 specialized utilities ranging from Markdown parsers and Base64 encoders to random generators and image converters. Every single tool is built using modern web standards (React and Next.js) to ensure maximum performance and accessibility.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Whether you are formatting a 10,000-line JSON file, decoding an encoded URL, or simply fixing the capitalization in your latest blog post, Casetivo is here to help you get the job done quickly and move on with your day.
+          </p>
+        </section>
+
+        {/* Contact */}
+        <section className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Contact Us</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Found a bug, have a tool idea, or a question? Email us at{" "}
+            <a href="mailto:casetivo@gmail.com" className="font-semibold text-primary hover:underline">casetivo@gmail.com</a>.
           </p>
         </section>
 
@@ -91,5 +110,7 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

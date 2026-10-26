@@ -3,6 +3,7 @@ title: "Password Generator vs. Password Manager: What Is the Difference?"
 publish_date: "2026-10-03T09:00:00Z"
 meta_description: "Learn the difference between a password generator and password manager, why both help prevent password reuse, and how to use them safely."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 A password generator creates a new random password. A password manager stores unique passwords and helps you use them. They solve different problems and work best together.

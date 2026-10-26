@@ -1,18 +1,51 @@
 "use client";
+import { useCallback, useState } from "react";
 import ImageToolLayout from "@/components/ImageToolLayout";
 import { imageToolTranslationsEn } from "@/i18n/imageToolTranslationsEn";
 
-const handleProcess = async(file:File,canvas:HTMLCanvasElement)=>new Promise<{resultText:string}>(resolve=>{const img=new window.Image();img.onload=()=>{canvas.width=img.width;canvas.height=img.height;const ctx=canvas.getContext("2d")!;ctx.drawImage(img,0,0);const d=ctx.getImageData(0,0,canvas.width,canvas.height).data;let r=0,g=0,b=0;const n=d.length/4;for(let i=0;i<d.length;i+=4){r+=d[i];g+=d[i+1];b+=d[i+2];}const ar=Math.round(r/n),ag=Math.round(g/n),ab=Math.round(b/n);resolve({resultText:["Image Analysis Results","━━━━━━━━━━━━━━━━━━━━━","",`Dimensions: ${img.width} × ${img.height} pixels`,`File: ${file.name}`,`Size: ${(file.size/1024).toFixed(1)} KB`,`Type: ${file.type}`,"",`Avg RGB: rgb(${ar},${ag},${ab})`,`Hex: #${ar.toString(16).padStart(2,"0")}${ag.toString(16).padStart(2,"0")}${ab.toString(16).padStart(2,"0")}`,`Brightness: ${Math.round((ar*299+ag*587+ab*114)/1000)}/255`,"","Note: Full OCR requires a dedicated OCR API."].join("\n")}); };img.src=URL.createObjectURL(file);});
+// Tesseract language codes. Language data is downloaded once and cached by the browser.
+const OCR_LANGUAGES = [
+  ["eng", "English"], ["spa", "Spanish"], ["fra", "French"], ["deu", "German"],
+  ["por", "Portuguese"], ["ita", "Italian"], ["nld", "Dutch"], ["pol", "Polish"],
+  ["tur", "Turkish"], ["hin", "Hindi"], ["ara", "Arabic"], ["urd", "Urdu"],
+] as const;
 
 export default function ImagePage() {
   const t = imageToolTranslationsEn;
+  const [lang, setLang] = useState<string>("eng");
+
+  // OCR runs entirely in the browser; the image is never uploaded.
+  const handleProcess = useCallback(async (file: File) => {
+    const { createWorker } = await import("tesseract.js");
+    const worker = await createWorker(lang);
+    try {
+      const { data } = await worker.recognize(file);
+      const text = data.text.trim();
+      return { resultText: text || "No text was detected. Try a sharper, higher-contrast image or pick the correct language." };
+    } finally {
+      await worker.terminate();
+    }
+  }, [lang]);
+
   return (
     <ImageToolLayout
       title={String(t.aiImageToText)}
       subtitle={String(t.aiImageToTextSubtitle)}
-      acceptFormats="image/*"
+      acceptFormats="image/png,image/jpeg,image/webp,image/bmp,image/gif"
       actionLabel={String(t.extract)}
       onProcess={handleProcess}
-    />
+    >
+      <div className="flex items-center justify-center gap-3 text-sm">
+        <label htmlFor="ocr-language" className="text-muted-foreground font-medium">Text language</label>
+        <select
+          id="ocr-language"
+          value={lang}
+          onChange={e => setLang(e.target.value)}
+          className="rounded-lg border border-border bg-card px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring/40"
+        >
+          {OCR_LANGUAGES.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
+        </select>
+      </div>
+    </ImageToolLayout>
   );
 }

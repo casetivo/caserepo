@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Number Sorter — Sort Numbers Online Free",
   description: "Sort a list of numbers in ascending or descending order instantly. Handles integers, decimals, and negative numbers. Free online number sorter.",
-  keywords: "number sorter, sort numbers online, ascending descending sort, numerical sort tool free",
   alternates: {
     canonical: `${BASE}/number-sorter`,
   },

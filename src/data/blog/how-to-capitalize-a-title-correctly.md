@@ -3,6 +3,7 @@ title: "How to Capitalize a Title Correctly: Rules and Examples"
 publish_date: "2026-10-12T09:00:00Z"
 meta_description: "Learn how to capitalize a title correctly with simple title case rules, examples, exceptions, and a free online title case converter."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 A well-capitalized title makes an article, email, presentation, or book look polished. The difficulty is that title case has exceptions: not every word should be capitalized, and style guides do not always agree on every detail.

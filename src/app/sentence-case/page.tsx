@@ -5,7 +5,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Sentence Case Converter – Fix ALL CAPS Text Online",
   description: "Convert ALL CAPS or inconsistent text to readable sentence case online. Preserve URLs and common technical terms. Free, private, no sign-up required.",
-  keywords: "sentence case converter, convert to sentence case, sentence case tool, sentence case generator, sentence capitalization, capitalize first letter, fix all caps, sentence case formatter, convert uppercase to sentence case, proper sentence capitalization, online capitalization tool, text case converter, text formatting, grammar tool, capitalization rules, writing tool, paragraph formatting, English capitalization",
   alternates: {
     canonical: `${BASE}/sentence-case`,
   },

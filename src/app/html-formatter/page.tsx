@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "HTML Formatter & Beautifier — Free Online Tool",
   description: "Format and beautify HTML code with proper indentation instantly. Clean up messy HTML markup. Free online HTML formatter and beautifier.",
-  keywords: "HTML formatter, HTML beautifier, format HTML online, HTML pretty printer, tidy HTML free",
   alternates: {
     canonical: `${BASE}/html-formatter`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">HTML Formatter & Beautifier</h1>
       <SchemaMarkup toolName="HTML Formatter & Beautifier" url={`${BASE}/html-formatter`} description="Format and beautify HTML code with proper indentation instantly. Clean up messy HTML markup. Free online HTML formatter and beautifier." faqs={getSeoContent("html-formatter", "HTML Formatter & Beautifier").faqs} />
       <ClientPage />
     </>

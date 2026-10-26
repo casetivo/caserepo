@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Caesar Cipher Tool — Free Online Encoder/Decoder",
   description: "Encrypt and decrypt text using the Caesar cipher with custom shift value (1–25). Free online Caesar cipher encoder and decoder tool.",
-  keywords: "caesar cipher, caesar cipher encoder decoder, ROT cipher, shift cipher tool online free",
   alternates: {
     canonical: `${BASE}/caesar-cipher-tool`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Caesar Cipher Tool</h1>
       <SchemaMarkup toolName="Caesar Cipher Tool" url={`${BASE}/caesar-cipher-tool`} description="Encrypt and decrypt text using the Caesar cipher with custom shift value (1–25). Free online Caesar cipher encoder and decoder tool." faqs={getSeoContent("caesar-cipher-tool", "Caesar Cipher Tool").faqs} />
       <ClientPage />
     </>

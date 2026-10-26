@@ -5,10 +5,18 @@ import SubHeaderNav from "@/components/SubHeaderNav";
 import SearchButton from "@/components/SearchButton";
 
 export const metadata = {
-  title: "Terms of Service | Casetivo",
+  title: "Terms of Service",
   description: "Read Casetivo's Terms of Service, including the conditions for using our free browser-based text, code, and image tools.",
   alternates: {
     canonical: "https://www.casetivo.com/terms-of-service",
+  },
+  openGraph: {
+    description: "Read Casetivo's Terms of Service, including the conditions for using our free browser-based text, code, and image tools.",
+    title: "Terms of Service | Casetivo",
+    url: "https://www.casetivo.com/terms-of-service",
+    siteName: "Casetivo",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Terms of Service | Casetivo" }],
   },
 };
 
@@ -18,7 +26,7 @@ export default function TermsOfService() {
       <header className="border-b border-border/60 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="w-7 h-7 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:bg-accent transition-colors">
+            <Link href="/" aria-label="Back to all tools" className="w-7 h-7 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:bg-accent transition-colors">
               <ArrowLeft className="w-4 h-4" />
             </Link>
             <Link href="/" className="text-lg font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-display)" }}>
@@ -60,6 +68,9 @@ export default function TermsOfService() {
 
           <h2>6. Modifications to Terms</h2>
           <p>Casetivo may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
+
+          <h2>7. Contact Us</h2>
+          <p>If you have any questions about these Terms of Service, please email us at <a href="mailto:casetivo@gmail.com">casetivo@gmail.com</a>.</p>
         </div>
       </main>
 

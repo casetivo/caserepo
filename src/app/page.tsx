@@ -3,18 +3,18 @@ import HomeClientPage from "./_home_client";
 import Link from "next/link";
 import { Check, Code, Dices, Image as ImageIcon, Wrench } from "lucide-react";
 import { getSortedPostsData } from "@/lib/blog";
+import { TOOL_CATEGORIES } from "@/lib/tools";
 
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
-  description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free, private online case converter with no sign-up.",
-  keywords: "case converter, online case converter, convert case, uppercase converter, lowercase converter, sentence case converter, title case converter, capitalized case, inverse case, text case converter",
+  title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
+  description: "Convert text to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free, private online case converter, no sign-up.",
   alternates: {
     canonical: BASE,
   },
   openGraph: {
-    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
     description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     url: BASE,
     siteName: "Casetivo",
@@ -23,52 +23,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
     description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     images: ["/og-image.png"],
   },
 };
-
-const TEXT_TOOLS = [
-  ["/sentence-case","Sentence Case"],["/lower-case","lower case"],
-  ["/upper-case","UPPER CASE"],["/capitalized-case","Capitalized Case"],
-  ["/title-case","Title Case"],["/inverse-case","iNVERSE cASE"],
-  ["/duplicate-line-remover","Duplicate Line Remover"],["/duplicate-word-finder","Duplicate Word Finder"],
-  ["/em-dash-remover","Em Dash Remover"],["/plain-text-converter","Plain Text Converter"],
-  ["/remove-letters-characters","Remove Letters & Characters"],["/sentence-rewriter","Sentence Rewriter"],
-  ["/repeat-text-generator","Repeat Text Generator"],["/reverse-text-generator","Reverse Text Generator"],
-  ["/roman-numeral-date-converter","Roman Numeral Date Converter"],["/sort-words-alphabetically","Sort Words Alphabetically"],
-  ["/text-replacement-tool","Text Replacement Tool"],
-] as const;
-
-const CODE_TOOLS = [
-  ["/base64-encoder-decoder","Base64 Encoder & Decoder"],["/binary-code-translator","Binary Code Translator"],
-  ["/css-formatter","CSS Formatter"],["/csv-to-json-converter","CSV to JSON Converter"],
-  ["/caesar-cipher-tool","Caesar Cipher Tool"],["/graphql-formatter","GraphQL Formatter"],
-  ["/html-formatter","HTML Formatter"],["/hex-to-text-converter","Hex to Text Converter"],
-  ["/json-formatter","JSON Formatter"],["/url-encoder-decoder","URL Encoder & Decoder"],
-  ["/markdown-to-html-converter","Markdown to HTML"],["/json-stringifier","JSON Stringifier"],
-  ["/json-to-yaml-converter","JSON to YAML"],["/javascript-formatter","JavaScript Formatter"],
-  ["/md5-hash-generator","MD5 Hash Generator"],["/markdown-formatter-previewer","Markdown Formatter"],
-  ["/markdown-table-generator","Markdown Table Generator"],["/morse-code-translator","Morse Code Translator"],
-  ["/number-sorter","Number Sorter"],["/rot13-encoder-decoder","ROT13 Encoder & Decoder"],
-  ["/regex-text-tool","Regex Text Tool"],["/scss-formatter","SCSS Formatter"],
-] as const;
-
-const IMAGE_TOOLS = [
-  ["/ai-image-to-text","AI Image to Text"],["/ascii-art-generator","ASCII Art Generator"],
-  ["/jpg-to-png-converter","JPG to PNG"],["/jpg-to-webp-converter","JPG to WebP"],
-  ["/png-to-jpg-converter","PNG to JPG"],["/png-to-webp-converter","PNG to WebP"],
-  ["/svg-to-png-converter","SVG to PNG"],["/webp-to-png-converter","WebP to PNG"],
-  ["/webp-to-jpg-converter","WebP to JPG"],
-] as const;
-
-const RANDOM_TOOLS = [
-  ["/random-choice-generator","Random Choice Generator"],["/random-data-generator","Random Data Generator"],
-  ["/random-ip-address-generator","Random IP Generator"],["/random-letter-generator","Random Letter Generator"],
-  ["/random-month-generator","Random Month Generator"],["/random-number-generator","Random Number Generator"],
-  ["/strong-password-generator","Password Generator"],["/uuid-generator","UUID Generator"],
-] as const;
 
 const FEATURED_CASE_TOOLS = [
   { href: "/sentence-case", title: "Sentence Case Converter", description: "Capitalize the first word of each sentence and make text easier to read." },
@@ -169,7 +128,7 @@ function HomeSeoSection() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto px-4 mb-10">
         <div className="rounded-xl border border-border bg-card p-5 text-center">
-          <div className="text-2xl font-extrabold text-primary mb-1" style={{ fontFamily: "var(--font-display)" }}>60+</div>
+          <div className="text-2xl font-extrabold text-primary mb-1" style={{ fontFamily: "var(--font-display)" }}>55+</div>
           <div className="text-sm font-semibold text-foreground mb-1">Free Tools</div>
           <p className="text-xs text-muted-foreground">Case converters, code formatters, image converters, random generators, and more.</p>
         </div>
@@ -266,61 +225,32 @@ function HomeFaqSection() {
   );
 }
 
+const CATEGORY_ICONS = [Wrench, Code, ImageIcon, Dices];
+
 function ToolsDirectory() {
   return (
     <div className="mt-16 pt-8 border-t border-border/40">
       <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-8 text-center whitespace-nowrap" style={{ fontFamily: "var(--font-display)" }}>
         All Free Developer &amp; Text Tools
       </h2>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div>
-          <div className="flex items-center gap-2 mb-3 text-primary">
-            <Wrench className="w-4 h-4 sm:w-5 sm:h-5" />
-            <h3 className="font-semibold text-sm sm:text-base text-foreground">Text Tools</h3>
-          </div>
-          <ul className="space-y-1.5">
-            {TEXT_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="flex items-center gap-2 mb-3 text-primary">
-            <Code className="w-4 h-4 sm:w-5 sm:h-5" />
-            <h3 className="font-semibold text-sm sm:text-base text-foreground">Code &amp; Data</h3>
-          </div>
-          <ul className="space-y-1.5">
-            {CODE_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="flex items-center gap-2 mb-3 text-primary">
-            <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-            <h3 className="font-semibold text-sm sm:text-base text-foreground">Image Tools</h3>
-          </div>
-          <ul className="space-y-1.5">
-            {IMAGE_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="flex items-center gap-2 mb-3 text-primary">
-            <Dices className="w-4 h-4 sm:w-5 sm:h-5" />
-            <h3 className="font-semibold text-sm sm:text-base text-foreground">Random Generators</h3>
-          </div>
-          <ul className="space-y-1.5">
-            {RANDOM_TOOLS.map(([href, label]) => (
-              <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
-            ))}
-          </ul>
-        </div>
+        {TOOL_CATEGORIES.map((category, i) => {
+          const Icon = CATEGORY_ICONS[i];
+          return (
+            <div key={category.name}>
+              <div className="flex items-center gap-2 mb-3 text-primary">
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                <h3 className="font-semibold text-sm sm:text-base text-foreground">{category.name}</h3>
+              </div>
+              <ul className="space-y-1.5">
+                {category.tools.map(({ href, label }) => (
+                  <li key={href}><Link href={href} className="text-sm text-muted-foreground hover-brand transition-colors">{label}</Link></li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -330,19 +260,21 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE}/#website`,
     "name": "Casetivo",
     "url": BASE,
     "description": "Free online text tools — case converters, JSON formatter, image converters, and more.",
-    "publisher": { "@type": "Organization", "name": "Casetivo", "url": BASE }
+    "publisher": { "@id": `${BASE}/#organization` }
   };
 
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${BASE}/#organization`,
     "name": "Casetivo",
     "url": BASE,
     "logo": `${BASE}/icon-512.png`,
-    "sameAs": [],
+    "email": "casetivo@gmail.com",
     "description": "Free online text tools, code formatters, image converters, and developer utilities."
   };
 

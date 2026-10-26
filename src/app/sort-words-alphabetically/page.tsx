@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+  title: "Sort Words Alphabetically — A to Z List Sorter",
   description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
-  keywords: "sort words alphabetically, alphabetize list, word sorter online, sort lines alphabetically, alphabetical order tool, a to z sorter, natural sort online",
   alternates: {
     canonical: `${BASE}/sort-words-alphabetically`,
   },
   openGraph: {
-    title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+    title: "Sort Words Alphabetically — A to Z List Sorter",
     description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
     url: `${BASE}/sort-words-alphabetically`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sort Words Alphabetically Online — Instant A to Z List Sorter",
+    title: "Sort Words Alphabetically — A to Z List Sorter",
     description: "Alphabetize words, names, lists, or lines instantly with Casetivo's free online sorting tool. Supports A-Z, Z-A, natural numeric sorting, and deduplication.",
     images: ["/og-image.png"],
   },

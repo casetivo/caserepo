@@ -3,6 +3,7 @@ title: "What to Do After a Password Breach: A Simple Checklist"
 publish_date: "2026-09-29T09:00:00Z"
 meta_description: "Follow a practical checklist after a password breach: change exposed passwords, secure email, remove reuse, and enable MFA or passkeys."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 If a service reports a breach or you suspect someone accessed an account, act quickly and calmly. The key risk is password reuse: attackers often try an exposed password on other websites.

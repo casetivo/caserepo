@@ -1,29 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/",
-        has: [{ type: "query", key: "ref" }],
-        destination: "/",
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
         source: '/:all*(svg|jpg|png|webp|avif|ico)',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
         ],
       },
     ];
   },
   // Optimize images
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "**" }],
+    remotePatterns: [{ protocol: "https", hostname: "flagcdn.com" }],
     formats: ["image/avif", "image/webp"],
   },
   // Compiler optimizations

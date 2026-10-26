@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Sentence Rewriter Online — Clean Fluff & Clarify Writing Free",
+  title: "Sentence Rewriter — Clean Up & Clarify Writing",
   description: "Rewrite sentences by stripping filler words, trimming wordy corporate jargon, and eliminating redundancies. 100% free, private online sentence clarifier.",
-  keywords: "sentence rewriter, sentence clarifier, remove filler words, rewrite sentences online, tighten writing, plain english converter, cut wordiness",
   alternates: {
     canonical: `${BASE}/sentence-rewriter`,
   },
   openGraph: {
-    title: "Sentence Rewriter Online — Clean Fluff & Clarify Writing Free",
+    title: "Sentence Rewriter — Clean Up & Clarify Writing",
     description: "Rewrite sentences by stripping filler words, trimming wordy corporate jargon, and eliminating redundancies. 100% free, private online sentence clarifier.",
     url: `${BASE}/sentence-rewriter`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sentence Rewriter Online — Clean Fluff & Clarify Writing Free",
+    title: "Sentence Rewriter — Clean Up & Clarify Writing",
     description: "Rewrite sentences by stripping filler words, trimming wordy corporate jargon, and eliminating redundancies. 100% free, private online sentence clarifier.",
     images: ["/og-image.png"],
   },

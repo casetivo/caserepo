@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+  title: "Duplicate Word Finder – Find Repeated Words",
   description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
-  keywords: "duplicate word finder, find duplicate words, word frequency counter, repeated words finder, overused words checker, text word counter online, word repetition tool",
   alternates: {
     canonical: `${BASE}/duplicate-word-finder`,
   },
   openGraph: {
-    title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+    title: "Duplicate Word Finder – Find Repeated Words",
     description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
     url: `${BASE}/duplicate-word-finder`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Duplicate Word Finder – Find & Count Repeated Words Online",
+    title: "Duplicate Word Finder – Find Repeated Words",
     description: "Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. 100% free and private.",
     images: ["/og-image.png"],
   },

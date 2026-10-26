@@ -3,23 +3,22 @@ import type { Metadata } from "next";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Capitalized Case Converter – Capitalize Every Word Online",
+  title: "Capitalized Case Converter – Capitalize Each Word",
   description: "Capitalize the first letter of every word automatically. Clean up customer names, titles, lists, and form fields in your browser. 100% free and private.",
-  keywords: "capitalized case converter, capitalize words, capitalize each word, word capitalizer online, start case converter, capitalize first letter of every word, capitalize text online, capitalize names list",
   alternates: {
     canonical: `${BASE}/capitalized-case`,
   },
   openGraph: {
-    title: "Capitalized Case Converter – Capitalize Every Word Online",
+    title: "Capitalized Case Converter – Capitalize Each Word",
     description: "Capitalize the first letter of every word automatically. Clean up customer names, titles, lists, and form fields in your browser. 100% free and private.",
     url: `${BASE}/capitalized-case`,
     siteName: "Casetivo",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Capitalized Case Converter – Capitalize Every Word Online" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Capitalized Case Converter – Capitalize Each Word" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Capitalized Case Converter – Capitalize Every Word Online",
+    title: "Capitalized Case Converter – Capitalize Each Word",
     description: "Capitalize the first letter of every word automatically. Clean up customer names, titles, lists, and form fields in your browser. 100% free and private.",
     images: ["/og-image.png"],
   },

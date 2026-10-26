@@ -3,6 +3,7 @@ title: "How to Find and Fix Duplicate Words in Your Writing"
 publish_date: "2026-10-20T09:00:00Z"
 meta_description: "Learn how to spot repeated crutch words and accidental double words in your essays, blog posts, and copy. Practical self-editing tips and free online tool."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 When drafting an essay, article, or business proposal, your brain naturally falls into comfortable linguistic patterns. You reach for a familiar adjective like *effective* or *important*, and without realizing it, you use that same word four times across two short paragraphs.

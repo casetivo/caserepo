@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Letter Generator — Free Online Tool",
   description: "Generate random letters from the alphabet in uppercase, lowercase, or mixed case. Customizable count. Free online random letter generator.",
-  keywords: "random letter generator, random alphabet letter, generate random letters online, letter picker free",
   alternates: {
     canonical: `${BASE}/random-letter-generator`,
   },

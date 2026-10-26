@@ -1,9 +1,11 @@
 {
-  "name": "text-transformer-pro",
+  "name": "casetivo",
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-blog-index.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-blog-index.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -59,6 +61,7 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "tesseract.js": "^7.0.0",
     "vaul": "^0.9.9",
     "zod": "^3.25.76"
   },

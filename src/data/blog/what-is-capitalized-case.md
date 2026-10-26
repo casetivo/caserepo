@@ -3,6 +3,7 @@ title: "What Is Capitalized Case? Examples and When to Use It"
 publish_date: "2026-10-11T09:00:00Z"
 meta_description: "Learn what capitalized case means, how it differs from title case, and when to use it. Includes examples and a free online capitalized case converter."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Capitalized case is a simple formatting style in which the first letter of every word is uppercase and the remaining letters are lowercase. For example, `a QUICK guide TO text formatting` becomes `A Quick Guide To Text Formatting`.

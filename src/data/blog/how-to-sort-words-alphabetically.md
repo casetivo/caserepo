@@ -3,6 +3,7 @@ title: "How to Sort Words and Lists Alphabetically: Rules, Exceptions, and Pract
 publish_date: "2026-10-23T10:00:00Z"
 meta_description: "Learn how to alphabetize lists of words, names, and titles correctly. Practical guide covering word-by-word rules, leading articles, natural numbers, and free tools."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Alphabetizing a short list seems like something anyone can do in their sleep. Put *Apple* before *Banana*, *Banana* before *Cherry*, and you are done.

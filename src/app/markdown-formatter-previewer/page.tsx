@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Markdown Formatter & Previewer — Free Online Tool",
   description: "Format Markdown with consistent spacing and preview as HTML output. Free online Markdown formatter and live previewer tool.",
-  keywords: "markdown formatter, markdown previewer, format markdown online, markdown beautifier, markdown to HTML preview",
   alternates: {
     canonical: `${BASE}/markdown-formatter-previewer`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Markdown Formatter & Previewer</h1>
       <SchemaMarkup toolName="Markdown Formatter & Previewer" url={`${BASE}/markdown-formatter-previewer`} description="Format Markdown with consistent spacing and preview as HTML output. Free online Markdown formatter and live previewer tool." faqs={getSeoContent("markdown-formatter-previewer", "Markdown Formatter & Previewer").faqs} />
       <ClientPage />
     </>

@@ -6,14 +6,13 @@ import SingleCaseConverter from "@/components/SingleCaseConverter";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Inverse Case Converter Online — Toggle & Flip Letter Casing",
+  title: "Inverse Case Converter — Flip Letter Casing",
   description: "Flip the case of every character — uppercase becomes lowercase and lowercase becomes uppercase. Fix accidental Caps Lock mistakes instantly. Free and private.",
-  keywords: "inverse case converter, toggle case online, flip letter case, reverse capitalization, fix caps lock typo, invert text case free",
   alternates: {
     canonical: `${BASE}/inverse-case`,
   },
   openGraph: {
-    title: "Inverse Case Converter Online — Toggle & Flip Letter Casing",
+    title: "Inverse Case Converter — Flip Letter Casing",
     description: "Flip the case of every character — uppercase becomes lowercase and lowercase becomes uppercase. Fix accidental Caps Lock mistakes instantly. Free and private.",
     url: `${BASE}/inverse-case`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Inverse Case Converter Online — Toggle & Flip Letter Casing",
+    title: "Inverse Case Converter — Flip Letter Casing",
     description: "Flip the case of every character — uppercase becomes lowercase and lowercase becomes uppercase. Fix accidental Caps Lock mistakes instantly. Free and private.",
     images: ["/og-image.png"],
   },

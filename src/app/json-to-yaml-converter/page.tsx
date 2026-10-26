@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "JSON to YAML Converter — Free Online Tool",
   description: "Convert JSON data to YAML format instantly. Free online JSON to YAML converter — clean, readable YAML output in one click.",
-  keywords: "JSON to YAML converter, convert JSON YAML online, YAML formatter, JSON YAML tool free",
   alternates: {
     canonical: `${BASE}/json-to-yaml-converter`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">JSON to YAML Converter</h1>
       <SchemaMarkup toolName="JSON to YAML Converter" url={`${BASE}/json-to-yaml-converter`} description="Convert JSON data to YAML format instantly. Free online JSON to YAML converter — clean, readable YAML output in one click." faqs={getSeoContent("json-to-yaml-converter", "JSON to YAML Converter").faqs} />
       <ClientPage />
     </>

@@ -8,7 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SubHeaderNav from "@/components/SubHeaderNav";
 import SeoContentBlock, { FAQ } from "@/components/SeoContentBlock";
-import { localeNames, localeCountryCodes } from "@/i18n/translations";
+import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import type { RandomToolTranslationKeys } from "@/i18n/randomToolTranslationsEn";
 import { useI18n } from "@/hooks/useI18n";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -60,6 +60,7 @@ const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, 
           <div className="flex items-center gap-2">
             <SearchButton />
             <ThemeToggle />
+            {SHOW_LANGUAGE_SWITCHER && (
             <div className="relative">
               <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-accent transition-colors">
                 <Image src={`https://flagcdn.com/w20/${localeCountryCodes[locale]}.png`} width={16} height={12} alt="" className="rounded-[2px] object-cover shadow-sm" />
@@ -79,6 +80,7 @@ const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, 
               </>
             )}
             </div>
+            )}
           </div>
         </div>
         <div className="xl:hidden border-t border-border/60 bg-card/30 py-1 px-4">

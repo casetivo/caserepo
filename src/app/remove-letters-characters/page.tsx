@@ -6,15 +6,14 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Remove Letters & Characters Online — Strip Numbers, Symbols & Text",
-  description: "Remove specific letters, numbers, punctuation, or symbols from text instantly. Features one-click presets, extract mode, and case-sensitive filtering. Free and 100% private.",
-  keywords: "remove characters from text, delete letters online, remove numbers from text, strip punctuation, character remover tool, extract numbers from text",
+  title: "Remove Letters & Characters from Text",
+  description: "Remove specific letters, numbers, punctuation, or symbols from text. One-click presets, extract mode, and case-sensitive filtering. Free and private.",
   alternates: {
     canonical: `${BASE}/remove-letters-characters`,
   },
   openGraph: {
-    title: "Remove Letters & Characters Online — Strip Numbers, Symbols & Text",
-    description: "Remove specific letters, numbers, punctuation, or symbols from text instantly. Features one-click presets, extract mode, and case-sensitive filtering. Free and 100% private.",
+    title: "Remove Letters & Characters from Text",
+    description: "Remove specific letters, numbers, punctuation, or symbols from text. One-click presets, extract mode, and case-sensitive filtering. Free and private.",
     url: `${BASE}/remove-letters-characters`,
     siteName: "Casetivo",
     type: "website",
@@ -22,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Remove Letters & Characters Online — Strip Numbers, Symbols & Text",
-    description: "Remove specific letters, numbers, punctuation, or symbols from text instantly. Features one-click presets, extract mode, and case-sensitive filtering. Free and 100% private.",
+    title: "Remove Letters & Characters from Text",
+    description: "Remove specific letters, numbers, punctuation, or symbols from text. One-click presets, extract mode, and case-sensitive filtering. Free and private.",
     images: ["/og-image.png"],
   },
 };
@@ -36,7 +35,7 @@ export default function Page() {
       <SchemaMarkup
         toolName="Remove Letters & Characters"
         url={`${BASE}/remove-letters-characters`}
-        description="Remove specific letters, numbers, punctuation, or symbols from text instantly. Features one-click presets, extract mode, and case-sensitive filtering. Free and 100% private."
+        description="Remove specific letters, numbers, punctuation, or symbols from text. One-click presets, extract mode, and case-sensitive filtering. Free and private."
         faqs={seoData.faqs}
       />
       <ClientPage />

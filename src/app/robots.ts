@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin/", "/api/", "/invoice-generator/edit/"],
+        disallow: ["/admin/", "/api/"],
       },
     ],
     sitemap: "https://www.casetivo.com/sitemap.xml",

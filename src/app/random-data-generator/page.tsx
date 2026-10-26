@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Data Generator — Names, Emails & Addresses",
   description: "Generate random fake names, email addresses, phone numbers, and addresses for testing. Free online random data generator.",
-  keywords: "random data generator, fake data generator, random name email generator, test data generator online free",
   alternates: {
     canonical: `${BASE}/random-data-generator`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Random Data Generator</h1>
       <SchemaMarkup toolName="Random Data Generator" url={`${BASE}/random-data-generator`} description="Generate random fake names, email addresses, phone numbers, and addresses for testing. Free online random data generator." faqs={getSeoContent("random-data-generator", "Random Data Generator").faqs} />
       <ClientPage />
     </>

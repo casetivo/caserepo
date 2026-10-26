@@ -3,6 +3,7 @@ title: "How to Convert CSV to JSON Online"
 publish_date: "2026-10-07T09:00:00Z"
 meta_description: "Convert CSV data to JSON online with a simple step-by-step guide. Learn how headers become keys and how to avoid common data issues."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 CSV is convenient for spreadsheets, while JSON is easier for APIs and JavaScript applications. Converting between the two formats lets you reuse tabular data in a modern application without manually rebuilding every record.

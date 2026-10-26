@@ -4,6 +4,7 @@ publish_date: "2026-06-29T10:15:00Z"
 updated_date: "2026-07-04T10:00:00Z"
 meta_description: "Learn what a Universally Unique Identifier (UUID) is, why database administrators and developers rely on them, and the difference between UUID v4 and v1."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 If you've spent any time working with modern databases, APIs, or distributed systems, you have likely encountered strings that look like this:

@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Number Generator — Free Online Tool",
   description: "Generate random numbers within any range. Set min, max, and count. Ideal for lotteries, games, and statistics. Free online random number generator.",
-  keywords: "random number generator, generate random numbers, random number picker online, random integer generator free",
   alternates: {
     canonical: `${BASE}/random-number-generator`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">Random Number Generator</h1>
       <SchemaMarkup toolName="Random Number Generator" url={`${BASE}/random-number-generator`} description="Generate random numbers within any range. Set min, max, and count. Ideal for lotteries, games, and statistics. Free online random number generator." faqs={getSeoContent("random-number-generator", "Random Number Generator").faqs} />
       <ClientPage />
     </>

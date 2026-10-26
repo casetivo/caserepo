@@ -3,6 +3,7 @@ title: "How to Strip Formatting and Convert Any Text to Clean Plain Text"
 publish_date: "2026-10-20T10:00:00Z"
 meta_description: "Learn how to strip stubborn rich formatting, HTML tags, smart quotes, and invisible Unicode characters from your text. Practical guide and free tool."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Have you ever copied a paragraph from an email, a PDF, or a Google Doc, pasted it into your website's content management system (CMS), and watched your entire page layout break? 

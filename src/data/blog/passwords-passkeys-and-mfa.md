@@ -3,6 +3,7 @@ title: "Passwords, Passkeys, and MFA: How to Protect Your Accounts"
 publish_date: "2026-10-02T09:00:00Z"
 meta_description: "Understand passwords, passkeys, and multi-factor authentication, and learn how to combine them to better protect online accounts."
 featured_image_url: "/og-image.png"
+author: "founder"
 ---
 
 Passwords are still common, but they should not be your only account protection. A unique password, multi-factor authentication (MFA), and passkeys where available give you stronger protection than any one method alone.

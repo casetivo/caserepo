@@ -13,6 +13,7 @@ export interface BlogPostMeta {
   updated_date?: string;
   meta_description: string;
   featured_image_url?: string;
+  author?: string;
   slug: string;
 }
 
@@ -21,10 +22,7 @@ export interface BlogPost extends BlogPostMeta {
 }
 
 export function getSortedPostsData(): BlogPostMeta[] {
-  // Ensure the directory exists
-  if (!fs.existsSync(postsDirectory)) {
-    fs.mkdirSync(postsDirectory, { recursive: true });
-  }
+  if (!fs.existsSync(postsDirectory)) return [];
 
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {

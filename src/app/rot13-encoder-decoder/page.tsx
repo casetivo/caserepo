@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "ROT13 Encoder & Decoder — Free Online Tool",
   description: "Encode or decode text using the ROT13 substitution cipher instantly. Free online ROT13 encoder and decoder — the same operation for both.",
-  keywords: "ROT13 encoder decoder, ROT13 cipher online, ROT-13 converter, rotate 13 cipher free",
   alternates: {
     canonical: `${BASE}/rot13-encoder-decoder`,
   },
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1 className="sr-only">ROT13 Encoder & Decoder</h1>
       <SchemaMarkup toolName="ROT13 Encoder & Decoder" url={`${BASE}/rot13-encoder-decoder`} description="Encode or decode text using the ROT13 substitution cipher instantly. Free online ROT13 encoder and decoder — the same operation for both." faqs={getSeoContent("rot13-encoder-decoder", "ROT13 Encoder & Decoder").faqs} />
       <ClientPage />
     </>
