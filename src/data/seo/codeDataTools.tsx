@@ -2001,162 +2001,1393 @@ function parseCSV(content) {
     ]
   },
   jsonStringifyTextGenerator: {
-    title: "How does the JSON Stringify Text Generator work?",
+    title: "Complete Guide to Escaping Plain Text for JSON: RFC 8259 String Literals, Newlines, and Code Embedding",
     content: (
       <>
-        <p>The <strong>JSON Stringify Text Generator</strong> takes raw, unformatted text (like a multiline essay or block of code) and converts it into a safely escaped string that can be inserted directly into a JSON object without breaking the syntax.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Handling Newlines</h3>
-        <p className="mt-2">If you try to paste a paragraph with line breaks directly into a JSON value, your JSON will break. This tool converts all physical line breaks into literal `\n` characters, and escapes all quotes, ensuring your JSON remains valid.</p>
+        <p>
+          One of the most frequent stumbling blocks developers encounter when constructing API payloads, database seed scripts, or configuration files is attempting to insert raw plain text—such as an email template, a SQL query, a Markdown article, or a shell script—directly into a JSON string value.
+        </p>
+        <p className="mt-3">
+          Because the <strong>JSON standard (RFC 8259)</strong> strictly prohibits physical multiline breaks and requires every internal double quote (<code>&quot;</code>) to be escaped with a backslash (<code>\&quot;</code>), pasting unescaped text directly into a JSON value results in immediate syntax failure (<code>SyntaxError: Unexpected token ILLEGAL</code>). Casetivo&apos;s <strong>JSON Stringify Text Generator</strong> takes arbitrary plain text and automatically converts it into a safe, valid JSON string literal with proper <code>\n</code> newline tokens, quote escapes, optional Unicode encoding, and 100% private in-browser computation.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Why Raw Multiline Text Crashes JSON Parsers</h3>
+        <p>
+          Under the official JSON grammar specification, a string literal begins and ends with a quotation mark. The characters between the quotation marks cannot contain:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-2 text-sm text-muted-foreground">
+          <li>
+            <strong>Physical Carriage Returns (CR / LF):</strong> When an unescaped enter/return key exists in the text, the parser assumes the string terminated prematurely without a closing quote.
+          </li>
+          <li>
+            <strong>Unescaped Double Quotes:</strong> Any quotation mark inside the message will be read as the termination boundary of the string property.
+          </li>
+          <li>
+            <strong>Unescaped Backslashes:</strong> A solitary backslash (<code>\</code>) is interpreted as the beginning of an escape sequence. If not followed by a recognized escape character, parsing fails.
+          </li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Before and After: The Transformation in Action</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">Raw Plain Text (Multiline)</h4>
+            <pre className="font-mono text-xs text-muted-foreground overflow-x-auto mt-2 leading-relaxed">
+{`Hello "Team",
+
+Welcome to Casetivo!
+Here is line 2.`}
+            </pre>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">Safely Stringified JSON Value</h4>
+            <pre className="font-mono text-xs text-primary overflow-x-auto mt-2 leading-relaxed">
+&quot;Hello \&quot;Team\&quot;,\n\nWelcome to Casetivo!\nHere is line 2.&quot;
+            </pre>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Top 4 Developer Use Cases</h3>
+        <div className="space-y-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">1. Email Templates &amp; Transactional Notifications</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              When sending HTML or plain text email bodies via SendGrid, Mailgun, or AWS SES REST APIs, the entire email body must be passed as an escaped JSON string value inside the payload.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">2. Storing SQL Queries &amp; Scripts in Configuration</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Database migration files and backend task runners often store multiline SQL scripts or bash commands inside JSON configuration files.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">3. LLM Prompts &amp; AI System Instructions</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              When passing detailed prompt guidelines or system messages to OpenAI, Anthropic, or Gemini API endpoints, multiline text must be passed inside the <code>messages[].content</code> JSON property.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">4. Markdown Articles in Headless CMS Payloads</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Content management platforms (Strapi, Sanity, Contentful) store rich Markdown bodies as stringified JSON properties in database records.
+            </p>
+          </div>
+        </div>
       </>
     ),
     faqs: [
       {
-        question: "Why do my line breaks disappear?",
-        answer: "In JSON, physical line breaks are illegal inside strings. They must be represented by the escape sequence '\\n'."
+        question: "How does the JSON Stringify Text Generator work?",
+        answer: "The tool takes plain text, code, or multiline prose and serializes it into a valid JSON string literal. It converts physical newlines into '\n' escape tokens, escapes internal quotes with backslashes (\"), and wraps the result in outer quotes."
+      },
+      {
+        question: "Why do physical line breaks break JSON?",
+        answer: "Under RFC 8259 specifications, unescaped line breaks (ASCII 10 and 13) are illegal within string literals. They must be represented by the escape characters '\n' (line feed) and '\r' (carriage return)."
+      },
+      {
+        question: "How do I embed multiline text inside a JSON object?",
+        answer: "Paste your text into this generator, copy the resulting escaped string, and paste it on the right side of your JSON key: {\"body\": \"[your-escaped-text-here]\"}."
+      },
+      {
+        question: "Can I remove the outer quotes from the output?",
+        answer: "Yes. Uncheck the 'Wrap in Outer Quotes' option in the settings bar if you only need the raw escaped characters without surrounding double quotes."
+      },
+      {
+        question: "What is Unicode escaping (\\uXXXX)?",
+        answer: "Unicode escaping converts non-ASCII characters (such as emojis or foreign alphabets) into 6-character hexadecimal escape sequences (e.g. \\u00e9 for e). This ensures compatibility with legacy systems that only support 7-bit ASCII."
+      },
+      {
+        question: "Does it escape backslashes?",
+        answer: "Yes. Every literal backslash (\\) in your input text is safely escaped as '\\\\' so the JSON parser does not confuse it with an escape sequence."
+      },
+      {
+        question: "How do I stringify text in JavaScript?",
+        answer: "In JavaScript, simply call JSON.stringify(text). The function returns the escaped string wrapped in double quotes."
+      },
+      {
+        question: "How do I stringify multiline text in Python?",
+        answer: "In Python, call json.dumps(text): import json; json_val = json.dumps(multiline_string)."
+      },
+      {
+        question: "Is my text data private and secure?",
+        answer: "Yes. All conversion and character escaping takes place 100% locally in your client's web browser using JavaScript. No text, prompts, or confidential scripts ever leave your device."
+      },
+      {
+        question: "Can this tool handle large articles and code files?",
+        answer: "Yes. Because processing runs in local browser memory without network latency, you can comfortably convert large Markdown articles and source code files up to several megabytes in size instantly."
+      },
+      {
+        question: "Can I copy the escaped string directly to my clipboard?",
+        answer: "Yes. Use the Copy button in the action bar to copy the escaped output string to your clipboard in a single click."
+      },
+      {
+        question: "What is the difference between this tool and the JSON Stringifier?",
+        answer: "The JSON Stringifier is designed primarily for converting structured JSON objects into stringified JSON. This tool is optimized specifically for converting arbitrary plain text, essays, and code snippets into JSON-compatible values."
       }
     ]
   },
   javascriptFormatter: {
-    title: "How does the JavaScript Formatter work?",
+    title: "Complete Guide to JavaScript Formatting, Beautification, Minification, and Clean Code Standards",
     content: (
       <>
-        <p>The <strong>JavaScript Formatter & Beautifier</strong> reorganizes messy, minified, or obfusticated JavaScript code into a clean, human-readable format. It automatically adds proper indentation, line breaks, and spacing according to standard coding conventions.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Debugging Made Easy</h3>
-        <p className="mt-2">When analyzing third-party libraries or debugging production code, JavaScript is usually minified into a single line. This tool parses the syntax tree and un-minifies the code, making it infinitely easier to read, audit, and debug.</p>
+        <p>
+          JavaScript is the universal programming language of the modern web. From interactive client-side React and Vue interfaces to Node.js backend microservices, serverless edge workers, and mobile applications, JavaScript executes on billions of devices daily.
+        </p>
+        <p className="mt-3">
+          However, as code passes through bundling pipelines (Webpack, Vite, Rollup), gets minified for production deployment, or undergoes rapid development without automated linting, scripts quickly deteriorate into chaotic, unreadable text blocks. Casetivo&apos;s <strong>JavaScript Formatter &amp; Beautifier</strong> restores clarity to messy code: it restructures unminified or unformatted scripts with custom indentation (2 spaces, 4 spaces, or tabs), enforces statement semicolons, protects string and template literals, and provides production minification with 100% private in-browser execution.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Beautification vs. Minification: Development vs. Runtime</h3>
+        <p>
+          High-performance JavaScript engineering balances two opposing requirements:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">JS Beautification (Source Code)</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Expands functions, loops, and objects across structured lines with hierarchical indentation. Enables developers to trace control flow, audit third-party library source code, inspect production stack traces, and conduct clean Git pull request reviews.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">JS Minification (Production Delivery)</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Strips comments, removes all non-essential whitespace, and collapses code into a minimal footprint. Because JavaScript execution blocks the browser&apos;s main thread during compilation and parsing, smaller files directly improve Time to Interactive (TTI) and First Input Delay (FID).
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The Great Semicolon Debate: ASI vs. Explicit Semicolons</h3>
+        <p>
+          JavaScript features an engine capability called <strong>Automatic Semicolon Insertion (ASI)</strong>, which automatically infers missing semicolons at line terminations. However, relying on ASI introduces subtle, game-breaking bugs:
+        </p>
+
+        <div className="p-4 rounded-xl border border-border bg-card mt-3">
+          <h4 className="font-semibold text-foreground mb-1 text-xs">The Return Statement Trap</h4>
+          <pre className="font-mono text-xs text-muted-foreground overflow-x-auto mt-2">
+{`// ❌ Dangerous: ASI inserts a semicolon right after 'return'
+function getUser() {
+  return
+  {
+    name: "Alice"
+  };
+}
+console.log(getUser()); // Returns undefined! Not the object!
+
+// ✅ Safe: Explicit semicolon and opening brace on same line
+function getUser() {
+  return {
+    name: "Alice"
+  };
+}`}
+          </pre>
+        </div>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Casetivo includes an <strong>Enforce Statement Semicolons</strong> toggle to protect your code from unexpected ASI hazards.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Supporting Modern ECMAScript (ES6+) Features</h3>
+        <p>
+          Unlike legacy formatters that crash on modern syntax, our engine seamlessly handles:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-2 text-sm text-muted-foreground">
+          <li><strong>Arrow Functions &amp; Destructuring:</strong> Concise syntax like <code>const &#123; id, name &#125; = user;</code></li>
+          <li><strong>Async / Await Promises:</strong> Clean asynchronous pipelines without nested callback hell.</li>
+          <li><strong>Template Literals:</strong> Multi-line strings and interpolated expressions (<code>`Hello, $&#123;name&#125;`</code>).</li>
+          <li><strong>Optional Chaining &amp; Nullish Coalescing:</strong> Modern operators like <code>user?.profile?.avatar ?? defaultAvatar</code>.</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The 4 Golden Rules of Clean JavaScript Architecture</h3>
+        <ol className="list-decimal pl-6 mt-3 space-y-2 text-sm text-muted-foreground">
+          <li>
+            <strong>Prefer Const over Let, Avoid Var:</strong> Declare variables with <code>const</code> by default. Only use <code>let</code> when reassignment is strictly required. Never use legacy <code>var</code> to prevent hoisting bugs.
+          </li>
+          <li>
+            <strong>Automate with Prettier and ESLint:</strong> Enforce uniform formatting rules in your IDE and CI pipeline so code reviews focus on logic rather than formatting arguments.
+          </li>
+          <li>
+            <strong>Keep Functions Pure &amp; Small:</strong> Functions should do one thing predictably without mutating external global state.
+          </li>
+          <li>
+            <strong>Always Handle Errors in Promises:</strong> Every <code>try/catch</code> and Promise chain should handle failure states gracefully to prevent uncaught runtime exceptions in production.
+          </li>
+        </ol>
       </>
     ),
     faqs: [
       {
-        question: "Does it support modern ES6+ syntax?",
-        answer: "Yes, the formatter fully supports modern JavaScript features including arrow functions, async/await, and destructuring."
+        question: "How does the JavaScript Formatter work?",
+        answer: "The tool parses your JavaScript code, normalizes irregular spacing around operators and braces, and indents nested code blocks hierarchically using 2 spaces, 4 spaces, or tabs."
+      },
+      {
+        question: "Can this tool unminify minified JavaScript bundles?",
+        answer: "Yes. Paste the compressed, single-line JavaScript code into the tool, choose 2 Spaces or 4 Spaces, and click Format to restore complete multi-line readability and structure."
+      },
+      {
+        question: "Does it support modern ES6, ES2020, and TypeScript syntax?",
+        answer: "Yes. The formatter supports arrow functions, async/await, template literals, destructuring, classes, optional chaining, and modern ECMAScript features."
+      },
+      {
+        question: "Why should I enforce semicolons in JavaScript?",
+        answer: "While JavaScript has Automatic Semicolon Insertion (ASI), relying on it can lead to subtle bugs—such as a newline after a 'return' statement causing the function to unexpectedly return undefined."
+      },
+      {
+        question: "Does minifying JavaScript improve website speed?",
+        answer: "Yes. Minification strips comments, whitespace, and formatting linebreaks, reducing script size over the network. Smaller JS files download faster and parse faster on mobile devices, boosting Core Web Vitals."
+      },
+      {
+        question: "Are comments preserved during formatting?",
+        answer: "Yes. In beautify mode, single-line (//) and multi-line (/* */) comments are preserved and indented properly. In Minify mode, comments are removed to minimize file size."
+      },
+      {
+        question: "Can this tool format TypeScript code?",
+        answer: "Yes. Most standard TypeScript functions, interfaces, and syntax structures format cleanly using this JavaScript formatting engine."
+      },
+      {
+        question: "Is my source code uploaded or stored on any server?",
+        answer: "No. All formatting and minification operations run 100% locally in your client's web browser using JavaScript. No proprietary source code or intellectual property leaves your computer."
+      },
+      {
+        question: "How do I format JavaScript automatically in VS Code?",
+        answer: "Install the official 'Prettier - Code formatter' extension in Visual Studio Code, and enable 'Editor: Format On Save' in your settings to format on every file save."
+      },
+      {
+        question: "How do I format JavaScript in Node.js via the command line?",
+        answer: "You can format files using Prettier CLI: npx prettier --write 'src/**/*.js'."
+      },
+      {
+        question: "Can I copy the formatted JavaScript code directly to my clipboard?",
+        answer: "Yes. Use the Copy button in the action bar to copy the formatted code directly to your clipboard in one click."
+      },
+      {
+        question: "What is the difference between JavaScript and JSON?",
+        answer: "JavaScript is a full programming language that includes functions, logic, variables, and loops. JSON (JavaScript Object Notation) is a strict text-based data format that only contains key-value pairs and arrays without logic."
       }
     ]
   },
   md5HashGenerator: {
-    title: "How does the MD5 Hash Generator work?",
+    title: "Complete Guide to MD5 Hashing: Algorithm Architecture, Checksums, and Cryptographic Limitations",
     content: (
       <>
-        <p>The <strong>MD5 Hash Generator</strong> uses the MD5 message-digest algorithm to convert any string of text into a fixed 128-bit (32-character) hexadecimal hash. This tool is frequently used for data integrity verification and legacy database work.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">File Checksums</h3>
-        <p className="mt-2">MD5 hashes are commonly used as checksums to verify that a file has not been altered or corrupted during download. By generating a hash of a string, you can instantly compare it against an expected value to ensure exact data match.</p>
+        <p>
+          Designed in 1991 by renowned cryptographer Ronald Rivest (the &apos;R&apos; in RSA), the <strong>MD5 Message-Digest Algorithm</strong> is one of the most historically significant hash functions in computer science history. It processes an arbitrary stream of input bytes and compresses it into a deterministic, fixed-length 128-bit output digest, standardly represented as a 32-character hexadecimal string.
+        </p>
+        <p className="mt-3">
+          While modern cryptography has deprecated MD5 for security-critical tasks due to mathematical collision vulnerabilities, MD5 remains ubiquitous across data engineering, software distribution, file deduplication, database partitioning, and legacy systems (such as Gravatar profile hashes). Casetivo&apos;s <strong>MD5 Hash Generator</strong> computes 128-bit digests instantly with true UTF-8 multi-byte support, uppercase/lowercase toggles, live payload metrics, and 100% private in-browser computation.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">How MD5 Works: The 4-Round Merkle-Damg&aring;rd Construction</h3>
+        <p>
+          MD5 processes data in sequential 512-bit blocks (16 words of 32 bits each) across four main algorithmic phases:
+        </p>
+        <ol className="list-decimal pl-6 mt-3 space-y-2 text-sm text-muted-foreground">
+          <li>
+            <strong>Padding:</strong> The message is padded with a single &apos;1&apos; bit followed by &apos;0&apos; bits until its length is 64 bits short of a multiple of 512. The final 64 bits record the original message length.
+          </li>
+          <li>
+            <strong>State Initialization:</strong> Four 32-bit registers (A, B, C, D) are initialized with fixed hexadecimal constants (<code>0x67452301</code>, <code>0xEFCDAB89</code>, <code>0x98BADCFE</code>, <code>0x10325476</code>).
+          </li>
+          <li>
+            <strong>Four Processing Rounds:</strong> Each 512-bit block passes through 64 nonlinear operations divided into 4 rounds of 16 steps each, utilizing bitwise functions $F, G, H, I$, circular bit rotations, and addition modulo $2^{32}$.
+          </li>
+          <li>
+            <strong>Digest Concatenation:</strong> The final values in registers A, B, C, and D are serialized in little-endian byte order to yield the final 32-character hexadecimal digest.
+          </li>
+        </ol>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The Avalanche Effect: Sensitivity to Input Changes</h3>
+        <p>
+          A vital mathematical property of MD5 is the <strong>Avalanche Effect</strong>: changing even a single bit in the input causes a radical, unpredictable transformation across more than 50% of the output hash:
+        </p>
+
+        <div className="p-4 rounded-xl border border-border bg-card mt-3 font-mono text-xs overflow-x-auto space-y-1">
+          <div><span className="text-muted-foreground">Input:</span> &quot;The quick brown fox jumps over the lazy dog&quot;</div>
+          <div className="text-primary font-bold">MD5:  9e107d9d372bb6826bd81d3542a419d6</div>
+          <div className="pt-2"><span className="text-muted-foreground">Input:</span> &quot;The quick brown fox jumps over the lazy dog<strong className="text-foreground">.</strong>&quot;</div>
+          <div className="text-amber-500 font-bold">MD5:  e4d909c290d0fb1ca068ffaddf22cbd0</div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Where MD5 is Still Used Today</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">1. File Download Checksums</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Verifying that downloaded ISO images, archives, or binaries were not corrupted during network packet loss or incomplete transfer.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">2. Gravatar Profile Images</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              WordPress and GitHub ecosystems generate Gravatar URLs by taking an MD5 hash of the user&apos;s lowercase email address (e.g. <code>gravatar.com/avatar/[md5]</code>).
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">3. Cache Invalidation Keys</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Content delivery networks (CDNs) and Memcached clusters hash complex SQL query strings or API payloads into short 32-character cache keys.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Why MD5 is Cryptographically Broken for Passwords</h3>
+        <p>
+          In 2004, a team of researchers led by Xiaoyun Wang demonstrated successful <strong>collision attacks</strong> against MD5, proving that two different files could produce the exact same MD5 digest.
+        </p>
+        <div className="p-4 rounded-xl border border-destructive/30 bg-destructive/5 text-xs text-muted-foreground mt-3 leading-relaxed">
+          <strong className="text-destructive font-semibold">Critical Security Rule:</strong> Never store user passwords using MD5. Modern GPUs can calculate billions of MD5 hashes per second, making raw or unsalted MD5 trivial to crack via rainbow tables and dictionary attacks in seconds. For password hashing, always use computationally expensive key-stretching algorithms: <strong>bcrypt</strong>, <strong>Argon2id</strong>, or <strong>PBKDF2</strong>. For digital certificates, use <strong>SHA-256</strong>.
+        </div>
       </>
     ),
     faqs: [
       {
-        question: "Is MD5 secure for passwords?",
-        answer: "No! MD5 is considered cryptographically broken and vulnerable to collision and rainbow table attacks. Modern applications should use bcrypt or Argon2 for passwords."
+        question: "How does the MD5 Hash Generator work?",
+        answer: "The tool processes your input text using the RFC 1321 MD5 algorithm, dividing the data into 512-bit blocks and running 64 nonlinear bitwise operations to generate a unique 128-bit (32-character hexadecimal) digest."
+      },
+      {
+        question: "Can an MD5 hash be decrypted or reversed?",
+        answer: "No. MD5 is a one-way cryptographic hash function, not encryption. It permanently compresses data, discarding original character information. However, simple strings can be matched against precomputed lookup tables (rainbow tables)."
+      },
+      {
+        question: "Is MD5 secure for storing passwords?",
+        answer: "No! MD5 is considered cryptographically insecure for passwords. Modern computers can compute billions of MD5 hashes per second. Always use modern salted hashing algorithms like Argon2id or bcrypt for password storage."
+      },
+      {
+        question: "What is an MD5 checksum?",
+        answer: "An MD5 checksum is a 32-character hash used to verify data integrity. When downloading software or files, you can compare the generated hash against the developer's published checksum to confirm the file is not corrupted."
+      },
+      {
+        question: "What is the length of an MD5 hash?",
+        answer: "An MD5 hash is always exactly 128 bits in binary length, which translates into exactly 32 hexadecimal characters (0–9 and a–f)."
+      },
+      {
+        question: "Does the MD5 hash change if I add a single space?",
+        answer: "Yes. Due to the 'avalanche effect', changing even a single character, space, or capitalization completely alters the resulting 32-character hash."
+      },
+      {
+        question: "How does Gravatar use MD5?",
+        answer: "Gravatar generates public avatar URLs by hashing the user's trimmed, lowercase email address using MD5 (e.g., https://www.gravatar.com/avatar/[md5_hash])."
+      },
+      {
+        question: "What is a hash collision in MD5?",
+        answer: "A collision occurs when two distinct input strings produce the exact same hash output. While theoretically rare, researchers have demonstrated practical collision attacks against MD5, making it obsolete for SSL/TLS certificates."
+      },
+      {
+        question: "Is my text uploaded or stored on any server?",
+        answer: "No. All hash calculations execute 100% locally in your client's web browser using JavaScript. No confidential passwords, text, or tokens ever leave your device."
+      },
+      {
+        question: "How do I generate an MD5 hash in Python?",
+        answer: "In Python, use the hashlib module: import hashlib; hash_val = hashlib.md5(text.encode('utf-8')).hexdigest()."
+      },
+      {
+        question: "How do I generate an MD5 hash in Node.js?",
+        answer: "In Node.js, use the crypto module: const crypto = require('crypto'); const hash = crypto.createHash('md5').update(text, 'utf8').digest('hex');"
+      },
+      {
+        question: "Can I choose uppercase or lowercase output?",
+        answer: "Yes. Use the Hash Casing toggle in the toolbar to switch between standard lowercase (e.g. 9e107d9d...) and uppercase (9E107D9D...) hexadecimal formats."
       }
     ]
   },
   markdownFormatterPreviewer: {
-    title: "How does the Markdown Formatter & Previewer work?",
+    title: "Complete Guide to Markdown Formatting & Live Previewing: GFM Spacing, Readme Styling, and Document Linting",
     content: (
       <>
-        <p>The <strong>Markdown Formatter & Previewer</strong> provides a split-screen interface where you can write raw Markdown on one side and see a live, styled HTML preview on the other. It also automatically formats messy markdown syntax.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Perfect for READMEs</h3>
-        <p className="mt-2">Writing a README.md file for a GitHub repository can be tedious because you have to commit and push the file just to see if your tables and formatting look correct. This tool allows you to write and preview everything instantly in your browser.</p>
+        <p>
+          Markdown has established itself as the global documentation standard across developer repositories, technical wikis, and open-source software. However, drafting complex READMEs, API specifications, or release notes often leads to formatting inconsistencies: missing spaces after heading hashes (<code>#Heading</code>), erratic list bullet markers (mixing <code>*</code>, <code>+</code>, and <code>-</code>), missing blank lines between paragraphs, and misaligned code fences.
+        </p>
+        <p className="mt-3">
+          Casetivo&apos;s <strong>Markdown Formatter &amp; Previewer</strong> solves both problems in a unified interface: it enforces strict CommonMark and GitHub Flavored Markdown (GFM) linting rules to clean up chaotic markdown syntax, while providing an instant real-time rendered preview so you can verify typography, tables, and code fences without pushing commits to GitHub.
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">The 4 Core Markdown Formatting Standards</h3>
+        <p>
+          To maintain readable documents across all Git hosting platforms and documentation generators (Docusaurus, VitePress, Nextra), follow these four core standards:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">1. Explicit Heading Spacing</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Always include a space between the hash markers and the title text (e.g. <code># Overview</code>, not <code>#Overview</code>). Furthermore, enforce a blank line before every heading so static site generators don&apos;t accidentally parse the heading as regular paragraph text.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">2. Standardized List Bullets</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              While Markdown accepts <code>-</code>, <code>*</code>, and <code>+</code> for unordered lists, mixing bullet styles creates noisy Git diffs. Standardize on the hyphen (<code>-</code>) across your entire repository.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">3. GFM Table Formatting</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Pipe tables should always feature a clean header separator row (<code>|:---|:---:|---:|</code>). Consistent column alignment makes raw text readable directly in terminal editors like Vim or Nano.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl border border-border bg-card">
+            <h4 className="font-semibold text-foreground mb-1 text-sm">4. Clean Fenced Code Blocks</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Always specify the language identifier after triple backticks (e.g. <code>```typescript</code> or <code>```bash</code>). This enables syntax highlighting engines to style keywords accurately in the rendered preview.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold mt-8 mb-3 text-foreground">Why a Live Preview Saves Development Time</h3>
+        <p>
+          When drafting open-source documentation or project READMEs, making edits blindly often results in broken tables, unrendered images, or malformed links. Rather than making dozens of &quot;fix formatting&quot; commits to your Git commit log, our live preview renders your document against modern CSS typography styles locally in your browser.
+        </p>
       </>
     ),
     faqs: [
       {
-        question: "Does it support syntax highlighting in code blocks?",
-        answer: "Yes, the previewer supports standard markdown code fences (```) and renders them with proper code styling."
+        question: "How does the Markdown Formatter & Previewer work?",
+        answer: "The tool cleans up irregular Markdown syntax—ensuring spaces after heading hashes, standardizing list bullets, collapsing trailing spaces, and inserting blank lines before headers—while rendering a live HTML preview."
+      },
+      {
+        question: "Does it support GitHub Flavored Markdown (GFM)?",
+        answer: "Yes. The previewer supports GFM features including pipe tables, task lists (- [x]), strikethroughs (~~text~~), and fenced code blocks with language syntax."
+      },
+      {
+        question: "Why does my Markdown heading not render as an H1 or H2?",
+        answer: "In modern CommonMark, a space is strictly required after the hash symbol (e.g. '# Heading' instead of '#Heading'). Our formatter fixes this automatically."
+      },
+      {
+        question: "Can I choose my preferred list bullet style?",
+        answer: "Yes. You can standardize all unordered list markers to hyphens (-), asterisks (*), or plus signs (+) using the Bullet Style selector."
+      },
+      {
+        question: "Does the previewer support tables?",
+        answer: "Yes. Pipe tables created with '|' and '---' rows are parsed and rendered with clean borders, header highlights, and responsive overflow scrolling."
+      },
+      {
+        question: "Why should I have a blank line before headings?",
+        answer: "CommonMark parsers can misinterpret headings that immediately follow a paragraph without a blank line, treating them as part of the paragraph. Enforcing a blank line prevents parsing bugs."
+      },
+      {
+        question: "Is my documentation or notes uploaded to a server?",
+        answer: "No. All formatting, linting, and live rendering execute 100% locally inside your web browser. No confidential documentation or proprietary notes leave your machine."
+      },
+      {
+        question: "Can I download or copy the cleaned Markdown?",
+        answer: "Yes. Click the Copy button in the action bar to copy the formatted Markdown directly to your clipboard, or use Download to save the .md file to your disk."
+      },
+      {
+        question: "How do I format Markdown automatically in VS Code?",
+        answer: "Install the official 'Prettier' extension and 'markdownlint' in Visual Studio Code, then enable 'Editor: Format On Save' in your workspace settings."
+      },
+      {
+        question: "What is the difference between this tool and the Markdown to HTML converter?",
+        answer: "The Markdown to HTML converter outputs raw HTML source code for embedding into websites. This tool is focused on beautifying the raw Markdown syntax itself and providing a live visual preview."
+      },
+      {
+        question: "Does it support blockquotes and nested quotes?",
+        answer: "Yes. Blockquotes prefixed with '>' are styled with a clean vertical accent border and subtle italic typography in the live preview."
+      },
+      {
+        question: "Can I preview hyperlinks and images?",
+        answer: "Yes. Hyperlinks are clickable and open in new tabs, and markdown image syntax (![alt](url)) renders embedded graphics in the preview window."
       }
     ]
   },
   markdownTableGenerator: {
-    title: "How does the Markdown Table Generator work?",
+    title: "Complete Guide to Markdown Tables: Syntax, Column Alignment, and Spreadsheet Conversions",
     content: (
       <>
-        <p>The <strong>Markdown Table Generator</strong> takes raw tabular data (like CSV or copy-pasted Excel cells) and automatically generates the complex pipe-and-dash syntax `(|---|)` required to render a table in Markdown.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Stop Typing Pipes Manually</h3>
-        <p className="mt-2">Creating Markdown tables by hand is notoriously frustrating. Aligning the pipes and hyphens takes forever. This tool does the heavy lifting for you, creating perfectly aligned, GitHub-flavored markdown tables in a fraction of a second.</p>
+        <p>
+          Markdown remains the standard lightweight markup language for developer documentation, open-source READMEs, technical runbooks, and issue trackers. However, manually creating tabular layouts with pipe delimiters and hyphens is one of the most tedious tasks in technical writing. The <strong>Markdown Table Generator</strong> solves this friction by converting spreadsheet clipboard data, comma-separated values (CSV), tab-separated values (TSV), and unformatted pipe text into formatted, readable GitHub Flavored Markdown (GFM) tables.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Anatomy of a GitHub Flavored Markdown (GFM) Table</h3>
+        <p className="mt-2">
+          Original Markdown by John Gruber deliberately omitted tabular syntax to keep the original spec lightweight. The pipe table convention was popularized by PHP Markdown Extra and standardized by GitHub Flavored Markdown (GFM). A valid Markdown table consists of three core components:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Header Row:</strong> Contains column titles separated by vertical pipe characters (<code>|</code>). Leading and trailing pipes are recommended across parsers for maximum compatibility.</li>
+          <li><strong>Delimiter / Separator Line:</strong> Directly follows the header row. It must contain at least three hyphens (<code>---</code>) per column, separated by pipes. This line designates column alignments using colons (<code>:</code>).</li>
+          <li><strong>Data Rows:</strong> Sequential lines carrying the actual data values separated by pipes. Each line represents a single table row.</li>
+        </ul>
+
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-4 font-mono text-xs overflow-x-auto">
+          <code>
+            | Endpoint | HTTP Method | Authentication | Rate Limit |<br />
+            | :--- | :---: | :---: | ---: |<br />
+            | /api/v1/auth/login | POST | None (Public) | 10 req/min |<br />
+            | /api/v1/projects | GET | Bearer JWT | 600 req/min |<br />
+            | /api/v1/billing/usage | GET | API Secret Key | 1,200 req/min |
+          </code>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Controlling Column Alignment with Colons</h3>
+        <p className="mt-2">
+          By default, Markdown parsers render text cells aligned to the left. The GFM specification allows you to specify column alignments directly within the hyphens of the separator row:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Left Align (Default)</h4>
+            <code className="text-xs text-primary block my-1.5">:--- or ---</code>
+            <p className="text-xs text-muted-foreground">Places a single colon at the far left edge of the dashes. Ideal for text labels, names, descriptions, and file paths.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Center Align</h4>
+            <code className="text-xs text-primary block my-1.5">:---:</code>
+            <p className="text-xs text-muted-foreground">Places colons at both the beginning and end of the delimiter. Ideal for status badges, dates, booleans, and HTTP verbs.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Right Align</h4>
+            <code className="text-xs text-primary block my-1.5">---:</code>
+            <p className="text-xs text-muted-foreground">Places a colon only at the far right edge of the dashes. Ideal for numeric figures, memory sizes, latency metrics, and currency.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Why Consistent Column Padding Matters</h3>
+        <p className="mt-2">
+          Markdown parsers do not require cell contents to be padded with whitespace to render properly in HTML. A messy string like <code>|A|B|\n|---|---|\n|1|2|</code> will render identically in HTML as an aligned table. However, raw Markdown files are read directly by software engineers in code editors, terminal pagers (like <code>cat</code> or <code>less</code>), git diff tools, and pull request reviews.
+        </p>
+        <p className="mt-2">
+          When columns are visually padded so that the vertical pipe characters line up in a monospaced font, reviewing pull requests and auditing technical specifications becomes effortless. Our generator automatically calculates the widest string in each column and adds spaces to align the pipes visually.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Converting Spreadsheets and CSVs to Markdown</h3>
+        <p className="mt-2">
+          Copying tabular data out of Microsoft Excel, Google Sheets, LibreOffice Calc, or Apple Numbers places tab-delimited text onto your operating system clipboard. Our generator detects tab characters instantly:
+        </p>
+        <ol className="list-decimal pl-6 space-y-2 mt-3">
+          <li>Highlight your desired rows and columns in Google Sheets or Excel and press <code>Ctrl+C</code> (or <code>Cmd+C</code>).</li>
+          <li>Paste the raw clipboard data directly into the input editor on this page.</li>
+          <li>Select your preferred delimiter (Auto or Tab) and choose your column alignment.</li>
+          <li>Copy the resulting clean Markdown table or toggle the <strong>Visual Preview</strong> tab to verify how your table will render.</li>
+        </ol>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Handling Markdown Table Limitations & Edge Cases</h3>
+        <p className="mt-2">
+          Markdown tables are engineered for simplicity, which introduces several syntax constraints every developer should understand:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li>
+            <strong>Pipes inside cell text:</strong> If your cell contains a literal pipe character (for instance, an OR logical operator <code>foo | bar</code>), you must escape it with a backslash: <code>foo \| bar</code>. Failing to escape it splits the cell into two separate columns.
+          </li>
+          <li>
+            <strong>No multi-line cells:</strong> Markdown tables cannot contain newlines (<code>\n</code>) inside a table cell. If you require multi-line content, use HTML line break tags (<code>&lt;br /&gt;</code>) inside the cell or consider rendering a standard HTML <code>&lt;table&gt;</code> instead.
+          </li>
+          <li>
+            <strong>No native row-span or col-span:</strong> The GFM specification does not support merged cells. To merge cells, you must write raw HTML table elements (<code>&lt;td colspan=&quot;2&quot;&gt;</code>) or format the data hierarchically.
+          </li>
+          <li>
+            <strong>Inline formatting inside cells:</strong> You can safely use bold (<code>**text**</code>), italics (<code>*text*</code>), inline code (<code>`code`</code>), links (<code>[label](url)</code>), and images inside Markdown table cells.
+          </li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Markdown & Data Utilities</h3>
+        <p className="mt-2">
+          Need to preview full Markdown documents or convert data between different serializations? Explore our companion tools:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/markdown-formatter-previewer" className="text-primary hover:underline font-medium">Markdown Formatter &amp; Previewer</a> — Format GitHub Flavored Markdown documents with live split-screen preview and reading statistics.</li>
+          <li><a href="/markdown-to-html-converter" className="text-primary hover:underline font-medium">Markdown to HTML Converter</a> — Transform Markdown syntax into sanitised, responsive HTML snippets.</li>
+          <li><a href="/csv-to-json-converter" className="text-primary hover:underline font-medium">CSV to JSON Converter</a> — Parse tabular CSV or TSV sheets into typed JSON object arrays.</li>
+          <li><a href="/blog/how-to-create-markdown-tables" className="text-primary hover:underline font-medium">Deep Dive: How to Create Markdown Tables</a> — Read our comprehensive engineering tutorial on GFM table best practices.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "Can I paste directly from Excel?",
-        answer: "Yes! By using the 'tab' delimiter setting, you can paste cells directly from Excel or Google Sheets, and it will instantly convert to a Markdown table."
+        question: "Can I copy and paste directly from Microsoft Excel or Google Sheets into this generator?",
+        answer: "Yes. When you copy cells from Excel or Google Sheets, your operating system clipboard stores them as tab-separated values (TSV). Our tool features automatic delimiter detection that identifies tab characters instantly and formats them into a GitHub Flavored Markdown table."
+      },
+      {
+        question: "How do I align text to the left, center, or right in a Markdown table?",
+        answer: "Column alignment is defined on the second line (the delimiter row) using colons. Use ':---' for left alignment, ':---:' for center alignment, and '---:' for right alignment. Our generator lets you set alignment across your columns with one click."
+      },
+      {
+        question: "How do I include a literal pipe character (|) inside a table cell?",
+        answer: "You must escape the pipe symbol with a preceding backslash (\|). For example, write 'cat file \| grep error' instead of 'cat file | grep error'. Unescaped pipes are treated as column delimiters and will corrupt your table structure."
+      },
+      {
+        question: "Does Markdown support merged cells with colspan or rowspan?",
+        answer: "No. The GitHub Flavored Markdown specification does not support column spanning (colspan) or row spanning (rowspan). If your data requires complex cell merging, you should embed raw HTML <table>, <tr>, and <td> tags with explicit colspan or rowspan attributes."
+      },
+      {
+        question: "Can I add line breaks or multiple paragraphs inside a single table cell?",
+        answer: "Standard Markdown syntax does not support blank lines or multiple paragraphs inside table cells. To force a line break within a cell, insert an HTML line break tag (<br />) directly where you want the line to break."
+      },
+      {
+        question: "Why do raw Markdown tables look misaligned in some code editors?",
+        answer: "Raw Markdown tables only align visually when viewed with a monospaced font where every character has an identical width. If your text editor uses a proportional font (such as Arial or Georgia), columns will appear staggered even if the space padding is mathematically correct."
+      },
+      {
+        question: "Are outer boundary pipes mandatory in GitHub Flavored Markdown?",
+        answer: "Technically, the GFM specification allows you to omit leading and trailing pipes on each row, requiring only internal pipes. However, omitting boundary pipes can cause parsing ambiguities across different Markdown engines (such as CommonMark, GitLab, and Hugo). We strongly recommend including boundary pipes for maximum cross-platform portability."
+      },
+      {
+        question: "Can I include images and links inside a Markdown table cell?",
+        answer: "Yes. Markdown table cells fully support standard inline syntax including links ([text](url)), images (![alt](url)), bold (**text**), italics (*text*), strikethrough (~~text~~), and inline code (`code`). Fenced code blocks (```) are not supported inside cells."
+      },
+      {
+        question: "How do I handle double quotes and commas in CSV input?",
+        answer: "Our parser handles standard RFC 4180 CSV conventions. Text cells enclosed in double quotes (e.g., 'San Francisco, CA') are preserved as single cells with commas intact, and surrounding outer quotes are cleanly stripped."
+      },
+      {
+        question: "What is the difference between GFM tables and MultiMarkdown tables?",
+        answer: "GitHub Flavored Markdown (GFM) tables require at least one header row followed by a delimiter line and support basic column alignments. MultiMarkdown tables offer advanced extensions such as multi-line cells, caption definitions, and column spanning, but are not supported on GitHub, GitLab, or standard npm packages without custom plugins."
+      },
+      {
+        question: "Does converting large spreadsheets in the browser cause lag or send data to a server?",
+        answer: "All parsing, delimiter detection, and column-width normalization happen entirely in your local browser using client-side JavaScript. No spreadsheet data, API credentials, or internal documents are ever transmitted over the network."
+      },
+      {
+        question: "How does the Visual Preview feature work?",
+        answer: "The Visual Preview tab parses your generated Markdown table using an internal client-side renderer and displays it with responsive CSS styling, zebra striping, and cell borders so you can verify formatting before pasting it into your README or documentation."
       }
     ]
   },
   morseCodeTranslator: {
-    title: "How does the Morse Code Translator work?",
+    title: "Complete Guide to Morse Code: ITU Standards, Timing Mathematics, and Audio Translation",
     content: (
       <>
-        <p>The <strong>Morse Code Translator</strong> converts standard text into Morse Code (dots and dashes) and decodes Morse Code back into English. It maps standard alphanumeric characters to their internationally recognized sequences.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">A Historical Communication Tool</h3>
-        <p className="mt-2">Invented in the 1830s for the telegraph, Morse Code is still used today in aviation, amateur radio, and emergency signaling (like SOS: `... --- ...`). This tool is great for education, puzzles, and escape rooms.</p>
+        <p>
+          Invented in the late 1830s by Samuel Morse and Alfred Vail for the electrical telegraph, Morse code remains one of the most durable binary telecommunication encodings in human history. By encoding the Latin alphabet, Arabic numerals, and essential punctuation marks into standardized sequences of electrical on-off pulses (dots and dashes), Morse code enabled instantaneous long-distance communication decades before voice telephony or digital packet networks.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">International Morse Code vs. American Morse Code</h3>
+        <p className="mt-2">
+          Two primary dialects of Morse code have existed historically. The original <strong>American Morse Code</strong> (also known as Railroad Morse) was designed specifically for wire telegraph networks in North America. It utilized varying dash lengths and internal pauses inside individual characters (for example, the letter <em>C</em> was transmitted as two dits, a pause, and a dit: <code>. . .</code>).
+        </p>
+        <p className="mt-2">
+          Because varying pulse durations were difficult to hear clearly over transatlantic cables and noisy atmospheric radio channels, European telegraph administrations established the <strong>Continental Morse Code</strong>, later standardized by the International Telecommunication Union (ITU) as <strong>Recommendation ITU-R M.1677-1</strong> (International Morse Code). International Morse code eliminated all internal pauses and standardized every pulse into two uniform elements: the <strong>dit</strong> (dot) and the <strong>dah</strong> (dash).
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Mathematical Timing Architecture of Morse Code</h3>
+        <p className="mt-2">
+          Morse code is not merely a visual collection of dots and dashes; it is a precision timing protocol governed by rigid mathematical ratios. Every element, gap, and word transition is derived from the fundamental unit of time—the duration of one dot:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Dot (Dit)</h4>
+            <code className="text-primary text-xs block my-1">1 Time Unit</code>
+            <p className="text-xs text-muted-foreground">The baseline duration for all timing calculations.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Dash (Dah)</h4>
+            <code className="text-primary text-xs block my-1">3 Time Units</code>
+            <p className="text-xs text-muted-foreground">Exactly three times the duration of a single dit.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Element Gap</h4>
+            <code className="text-primary text-xs block my-1">1 Unit Silence</code>
+            <p className="text-xs text-muted-foreground">Silence between dits and dahs inside the same letter.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Letter Gap</h4>
+            <code className="text-primary text-xs block my-1">3 Units Silence</code>
+            <p className="text-xs text-muted-foreground">Silence between consecutive letters in a word.</p>
+          </div>
+        </div>
+        <p className="mt-2">
+          Additionally, distinct words are separated by <strong>7 units of silence</strong>. In written or textual representations of Morse code, individual letters are separated by a single space, while word boundaries are represented by a forward slash (<code> / </code>) or three spaces.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Transmission Speed &amp; The PARIS Standard</h3>
+        <p className="mt-2">
+          Morse transmission speed is measured in Words Per Minute (WPM). Because letters have different character lengths (the common letter <code>E</code> is just <code>.</code>, while <code>Q</code> is <code>--.-</code>), standard calibration requires a normalized reference word. The global standard reference word is <strong>PARIS</strong>:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            P (.--.) = 8 units | gap = 3 units<br />
+            A (.-)   = 4 units | gap = 3 units<br />
+            R (.-.)  = 6 units | gap = 3 units<br />
+            I (..)   = 2 units | gap = 3 units<br />
+            S (...)  = 5 units | word gap = 7 units<br />
+            Total: 50 time units per &quot;PARIS&quot;
+          </code>
+        </div>
+        <p className="mt-2">
+          To calculate the duration of a single dit in milliseconds at any given WPM speed:
+          <br />
+          <code>dit_duration_ms = 60,000 / (50 * WPM) = 1,200 / WPM</code>.
+          <br />
+          At 20 WPM, each dit lasts exactly 60 milliseconds, a dash lasts 180 milliseconds, and an entire word transmission takes 2.5 seconds.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Why Samuel Morse Assigned Specific Patterns</h3>
+        <p className="mt-2">
+          Alfred Vail observed letter frequencies by visiting a local newspaper print shop in Morristown, New Jersey, counting the movable metal type pieces in compositors&apos; type cases. He discovered that the letter <strong>E</strong> appeared most frequently in the English language, followed by <strong>T</strong>, <strong>A</strong>, <strong>O</strong>, and <strong>N</strong>.
+        </p>
+        <p className="mt-2">
+          Consequently, Vail assigned the shortest Morse signals to the most frequent letters: <code>E</code> was assigned a single dot (<code>.</code>), and <code>T</code> was assigned a single dash (<code>-</code>). Infrequently used letters like <code>Q</code> (<code>--.-</code>), <code>X</code> (<code>-..-</code>), and <code>Z</code> (<code>--..</code>) received longer four-element sequences. This variable-length prefix encoding was an early operational precursor to modern Huffman data compression.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Modern Applications of Morse Code</h3>
+        <p className="mt-2">
+          While satellite communications and cellular networks replaced maritime Morse telegraphy in 1999 (under the Global Maritime Distress and Safety System or GMDSS), Morse code remains actively utilized across critical modern domains:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Amateur Radio (CW / Continuous Wave):</strong> Tens of thousands of licensed amateur radio operators communicate globally using Morse code on High Frequency (HF) bands. Because pure carrier wave CW signals have an extremely narrow bandwidth (~100 Hz vs 3,000 Hz for SSB voice), Morse signals can pierce through solar noise, geomagnetic storms, and atmospheric static when voice transmissions fail completely.</li>
+          <li><strong>Aviation VOR Navigation Beacons:</strong> Aircraft navigating via VHF Omnidirectional Range (VOR) ground radio stations identify stations by listening to automated Morse code audio identifiers transmitted continuously on navigation radio frequencies.</li>
+          <li><strong>Assistive Accessibility Technologies:</strong> Individuals suffering from Amyotrophic Lateral Sclerosis (ALS), severe paralysis, or brainstem stroke use single-switch or sip-and-puff assistive hardware configured with Morse code decoders to type, write emails, and control computers at high speeds.</li>
+          <li><strong>Cybersecurity &amp; CTF Challenges:</strong> Morse code frequently appears in Capture The Flag (CTF) security competitions, steganography tasks, and puzzle design.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Synthesizing Audio in the Browser with Web Audio</h3>
+        <p className="mt-2">
+          Our online Morse Code Translator includes a Web Audio API audio player. Instead of pre-rendered MP3 audio files, it creates dynamic sine-wave oscillators at 650 Hz with linear audio gain ramps. These smooth 5ms gain attack and decay envelopes eliminate the audible popping or clicking artifacts that plague basic audio synthesizers, delivering clear CW audio tones at your chosen speed.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Encoding &amp; Ciphers Tools</h3>
+        <p className="mt-2">
+          Working with data encoding, cryptography, or historical communication protocols? Explore our companion tools:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/binary-code-translator" className="text-primary hover:underline font-medium">Binary Code Translator</a> — Convert plain text to binary 0s and 1s and decode binary back to ASCII.</li>
+          <li><a href="/caesar-cipher-tool" className="text-primary hover:underline font-medium">Caesar Cipher Tool</a> — Encode and crack classical substitution ciphers with automated brute-force solving.</li>
+          <li><a href="/rot13-encoder-decoder" className="text-primary hover:underline font-medium">ROT13 Encoder &amp; Decoder</a> — Rotate letters by 13 positions for forum spoilers, geocaching clues, and CTFs.</li>
+          <li><a href="/hex-to-text-converter" className="text-primary hover:underline font-medium">Hex to Text Converter</a> — Inspect and convert raw hexadecimal byte streams into UTF-8 text strings.</li>
+          <li><a href="/blog/how-to-translate-morse-code" className="text-primary hover:underline font-medium">In-Depth Tutorial: How to Learn and Translate Morse Code</a> — Read our practical guide to mastering CW receiving, mnemonics, and sound recognition.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "How are spaces handled in Morse Code?",
-        answer: "Typically, a single space separates letters, while a slash (/) or three spaces separate distinct words."
+        question: "How do you translate Morse code back into English text?",
+        answer: "To decode Morse code into English, identify the character boundaries separated by spaces and word boundaries separated by slashes (/) or three spaces. Match each sequence of dots and dashes against the International Morse Code table. Our tool automatically detects whether your input contains text or Morse code and translates it immediately."
+      },
+      {
+        question: "What is the universal SOS Morse code distress signal?",
+        answer: "The international distress signal SOS is written in Morse code as '... --- ...' (three dots, three dashes, three dots). In transmission, it is transmitted as an unbroken prosign without pauses between the individual letters, creating an unmistakable, continuous acoustic pattern that is easy to recognize through static."
+      },
+      {
+        question: "How are spaces and word boundaries represented in Morse code?",
+        answer: "Within a word, individual letters are separated by 3 units of silence (represented textually by a single space). Distinct words are separated by 7 units of silence (represented textually by a forward slash '/' or three spaces). This spacing prevents ambiguous decodes (for instance, distinguishing between 'E E' (.. ) and 'I' (..))."
+      },
+      {
+        question: "What is the difference between dits and dahs in Morse code?",
+        answer: "A dit (dot) is the basic unit of time measurement in Morse code. A dah (dash) is exactly three times the duration of a dit. When spoken or practiced orally, telegraphers use the phonetic syllables 'dit' for dots and 'dah' for dashes to develop auditory pattern recognition."
+      },
+      {
+        question: "How does the WPM (Words Per Minute) audio speed setting work?",
+        answer: "Transmission speed in Morse code is calibrated against the standard word 'PARIS', which comprises exactly 50 timing units. At 10 WPM, one dit equals 120 milliseconds. At 20 WPM, one dit equals 60 milliseconds. Our audio synthesizer dynamically computes these exact durations using the Web Audio API."
+      },
+      {
+        question: "Can Morse code represent numbers and punctuation marks?",
+        answer: "Yes. All Arabic numbers from 0 to 9 are represented by standard 5-element sequences (such as '0' = '-----', '1' = '.----', and '5' = '.....'). Common punctuation marks like periods ('.-.-.-'), commas ('--..--'), question marks ('..--..'), and slash characters ('-..-.') are also standardized under ITU-R M.1677-1."
+      },
+      {
+        question: "What are Morse code prosigns?",
+        answer: "Prosigns (procedural signals) are specialized character combinations transmitted as a single, concatenated sound without the standard letter pause. Common examples include 'AR' (.-.-., end of transmission), 'SK' (...-.-, end of contact / silent key), 'AS' (.-..., please wait), and 'SOS' (...---..., distress)."
+      },
+      {
+        question: "Why was Morse code designed with variable character lengths?",
+        answer: "Alfred Vail analyzed English letter frequencies and deliberately assigned the shortest Morse sequences to the most common letters (like 'E' as '.' and 'T' as '-'). This early form of variable-length entropy encoding maximized transmission speed and reduced telegraph operator fatigue."
+      },
+      {
+        question: "Is Morse code still used by maritime ships and military forces today?",
+        answer: "While international maritime law replaced mandatory Morse watch-keeping with the satellite-based GMDSS system in 1999, Morse code is still used as an emergency backup signaling method via signal lamps (flashing light) across global naval fleets and is actively used by amateur radio operators."
+      },
+      {
+        question: "Why do aviation VOR beacons broadcast Morse code?",
+        answer: "VOR (VHF Omnidirectional Range) stations transmit a continuous automated Morse code identifier on their radio carrier frequency. Pilots tune to the station frequency and listen to the audio Morse sequence to verify they have tuned to the correct ground navigation aid before relying on its bearing readings."
+      },
+      {
+        question: "Can Morse code be used by people with severe physical disabilities?",
+        answer: "Yes. Morse code is widely utilized in assistive and augmentative communication (AAC) devices. Individuals with quadriplegia or ALS can operate a two-paddle switch or sip-and-puff sensor to encode dits and dahs, translating physical micro-movements into high-speed digital text input."
+      },
+      {
+        question: "Does this Morse code tool send my text or messages to external servers?",
+        answer: "No. All text parsing, translation, statistics calculations, and audio tone synthesis occur entirely inside your browser using client-side JavaScript and the Web Audio API. No text or communication data is ever transmitted to a server."
       }
     ]
   },
   numberSorter: {
-    title: "How does the Number Sorter work?",
+    title: "Complete Guide to Numeric Sorting: Lexicographical Pitfalls, Sorting Algorithms, and Statistical Analysis",
     content: (
       <>
-        <p>The <strong>Number Sorter</strong> takes a messy, unsorted list of numbers and arranges them in strictly ascending (lowest to highest) or descending (highest to lowest) numerical order.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Numerical vs Alphabetical Sorting</h3>
-        <p className="mt-2">Standard alphabetical sorters fail on numbers because they read '10' as coming before '2'. This specialized tool parses the input mathematically, ensuring that 2 correctly comes before 10.</p>
+        <p>
+          Sorting lists of numbers is a fundamental operation across data science, database query planning, financial modeling, and everyday data sanitization. However, sorting numbers with general-purpose text utilities frequently yields disastrous results. The <strong>Number Sorter</strong> mathematically evaluates numerical values—handling positive and negative integers, floating-point decimals, scientific notation, and arbitrary delimiters—ensuring exact numerical ordering with zero data loss.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Infamous Lexicographical (Alphabetical) Sorting Bug</h3>
+        <p className="mt-2">
+          One of the most notorious pitfalls in software engineering occurs when a runtime sorts numbers alphabetically rather than numerically. In JavaScript, for instance, executing:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            const numbers = [10, 2, 5, 25, 1];<br />
+            numbers.sort();<br />
+            // Returns: [1, 10, 2, 25, 5] ❌
+          </code>
+        </div>
+        <p className="mt-2">
+          Why does this happen? Without an explicit comparator callback (<code>(a, b) =&gt; a - b</code>), JavaScript converts every array element to a string and compares their UTF-16 code unit values in lexicographical order. Because character code <code>&quot;1&quot;</code> (U+0031) comes before <code>&quot;2&quot;</code> (U+0032), the string <code>&quot;10&quot;</code> is judged smaller than <code>&quot;2&quot;</code>. The same issue plagues raw Unix command-line utilities (like <code>sort</code> without the <code>-n</code> flag) and basic spreadsheet text columns.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Understanding Sorting Algorithms and Computational Complexity</h3>
+        <p className="mt-2">
+          How numbers are sorted under the hood depends on the volume of elements and the underlying sorting algorithm:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Timsort (V8 / Python)</h4>
+            <code className="text-xs text-primary block my-1.5">O(n log n) Comparison</code>
+            <p className="text-xs text-muted-foreground">A hybrid of merge sort and insertion sort designed to exploit real-world data runs. Stable and highly optimized for nearly sorted data.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Quicksort (Dual-Pivot)</h4>
+            <code className="text-xs text-primary block my-1.5">O(n log n) Average</code>
+            <p className="text-xs text-muted-foreground">Selects pivot elements to partition arrays into smaller sub-arrays. Common in C++ STL and Java primitive array implementations.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Radix Sort</h4>
+            <code className="text-xs text-primary block my-1.5">O(n · k) Non-Comparison</code>
+            <p className="text-xs text-muted-foreground">Sorts integer data without pairwise comparisons by distributing numbers into buckets by their individual digit positions.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Handling Complex Numeric Formats &amp; Edge Cases</h3>
+        <p className="mt-2">
+          Real-world data rarely arrives in clean integer lists. Our number sorter utilizes an advanced regular expression parser that accurately recognizes:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Negative Numbers &amp; Signs:</strong> Correctly positions negative values below zero (e.g., <code>-50 &lt; -10 &lt; 0</code>), avoiding naive hyphen stripping.</li>
+          <li><strong>Floating-Point Decimals:</strong> Accurately ranks real numbers (e.g., <code>3.14159</code>, <code>2.718</code>, <code>-0.005</code>) according to IEEE 754 double-precision arithmetic.</li>
+          <li><strong>Scientific E-Notation:</strong> Seamlessly parses exponential numbers common in scientific and engineering telemetry (e.g., <code>1.5e-4</code> for 0.00015 and <code>2.8e+6</code> for 2,800,000).</li>
+          <li><strong>Arbitrary Separators:</strong> Extracts numbers whether they are separated by commas, tabs, spaces, semicolons, or mixed within prose text.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Sort Criteria: Numeric vs. Absolute Value vs. Length</h3>
+        <p className="mt-2">
+          Different engineering and analytical tasks require different sorting criteria:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Standard Numerical Sort:</strong> Arranges numbers strictly by mathematical value. In ascending order, <code>[-15, -2, 0, 7, 100]</code>.</li>
+          <li><strong>Absolute Magnitude (|x|):</strong> Evaluates values based on their distance from zero, ignoring signs. Ideal for ranking error residuals, voltage variations, and delta deviations (e.g., <code>[0, -2, 7, -15, 100]</code>).</li>
+          <li><strong>Digit Length:</strong> Sorts numbers by total character or digit length, useful when analyzing fixed-width account numbers, telephone numbers, or serial identifiers.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Instant Statistical Telemetry Dashboard</h3>
+        <p className="mt-2">
+          Whenever you sort a list of numbers, our tool automatically computes essential statistical metrics in real time:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Total Count &amp; Unique Count:</strong> Understand your sample size and see how many duplicate entries exist.</li>
+          <li><strong>Minimum &amp; Maximum:</strong> Instantly identify the boundary range of your data set.</li>
+          <li><strong>Sum Total:</strong> The complete mathematical sum of all extracted values.</li>
+          <li><strong>Mean (Arithmetic Average):</strong> The central average (sum divided by count).</li>
+          <li><strong>Median:</strong> The exact middle value of the sorted sequence. Unlike the mean, the median is immune to extreme outliers (such as a single massive number distorting financial averages).</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Data &amp; Numerical Tools</h3>
+        <p className="mt-2">
+          Looking to transform, format, or process data sets further? Explore our companion tools:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/csv-to-json-converter" className="text-primary hover:underline font-medium">CSV to JSON Converter</a> — Parse tabular CSV spreadsheets into typed JSON object arrays.</li>
+          <li><a href="/random-number-generator" className="text-primary hover:underline font-medium">Random Number Generator</a> — Generate cryptographically secure random integers, floats, and sequences.</li>
+          <li><a href="/binary-code-translator" className="text-primary hover:underline font-medium">Binary Code Translator</a> — Convert numbers and ASCII strings to binary 0s and 1s.</li>
+          <li><a href="/blog/how-to-sort-numbers-online" className="text-primary hover:underline font-medium">Developer Guide: How to Sort Numbers in Code and Shell</a> — Read our practical guide on numeric sorting in JavaScript, Python, SQL, and Bash.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "Does it handle decimal points and negative numbers?",
-        answer: "Yes, the tool uses strict numerical parsing, meaning negative numbers and floating-point decimals are sorted perfectly."
+        question: "Why does standard alphabetical sorting fail when sorting numbers?",
+        answer: "Alphabetical sorting evaluates characters by their lexicographical string codes rather than their numeric quantity. Because '1' comes before '2' in ASCII/Unicode, numbers starting with 1 (like 10, 100, 1000) are sorted before 2. A true numeric sorter parses the characters into floating-point numbers before comparing them."
+      },
+      {
+        question: "How does this tool handle negative numbers and decimals?",
+        answer: "Our parser uses regular expressions to capture leading signs (+ or -) and decimal points (.) as mathematical values. Negative numbers are placed in their proper mathematical position below zero (for example, -20 < -5 < 0 < 3.14)."
+      },
+      {
+        question: "Can I paste numbers separated by commas, spaces, or semicolons?",
+        answer: "Yes. You do not need to format your data into a single column. The parser scans the input text and extracts all valid numbers regardless of whether they are separated by commas, spaces, tabs, semicolons, or mixed line breaks."
+      },
+      {
+        question: "How does the Deduplication feature work?",
+        answer: "When 'Deduplicate Unique Only' is enabled, the tool converts the extracted numbers into an ES6 Set before sorting, ensuring that repeated identical values appear exactly once in the final sorted output."
+      },
+      {
+        question: "What is the difference between sorting by Numeric Value and Absolute Value (|x|)?",
+        answer: "Sorting by Numeric Value preserves negative polarity (so -50 is smaller than 10). Sorting by Absolute Magnitude sorts by distance from zero regardless of sign (so -50 has an absolute magnitude of 50, placing it after 10). Absolute sorting is commonly used for analyzing error deltas, variance, and electrical voltages."
+      },
+      {
+        question: "Can the tool handle numbers in scientific notation (e.g., 1.5e-4)?",
+        answer: "Yes. The regular expression and floating-point parser recognize exponential scientific notation (like 1.5e-4 for 0.00015 and 3.2e+5 for 320,000) and sort them according to their true numerical value."
+      },
+      {
+        question: "How is the Median calculated in the telemetry dashboard?",
+        answer: "For an odd number of values, the median is the single value sitting in the exact center of the sorted list. For an even number of values, the median is the arithmetic average of the two middle values."
+      },
+      {
+        question: "What is the maximum number of items I can sort at once?",
+        answer: "Because processing runs entirely in your local browser using modern V8 Timsort algorithms (O(n log n)), the tool can sort tens of thousands of numbers in a few milliseconds without UI stutter or memory bottlenecks."
+      },
+      {
+        question: "Can I choose the output delimiter between sorted numbers?",
+        answer: "Yes. You can output your sorted list with standard new lines (\n), comma-separated values (, ), semicolons (; ), or spaces ( ), making it easy to copy directly into spreadsheet columns, Python arrays, or SQL IN clauses."
+      },
+      {
+        question: "How do I sort numbers in Linux Bash from the terminal?",
+        answer: "In Unix/Linux shells, use the 'sort' command with the '-n' (numeric sort) or '-g' (general numeric sort) flag. For example: 'sort -n numbers.txt' sorts in ascending order, and 'sort -nr numbers.txt' sorts in descending order."
+      },
+      {
+        question: "Why is the Median preferred over the Mean in skewed data sets?",
+        answer: "The arithmetic mean (average) is sensitive to extreme outliers. For instance, in a list of household incomes [40000, 45000, 50000, 55000, 10000000], the single billionaire skews the mean to over $2,000,000, whereas the median ($50,000) accurately reflects the typical income."
+      },
+      {
+        question: "Is my numeric data sent to an external server or logged?",
+        answer: "No. All text parsing, number extraction, sorting algorithms, and statistical summaries execute entirely within your client browser. No financial data, test scores, or internal numbers are ever transmitted over the internet."
       }
     ]
   },
   rot13EncoderDecoder: {
-    title: "How does the ROT13 Encoder/Decoder work?",
+    title: "Complete Guide to ROT13: Reciprocal Ciphers, Internet Culture, ROT5, and ROT47",
     content: (
       <>
-        <p>The <strong>ROT13 Cipher</strong> is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet. Because there are 26 letters in the alphabet, applying ROT13 twice restores the original text.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Hiding Spoilers</h3>
-        <p className="mt-2">ROT13 has been used on internet forums since the 1980s as a way to hide movie spoilers, puzzle solutions, and punchlines from a casual glance. It prevents accidental reading while allowing anyone who wants to know the answer to easily decode it.</p>
+        <p>
+          First popularized in early 1980s Usenet newsgroups, the <strong>ROT13 Cipher</strong> (&quot;rotate by 13 places&quot;) is one of the most recognizable substitution ciphers in computer culture. It replaces each Latin letter in a text string with the letter 13 positions ahead of it in the alphabet. Because the modern English alphabet contains exactly 26 letters and 13 is half of 26, the transformation is perfectly self-inverse: applying the exact same algorithm a second time restores the original plaintext.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Mathematical Foundation of an Involutary Cipher</h3>
+        <p className="mt-2">
+          In cryptography, a cipher is called <em>involutary</em> (or reciprocal) if the encryption algorithm is its own decryption function: <code>f(f(m)) = m</code>. In modular arithmetic, rotating an alphabetic character code <em>x</em> by a key <em>k = 13</em> over a modulo of 26 letters is expressed as:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            E(x) = (x + 13) mod 26<br />
+            D(E(x)) = ((x + 13) + 13) mod 26 = (x + 26) mod 26 = x mod 26
+          </code>
+        </div>
+        <p className="mt-2">
+          This mathematical symmetry means that software engineers never need to maintain separate encoding and decoding routines. A single execution of the transformation shifts <code>A</code> to <code>N</code>, <code>B</code> to <code>O</code>, and wraps around so that <code>N</code> shifts back to <code>A</code> and <code>O</code> shifts back to <code>B</code>.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Historical Origins in Usenet and Online Culture</h3>
+        <p className="mt-2">
+          In the pre-web era of Usenet newsgroups (such as <code>net.jokes</code> and <code>rec.arts.movies</code>), readers frequently encountered offensive humor, puzzle solutions, and plot spoilers. Because newsreaders could not collapse content into modern spoiler accordions or blur text, Usenet engineers standardized ROT13 as a polite &quot;spoiler shield.&quot;
+        </p>
+        <p className="mt-2">
+          It prevented casual readers from accidentally seeing the punchline or movie ending while reading through their news feeds, yet allowed anyone with a single keystroke in their newsreader client (such as <code>trn</code> or <code>nn</code>) to decode the message instantly.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Why ROT13 is Obfuscation, Not Encryption</h3>
+        <p className="mt-2">
+          It is essential for developers to recognize that ROT13 provides <strong>zero cryptographic security</strong>. In modern information security terms, it is a weak form of text obfuscation:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>No Cryptographic Key:</strong> Unlike AES or RSA where confidentiality depends on a secret key, ROT13 always uses the hard-coded shift value of 13. Anyone who recognizes the cipher can decode it immediately.</li>
+          <li><strong>Preserved Letter Frequencies:</strong> Frequency analysis instantly reveals the pattern: the letter <code>E</code> (the most common English letter) predictably transforms into <code>R</code>, and <code>T</code> transforms into <code>G</code>.</li>
+          <li><strong>Punctuation &amp; Spaces Are Untouched:</strong> Word lengths, apostrophes, commas, and formatting remain completely intact, providing immediate structural context for automated cryptanalysis.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Common Variants: ROT5, ROT18, and ROT47</h3>
+        <p className="mt-2">
+          Because standard ROT13 only modifies alphabetic letters (A-Z, a-z), several complementary variations have been developed:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">ROT5 (Numbers 0-9)</h4>
+            <code className="text-xs text-primary block my-1.5">(x + 5) mod 10</code>
+            <p className="text-xs text-muted-foreground">Applies reciprocal rotation to Arabic numerals. Shifts 0 to 5, 1 to 6, and 5 back to 0.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">ROT18 (Alphanumeric)</h4>
+            <code className="text-xs text-primary block my-1.5">ROT13 + ROT5</code>
+            <p className="text-xs text-muted-foreground">Applies ROT13 to letters and ROT5 to numbers simultaneously, rotating all alphanumeric characters.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">ROT47 (Full ASCII)</h4>
+            <code className="text-xs text-primary block my-1.5">(x - 33 + 47) mod 94</code>
+            <p className="text-xs text-muted-foreground">Rotates all 94 printable ASCII characters (from &apos;!&apos; to &apos;~&apos;) by 47 positions, obfuscating letters, numbers, and symbols alike.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Modern Real-World Applications</h3>
+        <p className="mt-2">
+          Despite lacking cryptographic strength, ROT13 is widely used across multiple contemporary domains:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Geocaching Clues:</strong> Geocaching.com standardizes ROT13 for hint encodings. Cachers in the field decrypt the hint only when stuck finding a physical container.</li>
+          <li><strong>Forum &amp; Game Spoilers:</strong> Used on Reddit, gaming wikis, and programming blogs to disguise solution algorithms or puzzle walkthroughs.</li>
+          <li><strong>Windows Registry Obfuscation:</strong> Microsoft Windows historically stored UserAssist telemetry entries in the Windows Registry encrypted with ROT13 to prevent casual end-user tampering.</li>
+          <li><strong>Malware Analysis &amp; Antivirus Evasion:</strong> Malicious scripts occasionally use ROT13 or ROT47 to disguise plain-text command strings or URLs from simplistic signature-based antivirus scrapers.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Cryptographic &amp; Encoding Utilities</h3>
+        <p className="mt-2">
+          Exploring ciphers, encoding standards, and security tools? Check out our companion utilities:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/caesar-cipher-tool" className="text-primary hover:underline font-medium">Caesar Cipher Tool</a> — Test arbitrary shift keys (1 through 25) with automated brute-force letter analysis.</li>
+          <li><a href="/morse-code-translator" className="text-primary hover:underline font-medium">Morse Code Translator</a> — Translate plain text into ITU dots and dashes with synthesized audio playback.</li>
+          <li><a href="/binary-code-translator" className="text-primary hover:underline font-medium">Binary Code Translator</a> — Convert ASCII text into 8-bit binary bytes.</li>
+          <li><a href="/base64-encoder-decoder" className="text-primary hover:underline font-medium">Base64 Encoder &amp; Decoder</a> — Encode binary or textual data into safe ASCII strings for transmission over HTTP.</li>
+          <li><a href="/blog/what-is-rot13-cipher" className="text-primary hover:underline font-medium">In-Depth Guide: What is ROT13 and How Does it Work?</a> — Learn the history, mathematics, and implementation in JavaScript and Python.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "Do I need a separate decoder?",
-        answer: "No! Because the English alphabet has 26 letters, shifting by 13 is perfectly symmetrical. Pasting ROT13 text into the encoder will instantly decode it back to normal."
+        question: "Do I need a separate tool to decode a ROT13 message?",
+        answer: "No. ROT13 is a symmetrical (reciprocal) cipher. Because the English alphabet has 26 letters and the shift is 13, rotating an already encoded character by 13 shifts it back to its original value. The exact same operation encrypts and decrypts."
+      },
+      {
+        question: "Does ROT13 change numbers, punctuation marks, or spaces?",
+        answer: "Standard ROT13 only modifies uppercase (A-Z) and lowercase (a-z) letters. Numbers, spaces, commas, periods, and special symbols are passed through completely unchanged. If you want to rotate numbers as well, choose the ROT18 or ROT47 mode."
+      },
+      {
+        question: "What is ROT18?",
+        answer: "ROT18 is an alphanumeric combination of ROT13 and ROT5. It applies the standard 13-character rotation to letters and a 5-digit rotation to numbers (0-9), providing reciprocal obfuscation for text and numerals simultaneously."
+      },
+      {
+        question: "How does ROT47 differ from ROT13?",
+        answer: "While ROT13 operates only on 26 alphabetic letters, ROT47 operates on all 94 printable ASCII characters (from ASCII 33 '!' through ASCII 126 '~'). By shifting characters by 47 positions modulo 94, ROT47 scrambles letters, numbers, and symbols into an unreadable string."
+      },
+      {
+        question: "Is ROT13 secure enough to protect passwords or private communications?",
+        answer: "No. ROT13 provides zero security against an intentional adversary. It is a visual obfuscation method intended only to prevent accidental reading of spoilers, answers, or puzzle hints. It should never be used to protect passwords, API keys, or personal data."
+      },
+      {
+        question: "Why do geocachers use ROT13 for hints?",
+        answer: "Geocaching platforms use ROT13 so outdoor treasure hunters can open a cache page without accidentally seeing the spoiler hint. When they reach the location and need assistance, they can decode the clue on the spot."
+      },
+      {
+        question: "How do you implement ROT13 in JavaScript?",
+        answer: "In JavaScript, ROT13 is implemented concisely using regex replacement: 'text.replace(/[a-zA-Z]/g, c => String.fromCharCode((c.charCodeAt(0) <= 90 ? 65 : 97) + (c.charCodeAt(0) - (c.charCodeAt(0) <= 90 ? 65 : 97) + 13) % 26))'."
+      },
+      {
+        question: "How do you run ROT13 in a Linux or macOS terminal?",
+        answer: "On Unix-like operating systems, you can decode or encode ROT13 directly from the terminal using the standard 'tr' utility: 'tr 'A-Za-z' 'N-ZA-Mn-za-m' < message.txt'."
+      },
+      {
+        question: "Why did Microsoft Windows use ROT13 in the UserAssist registry keys?",
+        answer: "In Windows XP through Windows 10, the UserAssist registry key recorded which programs the user launched. Microsoft used ROT13 to obfuscate file paths in the registry so users wouldn't accidentally modify them, though security researchers easily decode them."
+      },
+      {
+        question: "Does ROT13 preserve the capitalization of letters?",
+        answer: "Yes. Uppercase letters (A-Z) are shifted to uppercase letters, and lowercase letters (a-z) are shifted to lowercase letters. Letter case and word casing are fully preserved."
+      },
+      {
+        question: "Can ROT13 handle non-English or accented characters (like é, ü, or ñ)?",
+        answer: "Standard ROT13 only defines transformations for the basic 26 Latin characters (A-Z). Non-ASCII characters, accented letters, and Unicode symbols are preserved as-is without modification."
+      },
+      {
+        question: "Is my text uploaded to a remote server when I use this tool?",
+        answer: "No. All cipher transformations, character counts, and telemetry calculations are performed purely in client-side JavaScript within your web browser. No text is ever transmitted over the network."
       }
     ]
   },
   regexTextTool: {
-    title: "How does the Regex Text Tool work?",
+    title: "Complete Guide to Regular Expressions: Pattern Matching, Flags, Backreferences, and ReDoS Prevention",
     content: (
       <>
-        <p>The <strong>Regex Text Tool</strong> allows developers to write powerful Regular Expressions to search, match, and replace complex patterns within a block of text. It is an indispensable utility for advanced data extraction.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Advanced Pattern Matching</h3>
-        <p className="mt-2">If you need to extract all email addresses from a 10,000-word document, or find every phone number regardless of its formatting, a standard 'Find' tool won't work. By writing a Regex pattern like `{"\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b"}`, you can extract exactly what you need.</p>
+        <p>
+          Regular expressions (Regex) are compact strings that define search patterns for matching, extracting, and manipulating text. Originally formalized in the 1950s by American mathematician Stephen Kleene to describe regular languages and finite automata, regex was adapted into computer systems by Ken Thompson in the late 1960s for the QED text editor and the Unix <code>grep</code> utility. Today, regular expressions are built natively into virtually every programming language, database engine, and text editor.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Anatomy of a Regular Expression Pattern</h3>
+        <p className="mt-2">
+          At its core, a regular expression combines literal characters with special metacharacters that establish rules for pattern recognition:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Character Classes</h4>
+            <code className="text-primary text-xs block my-1">\d, \w, \s, [a-z0-9]</code>
+            <p className="text-xs text-muted-foreground">Match specific character sets: digits (<code>\d</code>), alphanumeric word characters (<code>\w</code>), and whitespace (<code>\s</code>).</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Quantifiers</h4>
+            <code className="text-primary text-xs block my-1">*, +, ?, {"{n,m}"}</code>
+            <p className="text-xs text-muted-foreground">Specify repetition: 0 or more (<code>*</code>), 1 or more (<code>+</code>), optional 0 or 1 (<code>?</code>), or exact intervals (<code>{"{2,4}"}</code>).</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-xs">Anchors &amp; Boundaries</h4>
+            <code className="text-primary text-xs block my-1">^, $, \b</code>
+            <p className="text-xs text-muted-foreground">Assert string start (<code>^</code>), string end (<code>$</code>), or word boundary (<code>\b</code>) without consuming characters.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">ECMAScript Flags &amp; Execution Modes</h3>
+        <p className="mt-2">
+          Regular expression modifiers (flags) fundamentally alter how the matching engine interprets input text:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>g (Global):</strong> Instructs the regex engine to search for all matching occurrences in the string rather than halting at the first match.</li>
+          <li><strong>i (Ignore Case):</strong> Makes matching case-insensitive, equating uppercase <code>A-Z</code> with lowercase <code>a-z</code>.</li>
+          <li><strong>m (Multiline):</strong> Changes the behavior of anchors <code>^</code> and <code>$</code> so they match the beginning and end of each individual line (delimited by <code>\n</code>) rather than only the entire document.</li>
+          <li><strong>s (dotAll):</strong> Modifies the wildcard period (<code>.</code>) so it matches newline characters (<code>\n</code> and <code>\r</code>), enabling multi-line pattern matching.</li>
+          <li><strong>u (Unicode):</strong> Treats the pattern as a sequence of Unicode code points rather than 16-bit code units, enabling support for multi-byte emojis and non-Latin scripts.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Capturing Groups and Group Backreferences in Replacements</h3>
+        <p className="mt-2">
+          Parentheses create <strong>capturing groups</strong> that isolate sub-matches for extraction or rearrangement. In Search &amp; Replace mode, you can reference captured values inside your replacement string using backreference tokens:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            Target Text: 2026-10-31<br />
+            Pattern: (\d{"{4}"})-(\d{"{2}"})-(\d{"{2}"})<br />
+            Replacement: $2/$3/$1<br />
+            Result: 10/31/2026 ✅
+          </code>
+        </div>
+        <p className="mt-2">
+          Special replacement tokens include:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><code>$1, $2, ... $n</code>: Inserts the sub-string matched by the <em>n</em>th parenthesized capturing group.</li>
+          <li><code>$&amp;</code>: Inserts the entire matched string.</li>
+          <li><code>$&#96;</code> and <code>$&apos;</code>: Inserts the portion of the string preceding or following the matched pattern.</li>
+          <li><code>(?:pattern)</code>: A <strong>non-capturing group</strong> that groups expressions for repetition or alternation without memory overhead.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Lookahead and Lookbehind Assertions</h3>
+        <p className="mt-2">
+          Modern regex engines support <strong>zero-width lookarounds</strong>—assertions that match a position based on what follows or precedes it without consuming characters:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Positive Lookahead (?=...)</h4>
+            <code className="text-xs text-primary block my-1.5">\d+(?= USD)</code>
+            <p className="text-xs text-muted-foreground">Matches numbers only if they are immediately followed by &apos; USD&apos;, but does not include &apos; USD&apos; in the captured match.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Positive Lookbehind (?&lt;=...)</h4>
+            <code className="text-xs text-primary block my-1.5">(?&lt;=\$)\d+</code>
+            <p className="text-xs text-muted-foreground">Matches numbers only if they are preceded by a dollar sign, leaving the dollar sign out of the extracted token.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Preventing Catastrophic Backtracking (ReDoS)</h3>
+        <p className="mt-2">
+          Most modern regex engines (including V8 in JavaScript, Python&apos;s <code>re</code>, and PCRE) are Non-deterministic Finite Automata (NFA). While NFA engines support backreferences and complex lookarounds, poorly constructed patterns with nested quantifiers can trigger <strong>Catastrophic Backtracking</strong>:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-destructive/10 text-destructive my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            Hazardous Pattern: ^(a+)+$<br />
+            Input: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaX<br />
+            Execution: O(2^n) exponential state exploration!
+          </code>
+        </div>
+        <p className="mt-2">
+          When the input ends in <code>X</code> and fails to match the anchor, the NFA engine explores every exponential permutation of group splits, freezing the CPU thread. This vulnerability is known as Regular Expression Denial of Service (ReDoS). Always constrain quantifiers, avoid overlapping alternations, and test patterns against negative edge cases.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Development &amp; Code Utilities</h3>
+        <p className="mt-2">
+          Need to format, clean, or inspect code and data? Explore our companion developer utilities:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/javascript-formatter" className="text-primary hover:underline font-medium">JavaScript Formatter</a> — Format, beautify, and indent JS and TS code with clean indentation.</li>
+          <li><a href="/json-formatter" className="text-primary hover:underline font-medium">JSON Formatter</a> — Validate and format complex JSON documents with error locators.</li>
+          <li><a href="/html-formatter" className="text-primary hover:underline font-medium">HTML Formatter</a> — Clean and standardize minified HTML templates and web pages.</li>
+          <li><a href="/csv-to-json-converter" className="text-primary hover:underline font-medium">CSV to JSON Converter</a> — Parse and serialize tabular spreadsheet columns into JSON objects.</li>
+          <li><a href="/blog/how-to-test-regular-expressions" className="text-primary hover:underline font-medium">Deep Dive: How to Test and Master Regular Expressions</a> — Read our practical guide on regex debugging, performance optimization, and common production snippets.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "Which Regex engine does this use?",
-        answer: "The tool uses the standard JavaScript (V8) Regular Expression engine, meaning it supports lookaheads, lookbehinds, and standard ECMAScript flags."
+        question: "What regex engine powers this online tool?",
+        answer: "This tool runs on the standard ECMAScript (JavaScript V8) regular expression engine directly within your browser. It fully supports lookaheads, lookbehinds, named capture groups, and modern ES2024 regex specifications."
+      },
+      {
+        question: "How do I match and replace text using capture groups?",
+        answer: "Wrap the portion of your pattern you wish to capture in parentheses '()'. In Search & Replace mode, refer to captured groups in your replacement string using '$1' for the first group, '$2' for the second group, and '$&' for the complete match."
+      },
+      {
+        question: "What is the difference between greedy and lazy quantifiers?",
+        answer: "A greedy quantifier (like '.*' or '.+') consumes as much text as possible while still allowing the overall pattern to match. A lazy quantifier (written by appending a question mark, like '.*?' or '.+?') matches the shortest possible character sequence."
+      },
+      {
+        question: "What does the 'm' (multiline) flag do?",
+        answer: "By default, '^' matches the very start of the entire text string, and '$' matches the very end. When the 'm' flag is enabled, '^' and '$' match the beginning and end of each individual line (delimited by '\n'), allowing you to validate line-by-line data."
+      },
+      {
+        question: "What does the 's' (dotAll) flag do?",
+        answer: "In standard regex, the wildcard period '.' matches any character except line break terminators (\n, \r). Enabling the 's' (dotAll) flag allows '.' to match newlines as well, making it easy to capture multi-line blocks of code or paragraphs."
+      },
+      {
+        question: "What is a non-capturing group (?:pattern)?",
+        answer: "A non-capturing group allows you to group sub-expressions for quantifiers or alternations (such as '(?:https?|ftp)://') without storing the matched text in memory. This improves matching speed and prevents cluttering replacement backreferences ($1, $2)."
+      },
+      {
+        question: "How do lookahead and lookbehind assertions work?",
+        answer: "Lookarounds are zero-width assertions that check what comes immediately before or after a match without consuming characters. Positive lookahead '(?=pattern)' matches if the pattern follows. Positive lookbehind '(?<=pattern)' matches if the pattern precedes."
+      },
+      {
+        question: "What is Catastrophic Backtracking (ReDoS)?",
+        answer: "Catastrophic backtracking occurs when an NFA regex engine encounters nested or ambiguous quantifiers (such as '(a+)+$') against a non-matching input. The engine explores an exponential number of permutations, spiking CPU usage to 100% and causing applications to freeze."
+      },
+      {
+        question: "How do I match special characters like dots, brackets, or slashes literally?",
+        answer: "Special regex metacharacters (including '.', '*', '+', '?', '^', '$', '{', '}', '(', ')', '|', '[', ']', '\', and '/') must be escaped with a preceding backslash. For example, to match a literal period, write '\.' instead of '.'."
+      },
+      {
+        question: "Can I extract specific fields like emails or IP addresses automatically?",
+        answer: "Yes. Our tool provides a library of pre-built production presets for RFC email addresses, URLs, IPv4 addresses, ISO dates, hex colors, and phone numbers. Clicking a preset loads the verified pattern and flags instantly."
+      },
+      {
+        question: "What does the 'u' (Unicode) flag do?",
+        answer: "The 'u' flag enables full Unicode code point handling. Without it, characters outside the Basic Multilingual Plane (such as emojis or rare scripts) are treated as two separate 16-bit surrogate characters, which breaks quantifiers and character ranges."
+      },
+      {
+        question: "Is any of my input text or pattern sent to a remote server?",
+        answer: "No. All regular expression compilation, string matching, replacements, and telemetry metrics execute purely in client-side JavaScript inside your browser. No confidential text, logs, or proprietary source code ever leave your computer."
       }
     ]
   },
   scssFormatter: {
-    title: "How does the SCSS Formatter work?",
+    title: "Complete Guide to SCSS Formatting: Nesting Rules, Dart Sass Modules, and Architecture Best Practices",
     content: (
       <>
-        <p>The <strong>SCSS Formatter</strong> takes messy or unindented SCSS (Sassy CSS) code and restructures it with perfect hierarchical indentation. Because SCSS allows for deep nesting of CSS rules, proper formatting is crucial for readability.</p>
-        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Clean Up Your Stylesheets</h3>
-        <p className="mt-2">When working on large front-end frameworks, SCSS files can become deeply nested and difficult to read if a developer forgets to indent. This tool instantly realigns the curly braces, variables, and mixins to standard styling guidelines.</p>
+        <p>
+          Sassy CSS (SCSS) is the most widely adopted CSS preprocessor extension in modern web development. By adding programming constructs such as variables, selector nesting, mixins, functions, and modular file imports to standard CSS syntax, SCSS enables design systems and front-end engineering teams to scale stylesheets cleanly across massive codebases. The <strong>SCSS Formatter</strong> restructures minified, nested, or unformatted stylesheets with consistent indentation, properly aligned braces, and clean property spacing.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">SCSS vs. Indented Sass vs. Modern Native CSS Nesting</h3>
+        <p className="mt-2">
+          Understanding the differences between CSS preprocessors and native browser capabilities is vital for choosing the right front-end tooling:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">SCSS (Sassy CSS)</h4>
+            <code className="text-xs text-primary block my-1.5">.scss file extension</code>
+            <p className="text-xs text-muted-foreground">Fully backward-compatible with standard CSS. Uses curly braces (&#123;&#125;) and semicolons. Every valid CSS file is automatically valid SCSS.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Indented Sass</h4>
+            <code className="text-xs text-primary block my-1.5">.sass file extension</code>
+            <p className="text-xs text-muted-foreground">The original Haml-inspired syntax. Relies entirely on strict whitespace indentation and newlines, completely omitting braces and semicolons.</p>
+          </div>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Native CSS Nesting</h4>
+            <code className="text-xs text-primary block my-1.5">W3C Nesting Spec</code>
+            <p className="text-xs text-muted-foreground">Modern browser specification allowing nested selectors natively. Lacks preprocessor features like compile-time loops, mixin parameter defaults, and token math.</p>
+          </div>
+        </div>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">The Power and Pitfalls of Selector Nesting: The &quot;Inception Rule&quot;</h3>
+        <p className="mt-2">
+          Selector nesting mirrors the hierarchical structure of HTML, making styling feel natural. However, uncontrolled nesting is one of the most common causes of CSS specificity debt:
+        </p>
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            /* ❌ Overly nested: Specificity bloat (0, 0, 5) */<br />
+            .dashboard &#123;<br />
+            &nbsp;&nbsp;.main-content &#123;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;.card &#123;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.header &#123;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.title &#123; font-size: 1.5rem; &#125;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+            &nbsp;&nbsp;&#125;<br />
+            &#125;
+          </code>
+        </div>
+        <p className="mt-2">
+          In compiled CSS, this generates <code>.dashboard .main-content .card .header .title</code>. This long selector increases CSS bundle size, reduces rendering speed, and forces developers to use <code>!important</code> to override styles elsewhere.
+        </p>
+        <p className="mt-2">
+          <strong>The Inception Rule:</strong> Never nest selectors more than <strong>3 levels deep</strong>. Use the parent selector (<code>&amp;</code>) in combination with BEM (Block, Element, Modifier) naming conventions (such as <code>.card &#123; &amp;__header &#123; ... &#125; &#125;</code>) to flatten compiled selectors into simple single-class rules (<code>.card__header</code>).
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">SCSS Variables vs. Native CSS Custom Properties</h3>
+        <p className="mt-2">
+          SCSS variables (<code>$color: #3b82f6;</code>) and CSS Custom Properties (<code>--color: #3b82f6;</code>) serve complementary roles in modern UI engineering:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Compile-Time SCSS Variables ($var):</strong> Evaluated when your stylesheet compiles. They leave no trace in the final CSS bundle, support mathematical operations (e.g., <code>$spacing * 2</code>), and can be used inside media queries and mixin conditionals.</li>
+          <li><strong>Runtime CSS Custom Properties (var(--var)):</strong> Persist in the browser DOM. They cascade dynamically down the DOM tree, can be inspected and updated in Chrome DevTools, and can be modified via JavaScript for real-time dark/light theme switching.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Modern Dart Sass Module Architecture: Migrating from @import</h3>
+        <p className="mt-2">
+          The legacy <code>@import</code> directive has been formally deprecated by the Sass core team due to global namespace pollution and redundant compilation cycles. Modern SCSS uses the module system:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><code>@use &apos;variables&apos; as *;</code> — Imports variables, mixins, and functions with explicit namespacing, preventing accidental name collisions.</li>
+          <li><code>@forward &apos;mixins&apos;;</code> — Collects and re-exports multiple partial files into a unified design system entry point.</li>
+          <li><code>built-in modules</code> — Sass provides dedicated namespaces like <code>sass:math</code>, <code>sass:color</code>, <code>sass:map</code>, and <code>sass:string</code> for standard functions.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Formatting and Linting Standards</h3>
+        <p className="mt-2">
+          Consistent formatting prevents noisy pull request diffs and makes team stylesheets maintainable:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><strong>Indentation:</strong> Standardize on 2 spaces per nesting level across all SCSS files.</li>
+          <li><strong>Property Order (Concentric CSS):</strong> Group properties from outside-in: Positioning (<code>position</code>, <code>top</code>, <code>z-index</code>) &rarr; Box Model (<code>display</code>, <code>flex</code>, <code>width</code>, <code>margin</code>, <code>padding</code>) &rarr; Typography (<code>font-family</code>, <code>font-size</code>, <code>color</code>) &rarr; Visuals (<code>background</code>, <code>border</code>, <code>box-shadow</code>) &rarr; Animation (<code>transition</code>, <code>transform</code>).</li>
+          <li><strong>Comment Conventions:</strong> Use double-slash comments (<code>//</code>) for internal developer notes (omitted during CSS compilation) and block comments (<code>/* ... */</code>) for copyright or public documentation headers.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2 text-foreground">Related Styling &amp; Web Development Tools</h3>
+        <p className="mt-2">
+          Need to format or convert other front-end web assets? Explore our companion tools:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3">
+          <li><a href="/css-formatter" className="text-primary hover:underline font-medium">CSS Formatter &amp; Beautifier</a> — Format and beautify standard CSS stylesheets with custom indentation.</li>
+          <li><a href="/html-formatter" className="text-primary hover:underline font-medium">HTML Formatter</a> — Clean and standardize minified HTML5 web templates.</li>
+          <li><a href="/javascript-formatter" className="text-primary hover:underline font-medium">JavaScript Formatter</a> — Beautify, format, and indent JS, TS, and JSX scripts.</li>
+          <li><a href="/blog/how-to-format-scss" className="text-primary hover:underline font-medium">Complete SCSS Architecture Tutorial</a> — Learn how to organize 7-1 Sass folders, avoid specificity wars, and write reusable mixins.</li>
+        </ul>
       </>
     ),
     faqs: [
       {
-        question: "Does it compile SCSS to CSS?",
-        answer: "No, this is a formatter, not a compiler. It takes SCSS code and returns beautifully formatted SCSS code. It does not convert it into standard CSS."
+        question: "What is the difference between SCSS and standard CSS?",
+        answer: "SCSS is a CSS preprocessor superset. It includes everything in CSS plus advanced programming capabilities like nesting, variables ($), mixins (@mixin/@include), inheritance (@extend), mathematical expressions, and modular imports. Browsers cannot read SCSS directly; it must be compiled into CSS."
+      },
+      {
+        question: "Does this SCSS Formatter compile SCSS into plain CSS?",
+        answer: "No. This tool is a code formatter and beautifier, not a Sass compiler. It restructures messy or minified SCSS code with perfect indentation and spacing while preserving all SCSS constructs (like variables, nested selectors, and mixins)."
+      },
+      {
+        question: "How does the parent selector (&) work in SCSS?",
+        answer: "The ampersand (&) references the parent selector in a nested rule. It is commonly used for pseudo-classes ('&:hover', '&:focus'), pseudo-elements ('&::after'), and BEM element/modifier suffixes ('&__header', '&--active')."
+      },
+      {
+        question: "What is the 'Inception Rule' for SCSS nesting?",
+        answer: "The Inception Rule advises developers never to nest SCSS selectors more than 3 to 4 levels deep. Deep nesting produces overly specific compiled CSS selectors that inflate bundle size and make overriding styles difficult."
+      },
+      {
+        question: "What is the difference between SCSS variables ($var) and CSS variables (var(--var))?",
+        answer: "SCSS variables are evaluated at compile time and disappear from the final CSS file. Native CSS Custom Properties (variables) persist in the browser DOM, cascade dynamically down the component tree, and can be changed in real time using JavaScript."
+      },
+      {
+        question: "Why has @import been deprecated in modern Sass?",
+        answer: "The legacy @import directive loaded everything into a shared global namespace, causing naming conflicts and duplicating compiled CSS rules when imported multiple times. Modern Dart Sass uses '@use' and '@forward' with explicit module namespaces."
+      },
+      {
+        question: "What is the difference between @mixin and @extend?",
+        answer: "A @mixin copies its entire CSS declaration block directly into each selector where it is included via '@include', supporting custom arguments. '@extend' combines selectors into a single comma-separated rule to avoid duplicating declarations, but can lead to unexpected cascade side effects."
+      },
+      {
+        question: "How are inline comments (//) handled in SCSS?",
+        answer: "In SCSS, single-line comments starting with '//' are treated as silent comments: they are visible in your raw SCSS files but are completely stripped out when compiled to standard CSS. Block comments '/* */' are preserved in non-compressed builds."
+      },
+      {
+        question: "Can I choose between 2 spaces, 4 spaces, or Tabs for indentation?",
+        answer: "Yes. Our tool allows you to select 2 spaces (the modern web industry standard), 4 spaces, or tab indentation with a single dropdown selection."
+      },
+      {
+        question: "Can this tool minify SCSS code to reduce file size?",
+        answer: "Yes. Toggling the 'Minify SCSS' mode strips out whitespace, removes comments, and condenses rules onto single lines, calculating total byte savings in the live telemetry dashboard."
+      },
+      {
+        question: "Does native CSS nesting make SCSS obsolete?",
+        answer: "While modern browsers now support native CSS nesting, SCSS remains indispensable for large design systems. SCSS provides compile-time loops, advanced color functions, token calculations, and modular file encapsulation that native CSS does not offer."
+      },
+      {
+        question: "Is my proprietary stylesheet uploaded to a server when I use this tool?",
+        answer: "No. All parsing, indentation restructuring, minification, and telemetry calculations run 100% locally in your web browser using client-side JavaScript. No stylesheets, brand tokens, or proprietary design assets are ever uploaded to any server."
       }
     ]
   }
