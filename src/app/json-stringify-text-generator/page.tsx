@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "JSON Stringify Text Generator — Free Online Tool",
   description: "Generate JSON.stringify() output from any plain text. Escapes all special characters for safe use in code. Free online tool.",
-  keywords: "JSON stringify text, JSON escape text, stringify string online, escape text for JSON free",
   alternates: {
     canonical: `${BASE}/json-stringify-text-generator`,
   },

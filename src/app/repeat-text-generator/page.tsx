@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Repeat Text Generator Online — Multiply Words, Lines & Text Free",
+  title: "Repeat Text Generator — Repeat Words & Lines",
   description: "Repeat any word, string, or text block up to 10,000 times. Customize separators (newlines, spaces, commas), add sequential line numbering, and copy instantly.",
-  keywords: "repeat text generator, text multiplier, duplicate text online, repeat words, text repeater tool, repeat string online free, numbered text repeater",
   alternates: {
     canonical: `${BASE}/repeat-text-generator`,
   },
   openGraph: {
-    title: "Repeat Text Generator Online — Multiply Words, Lines & Text Free",
+    title: "Repeat Text Generator — Repeat Words & Lines",
     description: "Repeat any word, string, or text block up to 10,000 times. Customize separators (newlines, spaces, commas), add sequential line numbering, and copy instantly.",
     url: `${BASE}/repeat-text-generator`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Repeat Text Generator Online — Multiply Words, Lines & Text Free",
+    title: "Repeat Text Generator — Repeat Words & Lines",
     description: "Repeat any word, string, or text block up to 10,000 times. Customize separators (newlines, spaces, commas), add sequential line numbering, and copy instantly.",
     images: ["/og-image.png"],
   },

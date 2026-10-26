@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "JSON Formatter, Validator & Minifier — Free Online",
   description: "Format, beautify, validate, and minify JSON data instantly. Handles complex nested JSON. Free online JSON formatter and validator.",
-  keywords: "JSON formatter, JSON validator, JSON beautifier, minify JSON, pretty print JSON online free",
   alternates: {
     canonical: `${BASE}/json-formatter`,
   },
@@ -18,13 +17,11 @@ export const metadata: Metadata = {
     url: `${BASE}/json-formatter`,
     siteName: "Casetivo",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "JSON Formatter, Validator & Minifier — Free Online" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "JSON Formatter, Validator & Minifier — Free Online",
     description: "Format, beautify, validate, and minify JSON data instantly. Handles complex nested JSON. Free online JSON formatter and validator.",
-    images: ["/og-image.png"],
   },
 };
 

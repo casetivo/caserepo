@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Casetivo — Free Online Text Tools",
     short_name: "Casetivo",
-    description: "60+ free online text tools: case converters, JSON formatter, image converters and more.",
+    description: "55+ free online text tools: case converters, JSON formatter, image converters and more.",
     start_url: "/",
     display: "standalone",
     background_color: "#f7f5f0",

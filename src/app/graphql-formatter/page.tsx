@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "GraphQL Formatter & Beautifier — Free Online Tool",
   description: "Format and beautify GraphQL queries and mutations with proper indentation. Free online GraphQL formatter tool.",
-  keywords: "GraphQL formatter, GraphQL beautifier, format GraphQL query online, GraphQL pretty print free",
   alternates: {
     canonical: `${BASE}/graphql-formatter`,
   },

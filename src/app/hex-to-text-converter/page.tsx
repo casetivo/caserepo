@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Hex to Text Converter — Free Online Tool",
   description: "Convert hexadecimal to text or text to hexadecimal code instantly. Free online hex to text and text to hex converter tool.",
-  keywords: "hex to text converter, text to hex, hexadecimal converter, hex decoder online free",
   alternates: {
     canonical: `${BASE}/hex-to-text-converter`,
   },

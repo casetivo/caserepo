@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import InvoiceGeneratorClient from "./_client";
 
 export const metadata: Metadata = {
-  title: "Invoice Generator — Create & Download PDF Invoices Free",
-  description: "Create professional PDF invoices instantly. Supports 20+ currencies including USD, EUR, GBP, PKR, INR. Add line items, tax, discount, custom branding and download as PDF. Free online invoice generator.",
-  keywords: "invoice generator, PDF invoice, free invoice maker, online invoice creator, invoice with tax, multi-currency invoice",
+  title: "Free Invoice Generator — Create PDF Invoices",
+  description: "Create professional PDF invoices free. 20+ currencies including USD, EUR, GBP, PKR, and INR, with line items, tax, discount, and custom branding.",
   alternates: { canonical: "https://www.casetivo.com/invoice-generator" },
   openGraph: {
-    title: "Invoice Generator — Create & Download PDF Invoices Free",
+    title: "Free Invoice Generator — Create PDF Invoices",
     description: "Create professional PDF invoices with 20+ currencies. Add items, tax, discount, notes and download as PDF instantly.",
     url: "https://www.casetivo.com/invoice-generator",
     siteName: "Casetivo",

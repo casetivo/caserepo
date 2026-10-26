@@ -6,15 +6,14 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Roman Numeral Date Converter — Free Date & Number Generator",
-  description: "Convert any date or number into Roman numerals instantly. Perfect for tattoos, wedding dates, and anniversaries. Features middle dots (·), slashes, and two-way conversion.",
-  keywords: "roman numeral date converter, roman numeral tattoo generator, date to roman numerals, roman numbers converter, tattoo date converter, convert date to roman numerals online",
+  title: "Roman Numeral Date Converter — Dates to Numerals",
+  description: "Convert any date or number to Roman numerals for tattoos, weddings, and anniversaries. Supports middle dots (·), slashes, and two-way conversion.",
   alternates: {
     canonical: `${BASE}/roman-numeral-date-converter`,
   },
   openGraph: {
-    title: "Roman Numeral Date Converter — Free Date & Number Generator",
-    description: "Convert any date or number into Roman numerals instantly. Perfect for tattoos, wedding dates, and anniversaries. Features middle dots (·), slashes, and two-way conversion.",
+    title: "Roman Numeral Date Converter — Dates to Numerals",
+    description: "Convert any date or number to Roman numerals for tattoos, weddings, and anniversaries. Supports middle dots (·), slashes, and two-way conversion.",
     url: `${BASE}/roman-numeral-date-converter`,
     siteName: "Casetivo",
     type: "website",
@@ -22,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roman Numeral Date Converter — Free Date & Number Generator",
-    description: "Convert any date or number into Roman numerals instantly. Perfect for tattoos, wedding dates, and anniversaries. Features middle dots (·), slashes, and two-way conversion.",
+    title: "Roman Numeral Date Converter — Dates to Numerals",
+    description: "Convert any date or number to Roman numerals for tattoos, weddings, and anniversaries. Supports middle dots (·), slashes, and two-way conversion.",
     images: ["/og-image.png"],
   },
 };
@@ -36,7 +35,7 @@ export default function Page() {
       <SchemaMarkup
         toolName="Roman Numeral Date Converter"
         url={`${BASE}/roman-numeral-date-converter`}
-        description="Convert any date or number into Roman numerals instantly. Perfect for tattoos, wedding dates, and anniversaries. Features middle dots (·), slashes, and two-way conversion."
+        description="Convert any date or number to Roman numerals for tattoos, weddings, and anniversaries. Supports middle dots (·), slashes, and two-way conversion."
         faqs={seoData.faqs}
       />
       <ClientPage />

@@ -3,14 +3,13 @@ import type { Metadata } from "next";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Title Case Converter – Automatic Headline Capitalization",
+  title: "Title Case Converter – Headline Capitalization",
   description: "Convert headlines, book titles, and essays to proper Title Case automatically. Minor prepositions and articles stay lowercase. 100% free and private.",
-  keywords: "title case converter, title case tool, proper title case, headline capitalization tool, capitalize headlines online, title case generator, book title capitalization, apa title case",
   alternates: {
     canonical: `${BASE}/title-case`,
   },
   openGraph: {
-    title: "Title Case Converter – Automatic Headline Capitalization",
+    title: "Title Case Converter – Headline Capitalization",
     description: "Convert headlines, book titles, and essays to proper Title Case automatically. Minor prepositions and articles stay lowercase. 100% free and private.",
     url: `${BASE}/title-case`,
     siteName: "Casetivo",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Title Case Converter – Automatic Headline Capitalization",
+    title: "Title Case Converter – Headline Capitalization",
     description: "Convert headlines, book titles, and essays to proper Title Case automatically. Minor prepositions and articles stay lowercase. 100% free and private.",
     images: ["/og-image.png"],
   },

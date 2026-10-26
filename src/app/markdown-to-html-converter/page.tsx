@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Markdown to HTML Converter — Free Online Tool",
   description: "Convert Markdown text to HTML instantly. Supports headings, bold, italic, lists, links, and code. Free online Markdown to HTML converter.",
-  keywords: "markdown to HTML, convert markdown HTML, MD to HTML converter online, markdown parser free",
   alternates: {
     canonical: `${BASE}/markdown-to-html-converter`,
   },

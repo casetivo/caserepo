@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "SCSS Formatter & Beautifier — Free Online Tool",
   description: "Format and beautify SCSS code with proper indentation and nesting. Free online SCSS formatter and beautifier tool.",
-  keywords: "SCSS formatter, SCSS beautifier, format SCSS online, SCSS pretty print, Sass formatter free",
   alternates: {
     canonical: `${BASE}/scss-formatter`,
   },

@@ -8,14 +8,13 @@ import { TOOL_CATEGORIES } from "@/lib/tools";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
-  description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free, private online case converter with no sign-up.",
-  keywords: "case converter, online case converter, convert case, uppercase converter, lowercase converter, sentence case converter, title case converter, capitalized case, inverse case, text case converter",
+  title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
+  description: "Convert text to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free, private online case converter, no sign-up.",
   alternates: {
     canonical: BASE,
   },
   openGraph: {
-    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
     description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     url: BASE,
     siteName: "Casetivo",
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online Case Converter | Uppercase, Lowercase & Title Case",
+    title: "Case Converter: Uppercase, Lowercase & Title Case | Casetivo",
     description: "Convert text instantly to uppercase, lowercase, sentence case, title case, capitalized case, or inverse case. Free and private.",
     images: ["/og-image.png"],
   },
@@ -129,7 +128,7 @@ function HomeSeoSection() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto px-4 mb-10">
         <div className="rounded-xl border border-border bg-card p-5 text-center">
-          <div className="text-2xl font-extrabold text-primary mb-1" style={{ fontFamily: "var(--font-display)" }}>60+</div>
+          <div className="text-2xl font-extrabold text-primary mb-1" style={{ fontFamily: "var(--font-display)" }}>55+</div>
           <div className="text-sm font-semibold text-foreground mb-1">Free Tools</div>
           <p className="text-xs text-muted-foreground">Case converters, code formatters, image converters, random generators, and more.</p>
         </div>
@@ -261,19 +260,20 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE}/#website`,
     "name": "Casetivo",
     "url": BASE,
     "description": "Free online text tools — case converters, JSON formatter, image converters, and more.",
-    "publisher": { "@type": "Organization", "name": "Casetivo", "url": BASE }
+    "publisher": { "@id": `${BASE}/#organization` }
   };
 
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${BASE}/#organization`,
     "name": "Casetivo",
     "url": BASE,
     "logo": `${BASE}/icon-512.png`,
-    "sameAs": [],
     "description": "Free online text tools, code formatters, image converters, and developer utilities."
   };
 

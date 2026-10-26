@@ -4,14 +4,13 @@ const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
   title: "Uppercase Converter — Free Online ALL CAPS Tool",
-  description: "Convert text to uppercase instantly with our free Uppercase Converter. Transform any text to ALL CAPS for legal documents, headlines, constants, and more in seconds.",
-  keywords: "uppercase converter, convert to uppercase, ALL CAPS converter, uppercase text, uppercase generator, capital letters converter, text to uppercase online, capitalize all letters, ALL CAPS tool, text capitalization, uppercase formatter, convert lowercase to uppercase, text formatting, capitalization tool, SCREAMING_SNAKE_CASE",
+  description: "Convert text to uppercase instantly. Turn any text into ALL CAPS for legal documents, headlines, code constants, and more. Free and private.",
   alternates: {
     canonical: `${BASE}/upper-case`,
   },
   openGraph: {
     title: "Uppercase Converter — Free Online ALL CAPS Tool",
-    description: "Convert text to uppercase instantly with our free Uppercase Converter. Transform any text to ALL CAPS for legal documents, headlines, constants, and more in seconds.",
+    description: "Convert text to uppercase instantly. Turn any text into ALL CAPS for legal documents, headlines, code constants, and more. Free and private.",
     url: `${BASE}/upper-case`,
     siteName: "Casetivo",
     type: "website",
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Uppercase Converter — Free Online ALL CAPS Tool",
-    description: "Convert text to uppercase instantly with our free Uppercase Converter. Transform any text to ALL CAPS for legal documents, headlines, constants, and more in seconds.",
+    description: "Convert text to uppercase instantly. Turn any text into ALL CAPS for legal documents, headlines, code constants, and more. Free and private.",
     images: ["/og-image.png"],
   },
 };

@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Month Generator — Free Online Tool",
   description: "Pick one or more random months of the year. Useful for games, decisions, and random sampling. Free online random month generator.",
-  keywords: "random month generator, pick random month, random month picker online, month randomizer free",
   alternates: {
     canonical: `${BASE}/random-month-generator`,
   },

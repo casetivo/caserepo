@@ -6,15 +6,14 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Text Replacement Tool Online — Batch Find and Replace Words",
-  description: "Find and replace text, words, and phrases online. Features whole-word matching, regex support, case sensitivity, and multiple batch replacement rules. Free & private.",
-  keywords: "text replacement tool, find and replace online, word replacer, batch text replace, regex find and replace, replace words in text, safe find and replace",
+  title: "Text Replacement Tool — Batch Find & Replace",
+  description: "Find and replace words and phrases online with whole-word matching, regex support, case sensitivity, and batch replacement rules. Free & private.",
   alternates: {
     canonical: `${BASE}/text-replacement-tool`,
   },
   openGraph: {
-    title: "Text Replacement Tool Online — Batch Find and Replace Words",
-    description: "Find and replace text, words, and phrases online. Features whole-word matching, regex support, case sensitivity, and multiple batch replacement rules. Free & private.",
+    title: "Text Replacement Tool — Batch Find & Replace",
+    description: "Find and replace words and phrases online with whole-word matching, regex support, case sensitivity, and batch replacement rules. Free & private.",
     url: `${BASE}/text-replacement-tool`,
     siteName: "Casetivo",
     type: "website",
@@ -22,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Text Replacement Tool Online — Batch Find and Replace Words",
-    description: "Find and replace text, words, and phrases online. Features whole-word matching, regex support, case sensitivity, and multiple batch replacement rules. Free & private.",
+    title: "Text Replacement Tool — Batch Find & Replace",
+    description: "Find and replace words and phrases online with whole-word matching, regex support, case sensitivity, and batch replacement rules. Free & private.",
     images: ["/og-image.png"],
   },
 };
@@ -36,7 +35,7 @@ export default function Page() {
       <SchemaMarkup
         toolName="Text Replacement Tool"
         url={`${BASE}/text-replacement-tool`}
-        description="Find and replace text, words, and phrases online. Features whole-word matching, regex support, case sensitivity, and multiple batch replacement rules. Free & private."
+        description="Find and replace words and phrases online with whole-word matching, regex support, case sensitivity, and batch replacement rules. Free & private."
         faqs={seoData.faqs}
       />
       <ClientPage />

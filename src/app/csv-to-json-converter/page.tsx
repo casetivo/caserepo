@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "CSV to JSON Converter — Free Online Tool",
   description: "Convert CSV data to JSON format instantly. Paste your CSV and get properly structured JSON output. Free online CSV to JSON converter.",
-  keywords: "CSV to JSON converter, convert CSV JSON online, CSV JSON tool, parse CSV to JSON free",
   alternates: {
     canonical: `${BASE}/csv-to-json-converter`,
   },

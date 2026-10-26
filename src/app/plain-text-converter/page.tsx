@@ -6,14 +6,13 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Plain Text Converter Online — Strip Formatting, HTML & Smart Quotes",
+  title: "Plain Text Converter — Strip Formatting & HTML",
   description: "Strip rich formatting, HTML tags, smart quotes, em dashes, and invisible characters from your text instantly. 100% private, free online plain text cleaner.",
-  keywords: "plain text converter, remove formatting, strip html tags, clean text online, smart quote converter, remove invisible characters, unformat text",
   alternates: {
     canonical: `${BASE}/plain-text-converter`,
   },
   openGraph: {
-    title: "Plain Text Converter Online — Strip Formatting, HTML & Smart Quotes",
+    title: "Plain Text Converter — Strip Formatting & HTML",
     description: "Strip rich formatting, HTML tags, smart quotes, em dashes, and invisible characters from your text instantly. 100% private, free online plain text cleaner.",
     url: `${BASE}/plain-text-converter`,
     siteName: "Casetivo",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plain Text Converter Online — Strip Formatting, HTML & Smart Quotes",
+    title: "Plain Text Converter — Strip Formatting & HTML",
     description: "Strip rich formatting, HTML tags, smart quotes, em dashes, and invisible characters from your text instantly. 100% private, free online plain text cleaner.",
     images: ["/og-image.png"],
   },

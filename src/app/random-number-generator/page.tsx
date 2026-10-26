@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random Number Generator — Free Online Tool",
   description: "Generate random numbers within any range. Set min, max, and count. Ideal for lotteries, games, and statistics. Free online random number generator.",
-  keywords: "random number generator, generate random numbers, random number picker online, random integer generator free",
   alternates: {
     canonical: `${BASE}/random-number-generator`,
   },

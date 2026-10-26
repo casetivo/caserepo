@@ -99,6 +99,7 @@ export default function SearchButton() {
         onClick={() => setIsOpen(true)}
         className="flex items-center justify-center text-foreground hover:text-primary transition-colors cursor-pointer" 
         title="Search tools (Ctrl+K)"
+        aria-label="Search tools"
       >
         <Search className="w-4 h-4" />
       </button>
@@ -117,7 +118,7 @@ export default function SearchButton() {
                 aria-label="Search tools"
                 className="flex h-14 w-full rounded-md bg-transparent py-3 pl-3 pr-4 text-sm outline-none placeholder:text-muted-foreground text-foreground"
               />
-              <button onClick={() => setIsOpen(false)} className="rounded-full p-1.5 hover:bg-accent text-muted-foreground shrink-0 transition-colors">
+              <button onClick={() => setIsOpen(false)} aria-label="Close search" className="rounded-full p-1.5 hover:bg-accent text-muted-foreground shrink-0 transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </div>

@@ -6,15 +6,14 @@ import ClientPage from "./_client";
 const BASE = "https://www.casetivo.com";
 
 export const metadata: Metadata = {
-  title: "Em Dash Remover Online — Replace or Remove Em Dashes & En Dashes",
-  description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with standard hyphens, commas, or spaces. Clean AI writing patterns and fix encoding errors instantly.",
-  keywords: "em dash remover, remove em dashes, replace em dash with hyphen, ai em dash remover, strip em dashes online, en dash converter, clean dashes",
+  title: "Em Dash Remover — Replace Em & En Dashes",
+  description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with hyphens, commas, or spaces. Clean up AI writing patterns instantly.",
   alternates: {
     canonical: `${BASE}/em-dash-remover`,
   },
   openGraph: {
-    title: "Em Dash Remover Online — Replace or Remove Em Dashes & En Dashes",
-    description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with standard hyphens, commas, or spaces. Clean AI writing patterns and fix encoding errors instantly.",
+    title: "Em Dash Remover — Replace Em & En Dashes",
+    description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with hyphens, commas, or spaces. Clean up AI writing patterns instantly.",
     url: `${BASE}/em-dash-remover`,
     siteName: "Casetivo",
     type: "website",
@@ -22,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Em Dash Remover Online — Replace or Remove Em Dashes & En Dashes",
-    description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with standard hyphens, commas, or spaces. Clean AI writing patterns and fix encoding errors instantly.",
+    title: "Em Dash Remover — Replace Em & En Dashes",
+    description: "Remove or replace em dashes (—), en dashes (–), and double hyphens with hyphens, commas, or spaces. Clean up AI writing patterns instantly.",
     images: ["/og-image.png"],
   },
 };
@@ -36,7 +35,7 @@ export default function Page() {
       <SchemaMarkup
         toolName="Em Dash Remover"
         url={`${BASE}/em-dash-remover`}
-        description="Remove or replace em dashes (—), en dashes (–), and double hyphens with standard hyphens, commas, or spaces. Clean AI writing patterns and fix encoding errors instantly."
+        description="Remove or replace em dashes (—), en dashes (–), and double hyphens with hyphens, commas, or spaces. Clean up AI writing patterns instantly."
         faqs={seoData.faqs}
       />
       <ClientPage />

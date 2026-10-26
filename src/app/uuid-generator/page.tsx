@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "UUID Generator - Generate UUID v4 Online",
   description: "Generate UUID v4 values in bulk with standard hyphens or uppercase formatting. Created locally in your browser. Free, no sign-up required.",
-  keywords: "UUID generator, UUID v4 generator, generate UUID online, GUID generator free, unique ID generator",
   alternates: {
     canonical: `${BASE}/uuid-generator`,
   },
@@ -18,13 +17,11 @@ export const metadata: Metadata = {
     url: `${BASE}/uuid-generator`,
     siteName: "Casetivo",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "UUID Generator by Casetivo" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "UUID Generator - Generate UUID v4 Online",
     description: "Generate UUID v4 values in bulk with standard hyphens or uppercase formatting. Created locally in your browser.",
-    images: ["/og-image.png"],
   },
 };
 

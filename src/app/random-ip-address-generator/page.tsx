@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Random IP Address Generator — IPv4 & IPv6 Free",
   description: "Generate random IPv4 or IPv6 addresses for testing and development. Bulk generation supported. Free online IP address generator.",
-  keywords: "random IP address generator, fake IP address, generate IPv4 IPv6, random IP generator online free",
   alternates: {
     canonical: `${BASE}/random-ip-address-generator`,
   },

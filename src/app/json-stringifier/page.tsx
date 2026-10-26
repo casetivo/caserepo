@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "JSON Stringifier — Free Online Tool",
   description: "Convert JSON objects to JSON strings with proper escaping. Free online JSON stringifier — the equivalent of JSON.stringify() in your browser.",
-  keywords: "JSON stringify online, JSON stringifier, JSON to string, JSON serializer online free",
   alternates: {
     canonical: `${BASE}/json-stringifier`,
   },

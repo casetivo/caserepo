@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "MD5 Hash Generator — Free Online Tool",
   description: "Generate MD5 hash from any text string instantly. Free online MD5 hash generator — secure, fast, works entirely in your browser.",
-  keywords: "MD5 hash generator, MD5 checksum, generate MD5 online, MD5 encoder free, text to MD5",
   alternates: {
     canonical: `${BASE}/md5-hash-generator`,
   },

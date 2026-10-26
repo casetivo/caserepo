@@ -7,13 +7,13 @@ const BASE = "https://www.casetivo.com";
 const URL = `${BASE}/strong-password-generator`;
 
 export const metadata: Metadata = {
-  title: "Strong Password Generator - Create Random Passwords Online",
+  title: "Strong Password Generator - Random & Secure",
   description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser. Free, no sign-up required.",
   alternates: {
     canonical: URL,
   },
   openGraph: {
-    title: "Strong Password Generator - Create Random Passwords Online",
+    title: "Strong Password Generator - Random & Secure",
     description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser.",
     url: URL,
     siteName: "Casetivo",
@@ -29,9 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Strong Password Generator - Create Random Passwords Online",
+    title: "Strong Password Generator - Random & Secure",
     description: "Create unique passwords with custom length, letters, numbers, and symbols. Generated locally in your browser.",
-    images: ["/og-image.png"],
   },
 };
 

@@ -20,6 +20,7 @@ const ToolHeader = memo(({ icon, title, relatedTools }: ToolHeaderProps) => (
         <Link
           href="/"
           prefetch={true}
+          aria-label="Back to all tools"
           className="w-7 h-7 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:bg-accent transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

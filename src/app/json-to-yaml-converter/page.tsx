@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "JSON to YAML Converter — Free Online Tool",
   description: "Convert JSON data to YAML format instantly. Free online JSON to YAML converter — clean, readable YAML output in one click.",
-  keywords: "JSON to YAML converter, convert JSON YAML online, YAML formatter, JSON YAML tool free",
   alternates: {
     canonical: `${BASE}/json-to-yaml-converter`,
   },

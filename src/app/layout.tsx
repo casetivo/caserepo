@@ -33,16 +33,11 @@ export const viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Casetivo — 60+ Free Online Text, Code & Image Tools",
+    default: "Casetivo — 55+ Free Online Text, Code & Image Tools",
     template: "%s | Casetivo",
   },
   description:
-    "Casetivo offers 60+ free online developer utilities and text tools. Convert text cases, format JSON, encode Base64, convert images, and generate random data instantly.",
-  keywords: [
-    "online text tools", "developer tools", "JSON formatter", "case converter",
-    "base64 encoder", "image converter", "random generators", "uuid generator",
-    "free online tools", "casetivo",
-  ],
+    "Casetivo offers 55+ free online developer utilities and text tools. Convert text cases, format JSON, encode Base64, convert images, and generate random data instantly.",
   authors: [{ name: "Casetivo", url: BASE_URL }],
   creator: "Casetivo",
   publisher: "Casetivo",
@@ -56,16 +51,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "Casetivo",
-    title: "Casetivo — 60+ Free Online Text, Code & Image Tools",
-    description: "Casetivo offers 60+ free online developer utilities and text tools. Convert text cases, format JSON, encode Base64, convert images, and generate random data instantly.",
+    title: "Casetivo — 55+ Free Online Text, Code & Image Tools",
+    description: "Casetivo offers 55+ free online developer utilities and text tools. Convert text cases, format JSON, encode Base64, convert images, and generate random data instantly.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Casetivo — Free Online Developer & Text Tools" }],
   },
   twitter: {
     card: "summary_large_image",
     site: "@casetivo",
     creator: "@casetivo",
-    title: "Casetivo — 60+ Free Online Text, Code & Image Tools",
-    description: "Casetivo offers 60+ free online developer utilities and text tools.",
+    title: "Casetivo — 55+ Free Online Text, Code & Image Tools",
+    description: "Casetivo offers 55+ free online developer utilities and text tools.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -79,12 +74,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        {/* Preconnect to critical origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://aoxfbijljfbkzpinouwv.supabase.co" />
-      </head>
       <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"

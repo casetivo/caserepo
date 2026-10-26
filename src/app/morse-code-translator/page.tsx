@@ -8,7 +8,6 @@ const BASE = "https://www.casetivo.com";
 export const metadata: Metadata = {
   title: "Morse Code Translator — Text to Morse Free",
   description: "Convert text to Morse code or translate Morse code back to text instantly. Supports all letters, numbers, and punctuation. Free online Morse code translator.",
-  keywords: "morse code translator, text to morse code, morse code decoder, morse code converter online free",
   alternates: {
     canonical: `${BASE}/morse-code-translator`,
   },
