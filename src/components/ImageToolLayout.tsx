@@ -13,7 +13,7 @@ import SchemaMarkup from "@/components/SchemaMarkup";
 import RelatedTools from "@/components/RelatedTools";
 import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { usePathname } from "next/navigation";
-import { localeNames, localeCountryCodes } from "@/i18n/translations";
+import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import { useI18n } from "@/hooks/useI18n";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -93,6 +93,7 @@ const ImageToolLayout = memo(({ toolKey, title, subtitle, acceptFormats, actionL
           <div className="flex items-center gap-2">
             <SearchButton />
             <ThemeToggle />
+            {SHOW_LANGUAGE_SWITCHER && (
             <div className="relative">
               <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-accent transition-colors">
                 <Image src={`https://flagcdn.com/w20/${localeCountryCodes[locale]}.png`} width={16} height={12} alt="" className="rounded-[2px] object-cover shadow-sm" />
@@ -112,6 +113,7 @@ const ImageToolLayout = memo(({ toolKey, title, subtitle, acceptFormats, actionL
               </>
             )}
             </div>
+            )}
           </div>
         </div>
         <div className="xl:hidden border-t border-border/60 bg-card/30 py-1 px-4">

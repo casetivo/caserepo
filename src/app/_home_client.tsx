@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
 import { toSentenceCase, toLowerCaseText, toUpperCaseText, toCapitalizedCase, toTitleCase, toInverseCase } from "@/lib/caseConverters";
-import { localeNames, localeCountryCodes } from "@/i18n/translations";
+import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import { useI18n } from "@/hooks/useI18n";
 import { Copy, Dices, ImageIcon, Search, Trash2, Wrench, Globe, Download, ChevronDown } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -61,6 +61,7 @@ export default function HomeClientPage({ children, heading }: { children?: React
               <li className="shrink-0 flex items-center">
                 <ThemeToggle />
               </li>
+              {SHOW_LANGUAGE_SWITCHER && (<>
               <li className="text-border/60 select-none px-1">|</li>
               <li className="shrink-0 flex items-center">
                 <div className="relative">
@@ -83,12 +84,14 @@ export default function HomeClientPage({ children, heading }: { children?: React
                   )}
                 </div>
               </li>
+              </>)}
             </SubHeaderNav>
           </div>
 
           <div className="flex xl:hidden items-center gap-2 shrink-0">
             <SearchButton />
             <ThemeToggle />
+            {SHOW_LANGUAGE_SWITCHER && (
             <div className="relative">
               <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-1.5 p-2 rounded-md text-sm font-medium text-foreground hover:bg-accent transition-colors cursor-pointer">
                 <Image src={`https://flagcdn.com/w20/${localeCountryCodes[locale]}.png`} width={16} height={12} alt="Language Flag" className="rounded-[2px] object-cover shadow-sm" />
@@ -108,6 +111,7 @@ export default function HomeClientPage({ children, heading }: { children?: React
                 </>
               )}
             </div>
+            )}
           </div>
         </div>
         <div className="xl:hidden border-t border-border/60 bg-card/30 py-1 px-4">

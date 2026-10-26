@@ -1,3 +1,7 @@
+// Language switcher is temporarily hidden: translations are client-side only (no
+// per-language URLs or hreflang) and do not cover the SEO content. Set to true to restore.
+export const SHOW_LANGUAGE_SWITCHER = false;
+
 export type Locale =
   | "en" | "de" | "el" | "es" | "fil" | "fr"
   | "hi" | "hu" | "it" | "pl" | "pt" | "sl" | "tr" | "uk";
