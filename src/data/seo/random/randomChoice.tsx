@@ -1,146 +1,146 @@
 import React from "react";
+import Link from "next/link";
 import { ToolSeoContent } from "../../seoContent";
 
 export const randomChoiceSeo: ToolSeoContent = {
-  title: "Random Choice Generator — Spin the Digital Wheel",
+  title: "Complete Guide to Random Decision Making: Eliminating Choice Paralysis, Fisher-Yates Shuffling, and Fair Selection",
   content: (
     <>
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">Introduction</h2>
-        <p className="text-muted-foreground mb-4">
-          Decision fatigue is a real psychological phenomenon. When faced with too many options, our brains struggle to make a choice. The Random Choice Generator (often referred to as a digital wheel spinner or random picker) is an online utility designed to make those tough decisions for you. Whether you are trying to decide what restaurant to eat at for dinner, which movie to watch, or which student should present their project next, this tool acts as an impartial, unbiased judge. By simply inputting a list of comma-separated items, our secure client-side algorithm will instantly select one winning option at random. It removes human bias, saves time, and adds an element of fun and spontaneity to everyday decision-making or professional giveaways.
+        <h2 className="text-2xl font-bold mb-4 text-foreground">The Psychology and Mathematics of Random Choice</h2>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          From deciding which restaurant to order dinner from, to assigning code reviews across an engineering team, to picking a raffle winner from thousands of giveaway entries, everyday decisions frequently stall in <strong>analysis paralysis</strong>. In cognitive psychology, Barry Schwartz&apos;s <em>Paradox of Choice</em> proves that an abundance of options dramatically elevates anxiety and decision fatigue. The <strong>Random Choice Generator</strong> delegates the burden of selection to a fair, mathematically unbiased cryptographic engine running locally inside your web browser.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">How to Use the Random Choice Picker</h2>
-        <p className="text-muted-foreground mb-4">
-          Making a fair decision takes just three simple steps with our generator:
+        <h3 className="text-xl font-semibold mb-3 text-foreground">The Fisher-Yates (Knuth) Shuffle Algorithm</h3>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          When drawing multiple unique items from a list without replacement, naive algorithms often rely on repeated random index selection combined with <code>array.includes()</code> checks. This approach has poor $O(n^2)$ worst-case time complexity and can stall if the number of drawn items approaches the list size.
         </p>
-        <ol className="list-decimal pl-6 space-y-3 text-muted-foreground mb-4">
-          <li>
-            <strong>Input Your Options:</strong> Click into the large text area and type out all your possible choices. Separate each distinct choice with a comma (e.g., Pizza, Burgers, Sushi, Tacos).
-          </li>
-          <li>
-            <strong>Verify Your List:</strong> Ensure there are no trailing commas or empty spaces that you don't want included as a blank choice in the drawing pool.
-          </li>
-          <li>
-            <strong>Pick a Winner:</strong> Click the "Pick Random Choice" button. The tool will instantly shuffle your list and display the randomly selected winner in the output box below.
-          </li>
-        </ol>
-        <p className="text-muted-foreground">
-          If you don't like the first result (we won't judge!), you can easily click the button again to draw a new random winner from the exact same list of inputs.
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          Our tool implements the modernized <strong>Fisher-Yates (Knuth) Shuffle</strong>:
         </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">Core Features</h2>
-        <ul className="list-disc pl-6 space-y-3 text-muted-foreground">
-          <li>
-            <strong>Comma-Separated Parsing:</strong> The tool intelligently splits your input string by commas, allowing you to easily copy and paste lists from spreadsheets or Word documents without needing complex formatting.
-          </li>
-          <li>
-            <strong>Unbiased Selection:</strong> Utilizing advanced cryptographic math functions, every single item in your list has the exact same statistical probability of being chosen.
-          </li>
-          <li>
-            <strong>Infinite Options:</strong> Whether you have 2 choices (Yes or No) or 5,000 choices (a massive list of giveaway entrants), the tool handles the array size effortlessly without slowing down your browser.
-          </li>
-          <li>
-            <strong>Client-Side Privacy:</strong> Your list of options is processed strictly on your own device. We never see your inputs, ensuring total privacy for sensitive selections (like employee performance reviews or internal audits).
-          </li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">The Psychology of Random Choice</h2>
-        <p className="text-muted-foreground mb-4">
-          Why do people love random pickers? Psychologists note that outsourcing a decision to a randomizer relieves anxiety. Interestingly, flipping a coin or using a random choice generator often reveals your true preference. If the tool selects "Sushi" and your immediate emotional reaction is disappointment, you instantly know that you actually wanted "Pizza" all along. Therefore, the Random Choice Generator is not just a tool for picking winners; it is a powerful psychological mechanism for breaking deadlocks in group dynamics or discovering your own hidden preferences when you feel paralyzed by options.
+        <div className="p-4 rounded-xl border border-border bg-muted/40 my-3 font-mono text-xs overflow-x-auto">
+          <code>
+            // Fisher-Yates Linear-Time O(n) Sampling<br />
+            for (let i = pool.length - 1; i &gt; 0; i--) &#123;<br />
+            &nbsp;&nbsp;const j = secureCryptoIndex(i + 1);<br />
+            &nbsp;&nbsp;[pool[i], pool[j]] = [pool[j], pool[i]];<br />
+            &#125;
+          </code>
+        </div>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          This algorithm visits every element exactly once, producing a completely unbiased permutation where every one of the $N!$ possible ordering permutations has an equal mathematical probability: $P = 1 / N!$.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">Examples of Use</h2>
-        <p className="text-muted-foreground mb-4">
-          Here is how different inputs are processed to produce a single result:
+        <h3 className="text-xl font-semibold mb-3 text-foreground">Sampling with vs. Without Replacement</h3>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          Depending on your real-world decision scenario, you can toggle between two statistical modes:
         </p>
-        <div className="space-y-4">
-          <div className="bg-muted p-4 rounded-md">
-            <h4 className="font-semibold text-foreground">Example 1: Dinner Decision</h4>
-            <p className="text-sm text-muted-foreground mt-1"><strong>Input:</strong> Chinese, Mexican, Italian, Thai, Indian</p>
-            <p className="font-mono bg-background p-2 rounded mt-2 text-foreground">Result: Thai</p>
-            <p className="text-xs text-muted-foreground mt-2">Instantly resolves the classic "I don't know, what do you want?" argument.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Sampling Without Replacement (Unique Draw)</h4>
+            <code className="text-xs text-primary block my-1.5">No Repeats Permitted</code>
+            <p className="text-xs text-muted-foreground">Once an option is picked, it is permanently removed from the candidate pool. Essential for contest winners, presentation speaking orders, and assigning unique team roles.</p>
           </div>
-          <div className="bg-muted p-4 rounded-md">
-            <h4 className="font-semibold text-foreground">Example 2: Yes / No / Maybe</h4>
-            <p className="text-sm text-muted-foreground mt-1"><strong>Input:</strong> Yes, No, Ask again later</p>
-            <p className="font-mono bg-background p-2 rounded mt-2 text-foreground">Result: Yes</p>
-            <p className="text-xs text-muted-foreground mt-2">Acts like a digital Magic 8-Ball for answering simple queries.</p>
-          </div>
-          <div className="bg-muted p-4 rounded-md">
-            <h4 className="font-semibold text-foreground">Example 3: Social Media Giveaway</h4>
-            <p className="text-sm text-muted-foreground mt-1"><strong>Input:</strong> @user1, @johndoe, @sarah99, @crypto_fan, @techguru</p>
-            <p className="font-mono bg-background p-2 rounded mt-2 text-foreground">Result: @sarah99</p>
-            <p className="text-xs text-muted-foreground mt-2">A transparent and verifiable way to pick a winner for an Instagram or Twitter contest.</p>
+          <div className="p-3.5 rounded-lg border border-border bg-card">
+            <h4 className="font-semibold text-foreground text-sm">Sampling With Replacement (Allow Repeats)</h4>
+            <code className="text-xs text-muted-foreground block my-1.5">Independent Probabilistic Draws</code>
+            <p className="text-xs text-muted-foreground">Every selection is drawn from the complete original list. Essential for simulating dice rolls, coin tosses, lottery tickets, and statistical bootstrap resampling.</p>
           </div>
         </div>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">Real-World Use Cases</h2>
-        <p className="text-muted-foreground mb-4">
-          The versatility of a random list picker makes it incredibly popular across various industries:
+        <h3 className="text-xl font-semibold mb-3 text-foreground">Why Cryptographic Randomness Matters for Raffles &amp; Giveaways</h3>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          Standard browser <code>Math.random()</code> relies on a deterministic pseudo-random formula that can be influenced by time seeds and predictable internal states. If a community giveaway or financial contest uses a flawed PRNG, results can be contested as unfair or biased.
         </p>
-        <ul className="list-disc pl-6 space-y-3 text-muted-foreground">
-          <li>
-            <strong>Scrum Masters & Agile Teams:</strong> When conducting daily stand-up meetings, scrum masters use choice generators to randomly select who gives their progress update first, keeping the team alert and engaged.
-          </li>
-          <li>
-            <strong>Content Creators & Streamers:</strong> Twitch streamers use randomizers to decide which game to play next, which viewer to invite to their lobby, or to resolve chat debates dynamically on stream.
-          </li>
-          <li>
-            <strong>Teachers & Professors:</strong> Calling on students randomly ensures that everyone does the reading and pays attention, rather than just relying on the students who always raise their hands.
-          </li>
-          <li>
-            <strong>Quality Assurance (QA):</strong> Selecting a random subset of manufactured products or software features from a master list to undergo rigorous inspection.
-          </li>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          Our tool queries <code>window.crypto.getRandomValues()</code> with rejection sampling to eliminate modulo bias. Every candidate entered in the list has an exact, provable probability:
+          <br />
+          <code>Odds = 1 / Total_Options</code>
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-xl font-semibold mb-3 text-foreground">Common Real-World Applications</h3>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          The Random Choice Generator solves decision hurdles across work and daily life:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 mt-3 text-muted-foreground text-sm">
+          <li><strong>Engineering Sprint Rotations:</strong> Impartially assign on-call duties, triage bug responsibilities, and code review partners without managerial bias.</li>
+          <li><strong>Classroom &amp; Workshop Facilitation:</strong> Teachers and meeting hosts can pick student volunteers and randomize presentation speaking orders.</li>
+          <li><strong>Contests, Raffles &amp; Secret Santa:</strong> Draw verified winners from attendee lists, customer order numbers, or social media handles.</li>
+          <li><strong>Resolving Everyday Debates:</strong> Settle group disagreements over lunch spots, movie watchlists, or weekend travel destinations in seconds.</li>
         </ul>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-foreground">Common Errors and Formatting Tips</h2>
-        <p className="text-muted-foreground mb-4">
-          To get the best results, watch out for these formatting mistakes when entering your choices:
+        <h3 className="text-xl font-semibold mb-3 text-foreground">Related Decision &amp; Generation Tools</h3>
+        <p className="text-muted-foreground mb-3 leading-relaxed">
+          Explore our suite of randomization and data tools:
         </p>
-        <ul className="list-disc pl-6 space-y-3 text-muted-foreground">
-          <li>
-            <strong>"The tool selected a blank space."</strong> This happens if you accidentally leave a trailing comma at the end of your list (e.g., "Apple, Banana, Orange, "). The tool reads the space after the last comma as a valid choice. Ensure you do not end your list with punctuation.
-          </li>
-          <li>
-            <strong>"It selected two words together instead of one."</strong> Our tool strictly separates by commas. If you input "Apple Banana Orange" without commas, the tool assumes that is one single massive choice. You must use commas (e.g., "Apple, Banana, Orange").
-          </li>
-          <li>
-            <strong>"Can I weight the choices so one wins more often?"</strong> Currently, this is a strict egalitarian randomizer—every item separated by a comma has an identical chance of winning. If you want "Pizza" to have a higher chance of winning, simply type "Pizza" multiple times in the list (e.g., "Pizza, Pizza, Pizza, Tacos").
-          </li>
+        <ul className="list-disc pl-6 space-y-2 mt-3 text-muted-foreground text-sm">
+          <li><Link href="/random-number-generator" className="text-primary hover:underline font-medium">Random Number Generator</Link> — Pick random integers and statistical numbers within custom ranges.</li>
+          <li><Link href="/random-data-generator" className="text-primary hover:underline font-medium">Random Data Generator</Link> — Generate mock user profiles, emails, and dummy datasets for software testing.</li>
+          <li><Link href="/strong-password-generator" className="text-primary hover:underline font-medium">Strong Password Generator</Link> — Create cryptographically secure credentials with custom rules.</li>
+          <li><Link href="/uuid-generator" className="text-primary hover:underline font-medium">UUID Generator</Link> — Generate RFC 4122 version-4 unique identifiers.</li>
         </ul>
       </section>
     </>
   ),
   faqs: [
     {
-      question: "Is the choice truly random and unbiased?",
-      answer: "Yes. The generator uses secure JavaScript Math functions to calculate the total number of items you inputted, and then blindly throws a 'digital dart' at that list. It has no preference for the first, middle, or last item."
+      question: "How does the Random Choice Generator pick an item?",
+      answer: "The tool splits your input text by line breaks, sanitizes empty rows, and uses the browser's native Cryptographically Secure Pseudo-Random Number Generator (crypto.getRandomValues) to select an index with mathematical uniformity."
     },
     {
-      question: "Is there a limit to how many choices I can input?",
-      answer: "Practically, no. You can input thousands of comma-separated items. However, extremely massive lists (e.g., 100,000+ items) might temporarily slow down your web browser while pasting."
+      question: "Is the selection truly fair and unbiased?",
+      answer: "Yes. Every single candidate entered into the list has an identical mathematical probability of being selected (1/N). Our algorithm utilizes rejection sampling to prevent modulo bias, ensuring no option is favored."
     },
     {
-      question: "Do you save my list of choices?",
-      answer: "Never. Your input is processed entirely in your device's active memory (RAM). The moment you close the tab or refresh the page, the list is permanently destroyed."
+      question: "Can I pick more than one item from the list at the same time?",
+      answer: "Yes. Adjust the 'Number of Choices to Pick' input to select multiple winners or items simultaneously (e.g., drawing 1st, 2nd, and 3rd place winners in a raffle)."
     },
     {
-      question: "Can I use newline (Enter key) instead of commas?",
-      answer: "For this specific tool, you must use commas to separate your items. We specifically chose comma-separation so users can easily copy-paste horizontal lists from CSV files or simple text strings."
+      question: "What is the difference between picking with vs. without replacement?",
+      answer: "Picking without replacement ensures every selected item is unique (no item can be picked twice). Picking with replacement ('Allow Repeats') treats each draw independently, meaning the same option could theoretically be selected multiple times."
+    },
+    {
+      question: "Can I paste names or items copied directly from an Excel spreadsheet?",
+      answer: "Yes. Simply copy a column of cells from Microsoft Excel or Google Sheets and paste them into the input box. Each cell is placed on its own line and recognized as an individual choice."
+    },
+    {
+      question: "How many choices can I enter into the list?",
+      answer: "There is no strict limit. You can paste thousands of candidate names, raffle numbers, or options directly into the text editor; the client-side JavaScript engine handles large lists in milliseconds."
+    },
+    {
+      question: "Are my choices or candidate names uploaded to a remote server?",
+      answer: "No. The entire list parsing, random selection, and shuffling execute 100% locally in your web browser. Your private lists, internal employee names, and raffle entries never leave your device."
+    },
+    {
+      question: "What are the pre-built sample presets?",
+      answer: "Our tool includes quick 1-click presets for common decisions, including 'Dinner & Food', 'Decision Maker' (Yes/No), 'Coin Flip' (Heads/Tails), and 'Six-Sided Die' (1 to 6)."
+    },
+    {
+      question: "Can I use this tool to determine presentation speaking orders?",
+      answer: "Yes! Set the pick count equal to the total number of speakers with duplicates disabled. The tool will output a fair, completely randomized speaking order for your meeting or classroom."
+    },
+    {
+      question: "Does the generator work on mobile phones and tablets?",
+      answer: "Yes. The interface is fully responsive and runs smoothly inside modern mobile web browsers on both iOS and Android."
+    },
+    {
+      question: "Can I clear the input and start over with one click?",
+      answer: "Yes. Click the 'Clear' button in the toolbar to immediately reset both the input list and the output winners box."
+    },
+    {
+      question: "Does this tool work completely offline?",
+      answer: "Yes. Once the web page is loaded in your browser, all processing runs locally on your machine via client-side Web APIs with zero internet connectivity required."
     }
   ]
 };
