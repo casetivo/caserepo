@@ -153,7 +153,6 @@ export default function InvoiceGeneratorClient({ children }: { children?: React.
                       <div className="text-right hidden sm:block font-bold text-foreground">{formatCurrency(calcTotals(inv).total, inv.currency)}</div>
                       <div className="flex gap-2">
                         <button onClick={() => handleLoad(inv)} className="p-2 rounded-lg border border-border hover:bg-accent transition-colors" title="Load into editor" aria-label="Load into editor"><Edit className="w-4 h-4 text-muted-foreground" /></button>
-                        <Link href={`/invoice-generator/edit/${inv.id}`} className="p-2 rounded-lg border border-border hover:bg-accent transition-colors" title="Open edit page" aria-label="Open edit page"><Pencil className="w-4 h-4 text-muted-foreground" /></Link>
                         <button onClick={() => downloadInvoicePDF(inv)} className="p-2 rounded-lg border border-border hover:bg-accent transition-colors" title="Download PDF" aria-label="Download PDF"><Download className="w-4 h-4 text-muted-foreground" /></button>
                         <button onClick={() => { if (confirm("Delete this invoice?")) deleteInvoice(inv.id); }} className="p-2 rounded-lg border border-border hover:bg-destructive/10 hover:border-destructive/30 transition-colors" title="Delete" aria-label="Delete invoice"><Trash2 className="w-4 h-4 text-destructive" /></button>
                       </div>
