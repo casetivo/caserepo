@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ClientPage from "./_client";
 
@@ -38,7 +39,12 @@ export default function Page() {
         description="Repeat any word, string, or text block up to 10,000 times. Customize separators (newlines, spaces, commas), add sequential line numbering, and copy instantly."
         faqs={seoData.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

@@ -27,27 +27,34 @@ export const metadata: Metadata = {
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 export default function Page() {
+  const seo = getSeoContent("capitalizedCase", "Capitalized Case Converter");
+  const relatedSlugs = [
+    "what-is-capitalized-case",
+    "how-to-capitalize-a-title-correctly",
+    "sentence-case-vs-title-case",
+  ];
+  const relatedTitle = "Capitalization Guides & Helpful Articles";
+
   return (
     <>
       <SchemaMarkup
         toolName="Capitalized Case Converter"
         url={`${BASE}/capitalized-case`}
         description="Capitalize the first letter of every word automatically. Clean up customer names, titles, lists, and form fields in your browser with our free online tool."
-        faqs={getSeoContent("capitalizedCase", "Capitalized Case Converter").faqs}
+        faqs={seo.faqs}
       />
       <SingleCaseConverter
         converterKey="capitalizedCase"
         downloadName="capitalizedcase-text.txt"
         heading="Capitalized Case Converter"
         subtitle="Capitalize the first letter of every word automatically. Clean up names, titles, lists, and form fields with one click."
-        relatedPostSlugs={[
-          "what-is-capitalized-case",
-          "how-to-capitalize-a-title-correctly",
-          "sentence-case-vs-title-case",
-        ]}
-        relatedPostsTitle="Capitalization Guides & Helpful Articles"
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts postSlugs={relatedSlugs} title={relatedTitle} />}
       />
     </>
   );

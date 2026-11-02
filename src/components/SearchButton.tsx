@@ -3,7 +3,15 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useI18n } from "@/hooks/useI18n";
+import { TOOL_CATEGORIES } from "@/lib/tools";
+
+const ALL_TOOLS = TOOL_CATEGORIES.flatMap((cat) =>
+  cat.tools.map((tool) => ({
+    href: tool.href,
+    title: tool.label,
+    category: cat.name,
+  }))
+);
 
 export default function SearchButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,62 +19,15 @@ export default function SearchButton() {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const { t } = useI18n("base");
-  const { t: tt } = useI18n("text");
-  const { t: it } = useI18n("image");
-  const { t: rt } = useI18n("random");
-
-  const allTools = useMemo(() => {
-    return [
-      // Text Tools
-      { href: "/sentence-case", title: t.sentenceCase as string, category: tt.textTools as string },
-      { href: "/lower-case", title: t.lowerCase as string, category: tt.textTools as string },
-      { href: "/upper-case", title: t.upperCase as string, category: tt.textTools as string },
-      { href: "/capitalized-case", title: t.capitalizedCase as string, category: tt.textTools as string },
-      { href: "/title-case", title: t.titleCase as string, category: tt.textTools as string },
-      { href: "/inverse-case", title: t.inverseCase as string, category: tt.textTools as string },
-
-      // Text Tools
-      ...([
-        ["duplicate-line-remover", "duplicateLineRemover"], ["duplicate-word-finder", "duplicateWordFinder"], ["em-dash-remover", "emDashRemover"], ["plain-text-converter", "plainTextConverter"], ["remove-letters-characters", "removeLettersCharacters"], ["sentence-rewriter", "sentenceRewriter"], ["repeat-text-generator", "repeatTextGenerator"], ["reverse-text-generator", "reverseTextGenerator"], ["roman-numeral-date-converter", "romanNumeralDateConverter"], ["sort-words-alphabetically", "sortWordsAlphabetically"], ["text-replacement-tool", "textReplacementTool"]
-      ] as const).map(([href, key]) => ({ href: `/${href}`, title: tt[key] as string, category: tt.textTools as string })),
-
-      // Code & Data
-      ...([
-        ["base64-encoder-decoder", "base64EncoderDecoder"], ["binary-code-translator", "binaryCodeTranslator"], ["css-formatter", "cssFormatter"], ["csv-to-json-converter", "csvToJsonConverter"], ["caesar-cipher-tool", "caesarCipherTool"], ["graphql-formatter", "graphqlFormatter"], ["html-formatter", "htmlFormatter"], ["hex-to-text-converter", "hexToTextConverter"], ["json-formatter", "jsonFormatter"], ["url-encoder-decoder", "urlEncoderDecoder"], ["markdown-to-html-converter", "markdownToHtmlConverter"], ["json-stringifier", "jsonStringifier"], ["json-to-yaml-converter", "jsonToYamlConverter"], ["json-stringify-text-generator", "jsonStringifyTextGenerator"], ["javascript-formatter", "javascriptFormatter"], ["md5-hash-generator", "md5HashGenerator"], ["markdown-formatter-previewer", "markdownFormatterPreviewer"], ["markdown-table-generator", "markdownTableGenerator"], ["morse-code-translator", "morseCodeTranslator"], ["number-sorter", "numberSorter"], ["rot13-encoder-decoder", "rot13EncoderDecoder"], ["regex-text-tool", "regexTextTool"], ["scss-formatter", "scssFormatter"]
-      ] as const).map(([href, key]) => ({ href: `/${href}`, title: tt[key] as string, category: tt.codeAndData as string })),
-
-      // Image
-      { href: "/ai-image-to-text", title: it.aiImageToText as string, category: it.imageAndMedia as string },
-      { href: "/ascii-art-generator", title: it.asciiArtGenerator as string, category: it.imageAndMedia as string },
-      { href: "/jpg-to-png-converter", title: it.jpgToPng as string, category: it.imageAndMedia as string },
-      { href: "/jpg-to-webp-converter", title: it.jpgToWebp as string, category: it.imageAndMedia as string },
-      { href: "/png-to-jpg-converter", title: it.pngToJpg as string, category: it.imageAndMedia as string },
-      { href: "/png-to-webp-converter", title: it.pngToWebp as string, category: it.imageAndMedia as string },
-      { href: "/svg-to-png-converter", title: it.svgToPng as string, category: it.imageAndMedia as string },
-      { href: "/webp-to-png-converter", title: it.webpToPng as string, category: it.imageAndMedia as string },
-      { href: "/webp-to-jpg-converter", title: it.webpToJpg as string, category: it.imageAndMedia as string },
-
-      // Random
-      { href: "/random-choice-generator", title: rt.randomChoiceGenerator as string, category: rt.randomGenerators as string },
-      { href: "/random-data-generator", title: rt.randomDataGenerator as string, category: rt.randomGenerators as string },
-      { href: "/random-ip-address-generator", title: rt.randomIpAddressGenerator as string, category: rt.randomGenerators as string },
-      { href: "/random-letter-generator", title: rt.randomLetterGenerator as string, category: rt.randomGenerators as string },
-      { href: "/random-month-generator", title: rt.randomMonthGenerator as string, category: rt.randomGenerators as string },
-      { href: "/random-number-generator", title: rt.randomNumberGenerator as string, category: rt.randomGenerators as string },
-      { href: "/strong-password-generator", title: rt.strongPasswordGenerator as string, category: rt.randomGenerators as string },
-      { href: "/uuid-generator", title: rt.uuidGenerator as string, category: rt.randomGenerators as string },
-    ];
-  }, [t, tt, it, rt]);
-
   const filteredTools = useMemo(() => {
-    if (!query) return allTools;
+    if (!query) return ALL_TOOLS;
     const lowerQuery = query.toLowerCase();
-    return allTools.filter(tool => 
-      String(tool.title).toLowerCase().includes(lowerQuery) || 
-      String(tool.category).toLowerCase().includes(lowerQuery)
+    return ALL_TOOLS.filter(
+      (tool) =>
+        tool.title.toLowerCase().includes(lowerQuery) ||
+        tool.category.toLowerCase().includes(lowerQuery)
     );
-  }, [query, allTools]);
+  }, [query]);
 
   useEffect(() => {
     if (isOpen) {

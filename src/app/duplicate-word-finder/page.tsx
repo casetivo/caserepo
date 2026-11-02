@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ClientPage from "./_client";
 
@@ -28,15 +29,22 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const seoData = getSeoContent("duplicateWordFinder", "Duplicate Word Finder");
+
   return (
     <>
       <SchemaMarkup
         toolName="Duplicate Word Finder"
         url={`${BASE}/duplicate-word-finder`}
         description="Find and count repeated words in your essays, articles, and copy. Spot overused crutch words and vocabulary repetition instantly. Free online tool."
-        faqs={getSeoContent("duplicateWordFinder", "Duplicate Word Finder").faqs}
+        faqs={seoData.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

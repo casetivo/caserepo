@@ -13,7 +13,19 @@ interface CssStats {
   compressionRatio: number;
 }
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [indent, setIndent] = useState<IndentOption>("2");
@@ -154,6 +166,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="cssFormatter"
       subtitleKey="cssFormatterSubtitle"
       actionLabelKey="cssFormatterAction"

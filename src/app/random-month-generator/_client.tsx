@@ -2,7 +2,13 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 type MonthFormat = "full" | "abbr" | "number" | "roman";
 type SeasonFilter = "all" | "q1" | "q2" | "q3" | "q4";
@@ -31,7 +37,7 @@ const MONTH_DATA: MonthInfo[] = [
   { index: 12, name: "December", abbr: "Dec", roman: "XII", season: "Winter", quarter: 4 },
 ];
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [count, setCount] = useState<number>(1);
   const [format, setFormat] = useState<MonthFormat>("full");
   const [season, setSeason] = useState<SeasonFilter>("all");
@@ -92,8 +98,6 @@ export default function ClientPage() {
     });
   }, [count, format, season, unique]);
 
-  const seo = getSeoContent("random-month-generator", "Random Month Generator");
-
   const maxAllowed = unique ? (season === "all" ? 12 : 3) : 100;
 
   return (
@@ -107,11 +111,10 @@ export default function ClientPage() {
         setOutput("");
         setStats(null);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["how-to-pick-random-months", "how-to-make-random-choices-online", "how-to-generate-random-numbers"]}
-      relatedPostsTitle="Calendar Scheduling & Decision Guides"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="space-y-4 max-w-xl mx-auto">
         {/* Controls Grid */}

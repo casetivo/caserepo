@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ClientPage from "./_client";
 
@@ -38,7 +39,12 @@ export default function Page() {
         description="Rewrite sentences by stripping filler words, trimming wordy corporate jargon, and eliminating redundancies. 100% free, private online sentence clarifier."
         faqs={seoData.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

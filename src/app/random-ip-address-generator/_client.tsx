@@ -2,12 +2,18 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 type IPVersion = "ipv4" | "ipv6";
 type SubnetScope = "any" | "public" | "private" | "documentation";
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [version, setVersion] = useState<IPVersion>("ipv4");
   const [scope, setScope] = useState<SubnetScope>("any");
   const [cidr, setCidr] = useState<string>("none");
@@ -108,8 +114,6 @@ export default function ClientPage() {
     setGeneratedCount(ips.length);
   }, [count, version, scope, cidr]);
 
-  const seo = getSeoContent("random-ip-address-generator", "Random IP Address Generator");
-
   return (
     <RandomToolLayout
       titleKey="randomIpAddressGenerator"
@@ -121,11 +125,10 @@ export default function ClientPage() {
         setOutput("");
         setGeneratedCount(0);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["how-to-generate-random-ip-addresses", "random-data-generator-testing", "how-to-generate-random-numbers"]}
-      relatedPostsTitle="Network & Synthetic Testing Guides"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="space-y-4 max-w-xl mx-auto">
         {/* Protocol Version Toggle */}

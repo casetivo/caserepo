@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 const BASE = "https://www.casetivo.com";
 
@@ -29,6 +30,12 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const seoData = getSeoContent("inverseCase", "Inverse Case Converter");
+  const relatedSlugs = [
+    "sentence-case-vs-title-case",
+    "what-is-capitalized-case",
+    "uppercase-vs-lowercase-when-to-use-each",
+  ];
+  const relatedTitle = "Case Converter & Typography Guides";
 
   return (
     <>
@@ -41,12 +48,10 @@ export default function Page() {
       <SingleCaseConverter
         converterKey="inverseCase"
         downloadName="inversecase-text.txt"
-        relatedPostSlugs={[
-          "sentence-case-vs-title-case",
-          "what-is-capitalized-case",
-          "uppercase-vs-lowercase-when-to-use-each",
-        ]}
-        relatedPostsTitle="Case Converter & Typography Guides"
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts postSlugs={relatedSlugs} title={relatedTitle} />}
       />
     </>
   );

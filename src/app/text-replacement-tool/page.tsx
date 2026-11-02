@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ClientPage from "./_client";
 
@@ -38,7 +39,12 @@ export default function Page() {
         description="Find and replace words and phrases online with whole-word matching, regex support, case sensitivity, and batch replacement rules. Free & private."
         faqs={seoData.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

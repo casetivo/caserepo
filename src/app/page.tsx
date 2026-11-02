@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Check, Code, Dices, Image as ImageIcon, Wrench } from "lucide-react";
 import { getSortedPostsData } from "@/lib/blog";
 import { TOOL_CATEGORIES } from "@/lib/tools";
+import { safeJsonLd } from "@/lib/utils";
 
 const BASE = "https://www.casetivo.com";
 
@@ -295,15 +296,15 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(orgSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
       <HomeClientPage
         heading={

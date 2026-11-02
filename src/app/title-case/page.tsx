@@ -27,27 +27,34 @@ export const metadata: Metadata = {
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 export default function Page() {
+  const seo = getSeoContent("titleCase", "Title Case Converter");
+  const relatedSlugs = [
+    "how-to-capitalize-a-title-correctly",
+    "sentence-case-vs-title-case",
+    "what-is-capitalized-case",
+  ];
+  const relatedTitle = "Headline & Title Capitalization Guides";
+
   return (
     <>
       <SchemaMarkup
         toolName="Title Case Converter"
         url={`${BASE}/title-case`}
         description="Convert headlines, titles, and text to proper Title Case automatically. Follows standard editorial rules with minor words kept lowercase. Free online tool."
-        faqs={getSeoContent("titleCase", "Title Case Converter").faqs}
+        faqs={seo.faqs}
       />
       <SingleCaseConverter
         converterKey="titleCase"
         downloadName="titlecase-text.txt"
         heading="Title Case Converter"
         subtitle="Format article headlines, book titles, and essays into proper title case automatically. Minor prepositions and articles stay lowercase according to editorial rules."
-        relatedPostSlugs={[
-          "how-to-capitalize-a-title-correctly",
-          "sentence-case-vs-title-case",
-          "what-is-capitalized-case",
-        ]}
-        relatedPostsTitle="Headline & Title Capitalization Guides"
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts postSlugs={relatedSlugs} title={relatedTitle} />}
       />
     </>
   );

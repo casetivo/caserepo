@@ -18,6 +18,12 @@ export const metadata = {
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Privacy Policy | Casetivo" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Casetivo",
+    description: "Read Casetivo's Privacy Policy to learn how our browser-based tools process data and protect your privacy.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function PrivacyPolicy() {

@@ -6,7 +6,19 @@ import TextToolLayout from "@/components/TextToolLayout";
 type SeparatorType = "newline" | "space" | "comma" | "semicolon" | "tab" | "none" | "custom";
 type NumberingStyle = "none" | "period" | "paren" | "bracket" | "hash";
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [repeatCount, setRepeatCount] = useState<number>(10);
@@ -75,6 +87,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="repeatTextGenerator"
       subtitleKey="repeatTextGeneratorSubtitle"
       actionLabelKey="repeatTextGeneratorAction"

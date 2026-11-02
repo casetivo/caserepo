@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ImagePage from "./ImagePage";
 
@@ -52,7 +53,12 @@ export default function Page() {
         description="Extract printed or handwritten text from screenshots, scanned documents, and photos using in-browser WebAssembly Optical Character Recognition (OCR)."
         faqs={seoData.faqs}
       />
-      <ImagePage />
+      <ImagePage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

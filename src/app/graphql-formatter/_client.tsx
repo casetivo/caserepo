@@ -14,7 +14,19 @@ interface GqlStats {
   compressionRatio: number;
 }
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [indent, setIndent] = useState<GqlIndent>("2");
@@ -187,6 +199,10 @@ createdAt
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="graphqlFormatter"
       subtitleKey="graphqlFormatterSubtitle"
       actionLabelKey="graphqlFormatterAction"

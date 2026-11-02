@@ -13,7 +13,19 @@ interface MdFormatStats {
   codeBlocksCount: number;
 }
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [mode, setMode] = useState<ViewMode>("format");
@@ -172,6 +184,10 @@ npm install && npm test
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="markdownFormatterPreviewer"
       subtitleKey="markdownFormatterPreviewerSubtitle"
       actionLabelKey="markdownFormatterPreviewerAction"

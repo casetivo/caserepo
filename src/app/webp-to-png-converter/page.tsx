@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ImagePage from "./ImagePage";
 
@@ -50,7 +51,12 @@ export default function Page() {
         description="Convert Google WebP images to lossless PNG format in your browser. Preserves transparency layers without transmitting data to remote servers."
         faqs={seoData.faqs}
       />
-      <ImagePage />
+      <ImagePage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

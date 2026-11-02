@@ -18,6 +18,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Casetivo" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Casetivo",
+    description: "Learn about Casetivo, our mission, and our commitment to privacy and fast, local processing for developers and creators.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function AboutPage() {

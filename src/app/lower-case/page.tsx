@@ -27,20 +27,27 @@ export const metadata: Metadata = {
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 export default function Page() {
+  const seo = getSeoContent("lowerCase", "Lowercase Converter");
+
   return (
     <>
       <SchemaMarkup
         toolName="Lowercase Converter"
         url={`${BASE}/lower-case`}
         description="Convert any text to lowercase instantly. Fix ALL CAPS, normalize data, and clean up messy formatting with this free online tool."
-        faqs={getSeoContent("lowerCase", "Lowercase Converter").faqs}
+        faqs={seo.faqs}
       />
       <SingleCaseConverter
         converterKey="lowerCase"
         downloadName="lowercase-text.txt"
         subtitle="Convert every letter to lowercase instantly. Fix ALL CAPS, normalize data, and clean up messy text with one click."
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
       />
     </>
   );

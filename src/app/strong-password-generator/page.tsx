@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -83,7 +84,17 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["how-to-create-a-strong-password", "password-generator-vs-password-manager", "passwords-passkeys-and-mfa", "what-is-password-entropy", "why-websites-reject-passwords", "what-to-do-after-a-password-breach"]}
+            title="Password Security Guides"
+          />
+        }
+      />
     </>
   );
 }

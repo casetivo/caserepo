@@ -13,7 +13,19 @@ interface SvgStats {
   scaleFactor: number;
 }
 
-export default function ImagePage() {
+interface ImagePageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ImagePage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ImagePageProps = {}) {
   const t = imageToolTranslationsEn;
   const [scale, setScale] = useState<number>(2);
   const [stats, setStats] = useState<SvgStats | null>(null);
@@ -97,6 +109,10 @@ export default function ImagePage() {
       acceptFormats="image/svg+xml,.svg"
       actionLabel={String(t.convert)}
       onProcess={handleProcess}
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="flex flex-col gap-3">
         {/* Controls Bar */}

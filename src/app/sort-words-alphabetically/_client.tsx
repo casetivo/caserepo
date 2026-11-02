@@ -3,7 +3,19 @@
 import { useState, useCallback } from "react";
 import TextToolLayout from "@/components/TextToolLayout";
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [sortMode, setSortMode] = useState<"line" | "word">("line");
@@ -82,6 +94,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="sortWordsAlphabetically"
       subtitleKey="sortWordsAlphabeticallySubtitle"
       actionLabelKey="sortWordsAlphabeticallyAction"

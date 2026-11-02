@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import QueryProvider from "@/components/QueryProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-display",
   display: "swap",
   preload: true,
@@ -18,10 +14,9 @@ const spaceGrotesk = Space_Grotesk({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 const BASE_URL = "https://www.casetivo.com";
@@ -64,9 +59,6 @@ export const metadata: Metadata = {
     description: "Casetivo offers 55+ free online developer utilities and text tools.",
     images: ["/og-image.png"],
   },
-  alternates: {
-    canonical: BASE_URL,
-  },
   verification: {
     google: "aFAtUYF4NiGv97YXgkegkT0S13cKMtNf7jFelbErdxk",
   },
@@ -75,21 +67,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0SFSKW7JQ5"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-0SFSKW7JQ5');
-          `}
-        </Script>
-      </head>
       <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
@@ -97,15 +74,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <QueryProvider>
-            <TooltipProvider>
-              <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-background focus:text-foreground top-0 left-0">Skip to content</a>
-              <Toaster />
-              <Sonner />
-              {children}
-            </TooltipProvider>
-          </QueryProvider>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-background focus:text-foreground top-0 left-0">Skip to content</a>
+          <Sonner />
+          {children}
         </ThemeProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0SFSKW7JQ5"
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-0SFSKW7JQ5', { page_path: window.location.pathname });
+          `}
+        </Script>
       </body>
     </html>
   );

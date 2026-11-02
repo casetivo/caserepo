@@ -27,21 +27,28 @@ export const metadata: Metadata = {
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 export default function Page() {
+  const seo = getSeoContent("sentenceCase", "Sentence Case Converter");
+
   return (
     <>
       <SchemaMarkup
         toolName="Sentence Case Converter"
         url={`${BASE}/sentence-case`}
         description="Convert ALL CAPS or inconsistent prose to sentence case. Preserves URLs, email addresses, and common technical terms while capitalizing each sentence start."
-        faqs={getSeoContent("sentenceCase", "Sentence Case Converter").faqs}
+        faqs={seo.faqs}
       />
       <SingleCaseConverter
         converterKey="sentenceCase"
         downloadName="sentencecase-text.txt"
         heading="Sentence Case Converter"
         subtitle="Convert ALL CAPS or inconsistent text into readable sentence case in one click. URLs, email addresses, and common technical terms are preserved."
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
       />
     </>
   );

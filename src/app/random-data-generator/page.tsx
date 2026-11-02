@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -37,7 +38,17 @@ export default function Page() {
         description="Generate realistic fake names, RFC-compliant emails, phone numbers, addresses, and UUIDs for UI testing and database staging in JSON, CSV, or text."
         faqs={seo.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["random-data-generator-testing", "how-to-generate-random-numbers", "how-to-generate-random-ip-addresses"]}
+            title="Synthetic Testing & Randomization Guides"
+          />
+        }
+      />
     </>
   );
 }

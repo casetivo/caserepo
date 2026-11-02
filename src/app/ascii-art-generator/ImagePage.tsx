@@ -29,7 +29,19 @@ interface AsciiStats {
   totalChars: number;
 }
 
-export default function ImagePage() {
+interface ImagePageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ImagePage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ImagePageProps = {}) {
   const t = imageToolTranslationsEn;
   const [width, setWidth] = useState<number>(80);
   const [paletteKey, setPaletteKey] = useState<string>("standard");
@@ -108,6 +120,10 @@ export default function ImagePage() {
       acceptFormats="image/*"
       actionLabel={String(t.generate)}
       onProcess={handleProcess}
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="flex flex-col gap-3">
         {/* Controls Bar */}

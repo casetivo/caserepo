@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ImagePage from "./ImagePage";
 
@@ -50,7 +51,12 @@ export default function Page() {
         description="Convert transparent or opaque PNG images to lightweight JPG format with customizable background color and quality compression."
         faqs={seoData.faqs}
       />
-      <ImagePage />
+      <ImagePage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

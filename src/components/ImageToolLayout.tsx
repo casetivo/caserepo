@@ -8,10 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 import SubHeaderNav from "@/components/SubHeaderNav";
 import SeoContentBlock, { FAQ } from "@/components/SeoContentBlock";
-import { getSeoContent } from "@/data/seoContent";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import RelatedTools from "@/components/RelatedTools";
-import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { usePathname } from "next/navigation";
 import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import { useI18n } from "@/hooks/useI18n";
@@ -28,9 +26,22 @@ interface ImageToolLayoutProps {
   seoTitle?: string;
   seoContent?: ReactNode;
   seoFaqs?: FAQ[];
+  recentBlogPostsSlot?: ReactNode;
 }
 
-const ImageToolLayout = memo(({ toolKey, title, subtitle, acceptFormats, actionLabel, onProcess, children, seoTitle, seoContent, seoFaqs }: ImageToolLayoutProps) => {
+const ImageToolLayout = memo(({
+  toolKey,
+  title,
+  subtitle,
+  acceptFormats,
+  actionLabel,
+  onProcess,
+  children,
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ImageToolLayoutProps) => {
   const { locale, setLocale, t } = useI18n("image");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
@@ -43,11 +54,9 @@ const ImageToolLayout = memo(({ toolKey, title, subtitle, acceptFormats, actionL
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const defaultToolKey = pathname.replace(/^\/+/, "").replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
-  const centralizedSeo = getSeoContent(toolKey || defaultToolKey, title);
-  const finalSeoTitle = seoTitle || centralizedSeo.title;
-  const finalSeoContent = seoContent || centralizedSeo.content;
-  const finalSeoFaqs = seoFaqs || centralizedSeo.faqs;
+  const finalSeoTitle = seoTitle || (title ? `How does the ${title} work?` : "");
+  const finalSeoContent = seoContent || null;
+  const finalSeoFaqs = seoFaqs || [];
   const handleFile = useCallback((f: File) => {
     setFile(f); setResultUrl(""); setResultText("");
     const reader = new FileReader();
@@ -184,7 +193,7 @@ const ImageToolLayout = memo(({ toolKey, title, subtitle, acceptFormats, actionL
             { href: "/ascii-art-generator", title: "ASCII Art Generator", description: "Turn any image into ASCII text art." }
           ].filter(t => t.href !== pathname).slice(0, 8)} 
         />
-        <RecentBlogPosts />
+        {recentBlogPostsSlot}
       </main>
       <Footer />
     </div>

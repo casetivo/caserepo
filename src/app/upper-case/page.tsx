@@ -27,20 +27,27 @@ export const metadata: Metadata = {
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
 import SingleCaseConverter from "@/components/SingleCaseConverter";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 export default function Page() {
+  const seo = getSeoContent("upperCase", "Uppercase Converter");
+
   return (
     <>
       <SchemaMarkup
         toolName="Uppercase Converter"
         url={`${BASE}/upper-case`}
         description="Convert any text to uppercase instantly. Transform text to ALL CAPS for legal documents, headlines, programming constants, and more."
-        faqs={getSeoContent("upperCase", "Uppercase Converter").faqs}
+        faqs={seo.faqs}
       />
       <SingleCaseConverter
         converterKey="upperCase"
         downloadName="uppercase-text.txt"
         subtitle="Transform every letter to ALL CAPS instantly. Format text for legal documents, headlines, programming constants, and signage with one click."
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
       />
     </>
   );

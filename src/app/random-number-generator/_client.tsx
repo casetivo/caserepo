@@ -2,7 +2,13 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 type SortMode = "none" | "asc" | "desc";
 type DelimiterType = "newline" | "comma" | "space";
@@ -15,7 +21,7 @@ interface NumberStats {
   mean: number;
 }
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [min, setMin] = useState<number>(1);
   const [max, setMax] = useState<number>(100);
   const [count, setCount] = useState<number>(5);
@@ -106,8 +112,6 @@ export default function ClientPage() {
     });
   }, [min, max, count, allowDuplicates, sortOrder, delimiter]);
 
-  const seo = getSeoContent("random-number-generator", "Random Number Generator");
-
   return (
     <RandomToolLayout
       titleKey="randomNumberGenerator"
@@ -120,11 +124,10 @@ export default function ClientPage() {
         setStats(null);
         setErrorMsg(null);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["how-to-generate-random-numbers", "how-to-sort-numbers-online", "strong-password-generator"]}
-      relatedPostsTitle="Randomness and Statistical Guides"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="flex flex-col gap-3.5">
         {/* Controls Bar */}

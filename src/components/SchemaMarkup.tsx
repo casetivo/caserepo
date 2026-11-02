@@ -1,5 +1,6 @@
 import React from "react";
 import { FAQ } from "@/components/SeoContentBlock";
+import { safeJsonLd } from "@/lib/utils";
 
 interface SchemaMarkupProps {
   toolName: string;
@@ -68,16 +69,16 @@ export default function SchemaMarkup({ toolName, url, description, faqs }: Schem
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webAppSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }}
       />
       {faqSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
         />
       )}
     </>

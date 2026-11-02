@@ -2,7 +2,13 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 type CasingMode = "upper" | "lower" | "mixed";
 type CharFilter = "all" | "vowels" | "consonants";
@@ -15,7 +21,7 @@ const CONSONANTS = [
 ];
 const ALL_LETTERS = [...VOWELS, ...CONSONANTS].sort();
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [count, setCount] = useState<number>(10);
   const [casing, setCasing] = useState<CasingMode>("upper");
   const [filter, setFilter] = useState<CharFilter>("all");
@@ -89,8 +95,6 @@ export default function ClientPage() {
     });
   }, [count, casing, filter, unique, delimiter]);
 
-  const seo = getSeoContent("random-letter-generator", "Random Letter Generator");
-
   const maxAllowed = unique ? (filter === "vowels" ? 5 : filter === "consonants" ? 21 : 26) : 500;
 
   return (
@@ -104,11 +108,10 @@ export default function ClientPage() {
         setOutput("");
         setGeneratedStats(null);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["how-to-generate-random-letters", "how-to-generate-random-numbers", "how-to-make-random-choices-online"]}
-      relatedPostsTitle="Combinatorics & Alphabet Guides"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="space-y-4 max-w-xl mx-auto">
         {/* Case Toggle Buttons */}

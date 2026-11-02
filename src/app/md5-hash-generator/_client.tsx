@@ -151,7 +151,19 @@ const computeMd5 = (stringInput: string, casing: HashCase): string => {
   return casing === "upper" ? rawHash.toUpperCase() : rawHash;
 };
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [casing, setCasing] = useState<HashCase>("lower");
@@ -187,6 +199,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="md5HashGenerator"
       subtitleKey="md5HashGeneratorSubtitle"
       actionLabelKey="md5HashGeneratorAction"

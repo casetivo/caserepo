@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -51,7 +52,17 @@ export default function Page() {
         description="Generate unbiased random numbers within custom ranges using Web Cryptography CSPRNG. Features duplicate prevention, sorting, and statistical telemetry."
         faqs={seoData.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["how-to-generate-random-numbers", "how-to-sort-numbers-online", "strong-password-generator"]}
+            title="Randomness and Statistical Guides"
+          />
+        }
+      />
     </>
   );
 }

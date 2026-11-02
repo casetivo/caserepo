@@ -2,7 +2,13 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 const PRESETS = [
   {
@@ -29,7 +35,7 @@ interface ChoiceStats {
   oddsPerItem: string;
 }
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [itemsText, setItemsText] = useState("Apple\nBanana\nCherry\nDate\nElderberry");
   const [pickCount, setPickCount] = useState<number>(1);
   const [allowDuplicates, setAllowDuplicates] = useState<boolean>(false);
@@ -107,8 +113,6 @@ export default function ClientPage() {
     setErrorMsg(null);
   };
 
-  const seo = getSeoContent("random-choice-generator", "Random Choice Generator");
-
   return (
     <RandomToolLayout
       titleKey="randomChoiceGenerator"
@@ -121,11 +125,10 @@ export default function ClientPage() {
         setStats(null);
         setErrorMsg(null);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["how-to-make-random-choices-online", "how-to-generate-random-numbers", "random-data-generator-testing"]}
-      relatedPostsTitle="Decision Making and Random Tools"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="flex flex-col gap-3.5">
         {/* Quick Presets */}

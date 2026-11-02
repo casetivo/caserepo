@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ImagePage from "./ImagePage";
 
@@ -51,7 +52,12 @@ export default function Page() {
         description="Convert PNG graphics to highly compressed WebP format in your browser while preserving full alpha channel transparency."
         faqs={seoData.faqs}
       />
-      <ImagePage />
+      <ImagePage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

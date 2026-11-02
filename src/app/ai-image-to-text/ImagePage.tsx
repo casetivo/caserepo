@@ -27,7 +27,19 @@ interface OcrStats {
   languageUsed: string;
 }
 
-export default function ImagePage() {
+interface ImagePageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ImagePage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ImagePageProps = {}) {
   const t = imageToolTranslationsEn;
   const [lang, setLang] = useState<string>("eng");
   const [stats, setStats] = useState<OcrStats | null>(null);
@@ -75,6 +87,10 @@ export default function ImagePage() {
       acceptFormats="image/png,image/jpeg,image/webp,image/bmp,image/gif"
       actionLabel={String(t.extract)}
       onProcess={handleProcess}
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="flex flex-col gap-3">
         {/* Controls Bar */}

@@ -100,7 +100,19 @@ const PLAIN_ENGLISH_WORDS: [RegExp, string][] = [
   [/\battempting\b/gi, "trying"],
 ];
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [mode, setMode] = useState<RewriterMode>("concise");
@@ -223,6 +235,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="sentenceRewriter"
       subtitleKey="sentenceRewriterSubtitle"
       actionLabelKey="sentenceRewriterAction"

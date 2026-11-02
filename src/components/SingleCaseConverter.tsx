@@ -8,9 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SubHeaderNav from "@/components/SubHeaderNav";
 import SeoContentBlock, { FAQ } from "@/components/SeoContentBlock";
-import { getSeoContent } from "@/data/seoContent";
 import RelatedTools from "@/components/RelatedTools";
-import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { usePathname } from "next/navigation";
 import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import { useI18n } from "@/hooks/useI18n";
@@ -41,19 +39,30 @@ interface SingleCaseConverterProps {
   seoFaqs?: FAQ[];
   relatedPostSlugs?: string[];
   relatedPostsTitle?: string;
+  recentBlogPostsSlot?: React.ReactNode;
 }
 
-const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, heading, seoTitle, seoContent, seoFaqs, relatedPostSlugs, relatedPostsTitle }: SingleCaseConverterProps) => {
+const SingleCaseConverter = memo(({
+  converterKey,
+  downloadName,
+  subtitle,
+  heading,
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  relatedPostSlugs,
+  relatedPostsTitle,
+  recentBlogPostsSlot,
+}: SingleCaseConverterProps) => {
   const { locale, setLocale, t } = useI18n("base");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
   const [text, setText] = useState("");
 
   const title = t[converterKey as keyof typeof t] as string;
-  const centralizedSeo = getSeoContent(converterKey, title);
-  const finalSeoTitle = seoTitle || centralizedSeo.title;
-  const finalSeoContent = seoContent || centralizedSeo.content;
-  const finalSeoFaqs = seoFaqs || centralizedSeo.faqs;
+  const finalSeoTitle = seoTitle || `How does the ${title || "converter"} work?`;
+  const finalSeoContent = seoContent || null;
+  const finalSeoFaqs = seoFaqs || [];
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const charCount = text.length;
@@ -166,7 +175,7 @@ const SingleCaseConverter = memo(({ converterKey, downloadName, subtitle, headin
             { href: "/inverse-case", title: "Inverse Case", description: "Reverse the case of each letter." }
           ].filter(t => t.href !== pathname)} 
         />
-        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
+        {recentBlogPostsSlot}
       </main>
       <Footer />
     </div>

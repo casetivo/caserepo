@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -37,7 +38,17 @@ export default function Page() {
         description="Generate random IPv4 and IPv6 addresses for network testing, WAF benchmarking, and mock server logs. Supports public, RFC 1918 private, and CIDR masks."
         faqs={seo.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["how-to-generate-random-ip-addresses", "random-data-generator-testing", "how-to-generate-random-numbers"]}
+            title="Network & Synthetic Testing Guides"
+          />
+        }
+      />
     </>
   );
 }

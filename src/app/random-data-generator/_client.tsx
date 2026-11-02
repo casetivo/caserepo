@@ -2,7 +2,13 @@
 
 import { useState, useCallback, useId } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
+
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
 
 interface FieldOptions {
   name: boolean;
@@ -39,7 +45,7 @@ const CITIES = [
   "San Antonio, TX", "San Diego, CA", "Dallas, TX", "Austin, TX", "Seattle, WA", "Denver, CO"
 ];
 
-export default function ClientPage() {
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [count, setCount] = useState<number>(5);
   const [format, setFormat] = useState<OutputFormat>("card");
   const [fields, setFields] = useState<FieldOptions>({
@@ -155,8 +161,6 @@ export default function ClientPage() {
     }
   }, [count, format, fields]);
 
-  const seo = getSeoContent("random-data-generator", "Random Data Generator");
-
   return (
     <RandomToolLayout
       titleKey="randomDataGenerator"
@@ -168,11 +172,10 @@ export default function ClientPage() {
         setOutput("");
         setGeneratedCount(0);
       }}
-      seoTitle={seo.title}
-      seoContent={seo.content}
-      seoFaqs={seo.faqs}
-      relatedPostSlugs={["random-data-generator-testing", "how-to-generate-random-numbers", "how-to-generate-random-ip-addresses"]}
-      relatedPostsTitle="Synthetic Testing & Randomization Guides"
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
     >
       <div className="space-y-4 max-w-xl mx-auto">
         {/* Quantity and Format Controls */}

@@ -8,8 +8,7 @@ import { translationsEn } from "@/i18n/translationsTranslationsEn";
 
 export type TranslationModule = "text" | "image" | "random" | "base";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const enDefaults: Record<TranslationModule, any> = {
+const enDefaults: Record<TranslationModule, Record<string, string>> = {
   text: textToolTranslationsEn,
   image: imageToolTranslationsEn,
   random: randomToolTranslationsEn,
@@ -17,13 +16,11 @@ const enDefaults: Record<TranslationModule, any> = {
 };
 
 // Module-level cache so translations survive navigation
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const cache: Record<string, any> = {};
+const cache: Record<string, Record<string, string>> = {};
 
 export function useI18n(module: TranslationModule) {
   const [locale, setLocale] = useState<Locale>("en");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [t, setT] = useState<any>(enDefaults[module]);
+  const [t, setT] = useState<Record<string, string>>(enDefaults[module]);
 
   useEffect(() => {
     if (locale === "en") {
@@ -42,9 +39,10 @@ export function useI18n(module: TranslationModule) {
       random: () => import("@/i18n/randomToolTranslations").then(m => m.randomToolTranslations[locale]),
       base:   () => import("@/i18n/translations").then(m => m.translations[locale]),
     };
-    loaders[module]().then(data => {
-      cache[cacheKey] = data;
-      setT(data);
+    loaders[module]().then((data) => {
+      const records = data as Record<string, string>;
+      cache[cacheKey] = records;
+      setT(records);
     });
   }, [locale, module]);
 

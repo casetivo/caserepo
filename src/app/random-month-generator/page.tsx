@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -37,7 +38,17 @@ export default function Page() {
         description="Pick random months of the year for compliance audits, quarterly planning, or event scheduling. Supports unique sampling, Roman numerals, and fiscal filters."
         faqs={seo.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["how-to-pick-random-months", "how-to-make-random-choices-online", "how-to-generate-random-numbers"]}
+            title="Calendar Scheduling & Decision Guides"
+          />
+        }
+      />
     </>
   );
 }

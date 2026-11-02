@@ -47,7 +47,7 @@
 
 @layer utilities {
   .bg-primary {
-    background-image: linear-gradient(135deg, #2E8A7E 0%, #3FB0A5 50%, #4FD1C5 100%) !important;
+    background-image: linear-gradient(135deg, #164E46 0%, #1F6B61 50%, #277A6F 100%) !important;
   }
   .hover\:bg-primary\/90:hover {
     opacity: 0.9;

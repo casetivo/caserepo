@@ -1,9 +1,15 @@
 "use client";
 import { useState } from "react";
 import RandomToolLayout from "@/components/RandomToolLayout";
-import { getSeoContent } from "@/data/seoContent";
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({ seoTitle, seoContent, seoFaqs, recentBlogPostsSlot }: ClientPageProps = {}) {
   const [len,setLen]=useState(16); const [upper,setUpper]=useState(true); const [lower,setLower]=useState(true);
   const [nums,setNums]=useState(true); const [syms,setSyms]=useState(true); const [count,setCount]=useState(5); const [output,setOutput]=useState("");
   const handleGenerate=()=>{
@@ -34,9 +40,7 @@ export default function ClientPage() {
   };
   const T=({label,val,set}:{label:string;val:boolean;set:(v:boolean)=>void})=><button onClick={()=>set(!val)} className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${val?"bg-primary text-primary-foreground":"bg-card border border-border text-foreground hover:bg-accent"}`}>{label}</button>;
   
-  const seo = getSeoContent("strong-password-generator", "Strong Password Generator");
-
-  return <RandomToolLayout titleKey="strongPasswordGenerator" subtitleKey="strongPasswordGeneratorSubtitle" actionLabelKey="strongPasswordGeneratorAction" output={output} onGenerate={handleGenerate} onClear={()=>setOutput("")} seoTitle={seo.title} seoContent={seo.content} seoFaqs={seo.faqs} relatedPostSlugs={["how-to-create-a-strong-password", "password-generator-vs-password-manager", "passwords-passkeys-and-mfa", "what-is-password-entropy", "why-websites-reject-passwords", "what-to-do-after-a-password-breach"]} relatedPostsTitle="Password Security Guides">
+  return <RandomToolLayout titleKey="strongPasswordGenerator" subtitleKey="strongPasswordGeneratorSubtitle" actionLabelKey="strongPasswordGeneratorAction" output={output} onGenerate={handleGenerate} onClear={()=>setOutput("")} seoTitle={seoTitle} seoContent={seoContent} seoFaqs={seoFaqs} recentBlogPostsSlot={recentBlogPostsSlot}>
     <div className="flex flex-wrap items-center justify-center gap-3">
       <label className="text-sm text-foreground font-medium">Length:</label><input type="number" min={4} max={128} value={len} onChange={e=>setLen(Math.max(4,Math.min(128,Number(e.target.value))))} className="w-20 px-3 py-2 rounded-lg border border-border bg-card text-foreground text-sm" />
       <label className="text-sm text-foreground font-medium ml-2">Count:</label><input type="number" min={1} max={50} value={count} onChange={e=>setCount(Math.max(1,Math.min(50,Number(e.target.value))))} className="w-20 px-3 py-2 rounded-lg border border-border bg-card text-foreground text-sm" />

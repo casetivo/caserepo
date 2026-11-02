@@ -22,9 +22,6 @@ const caseButtons = [
 export default function HomeClientPage({ children, heading }: { children?: React.ReactNode, heading?: React.ReactNode }) {
   const [text, setText] = useState("");
   const { locale, setLocale, t } = useI18n("base");
-  const { t: tt } = useI18n("text");
-  const { t: it } = useI18n("image");
-  const { t: rt } = useI18n("random");
   const [langOpen, setLangOpen] = useState(false);
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -57,12 +54,12 @@ export default function HomeClientPage({ children, heading }: { children?: React
               <li className="shrink-0 flex items-center">
                 <SearchButton />
               </li>
-              <li className="text-border/60 select-none px-1">|</li>
+              <li aria-hidden="true" className="text-border/60 select-none px-1">|</li>
               <li className="shrink-0 flex items-center">
                 <ThemeToggle />
               </li>
               {SHOW_LANGUAGE_SWITCHER && (<>
-              <li className="text-border/60 select-none px-1">|</li>
+              <li aria-hidden="true" className="text-border/60 select-none px-1">|</li>
               <li className="shrink-0 flex items-center">
                 <div className="relative">
                   <button onClick={() => setLangOpen(!langOpen)} className="flex items-center gap-1.5 p-2 rounded-md text-sm font-medium text-foreground hover:bg-accent transition-colors cursor-pointer">

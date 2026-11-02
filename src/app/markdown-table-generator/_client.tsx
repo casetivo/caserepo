@@ -12,7 +12,19 @@ interface TableStats {
   totalCells: number;
 }
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [align, setAlign] = useState<ColAlign>("left");
@@ -204,6 +216,10 @@ Spreadsheet Paste,Yes,Instant,Copy straight from Excel`;
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="markdownTableGenerator"
       subtitleKey="markdownTableGeneratorSubtitle"
       actionLabelKey="markdownTableGeneratorAction"

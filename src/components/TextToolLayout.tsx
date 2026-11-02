@@ -8,9 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SubHeaderNav from "@/components/SubHeaderNav";
 import SeoContentBlock, { FAQ } from "@/components/SeoContentBlock";
-import { getSeoContent } from "@/data/seoContent";
 import RelatedTools from "@/components/RelatedTools";
-import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { usePathname } from "next/navigation";
 import { localeNames, localeCountryCodes, SHOW_LANGUAGE_SWITCHER } from "@/i18n/translations";
 import type { TextToolTranslationKeys } from "@/i18n/textToolTranslationsEn";
@@ -31,22 +29,32 @@ interface TextToolLayoutProps {
   seoFaqs?: FAQ[];
   relatedPostSlugs?: string[];
   relatedPostsTitle?: string;
+  recentBlogPostsSlot?: ReactNode;
 }
 
 const TextToolLayout = memo(({
-  titleKey, subtitleKey, actionLabelKey,
-  inputText, onInputChange, outputText,
-  children, onAction, seoTitle, seoContent, seoFaqs,
-  relatedPostSlugs, relatedPostsTitle,
+  titleKey,
+  subtitleKey,
+  actionLabelKey,
+  inputText,
+  onInputChange,
+  outputText,
+  children,
+  onAction,
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  relatedPostSlugs,
+  relatedPostsTitle,
+  recentBlogPostsSlot,
 }: TextToolLayoutProps) => {
   const { locale, setLocale, t } = useI18n("text");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
 
-  const centralizedSeo = getSeoContent(titleKey, t[titleKey]);
-  const finalSeoTitle = seoTitle || centralizedSeo.title;
-  const finalSeoContent = seoContent || centralizedSeo.content;
-  const finalSeoFaqs = seoFaqs || centralizedSeo.faqs;
+  const finalSeoTitle = seoTitle || (t[titleKey] ? `How does the ${t[titleKey]} work?` : "");
+  const finalSeoContent = seoContent || null;
+  const finalSeoFaqs = seoFaqs || [];
 
   const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0;
   const charCount = inputText.length;
@@ -171,7 +179,7 @@ const TextToolLayout = memo(({
             { href: "/em-dash-remover", title: "Em Dash Remover", description: "Quickly remove or replace em dashes in your text." }
           ].filter(t => t.href !== pathname).slice(0, 8)} 
         />
-        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
+        {recentBlogPostsSlot}
       </main>
       <Footer />
     </div>

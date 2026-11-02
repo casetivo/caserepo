@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import { getAuthor } from "@/data/authors";
+import { safeJsonLd } from "@/lib/utils";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -27,6 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Post Not Found" };
   }
   
+  const postImageUrl = post.featured_image_url || "/og-image.png";
+
   return {
     title: post.title,
     description: post.meta_description,
@@ -41,11 +44,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "Casetivo",
       publishedTime: post.publish_date,
       modifiedTime: post.updated_date || post.publish_date,
+      images: [
+        {
+          url: postImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.meta_description,
+      images: [postImageUrl],
     },
   };
 }
@@ -69,7 +81,13 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "WebPage",
       "@id": `https://www.casetivo.com/blog/${slug}`
     },
-    "image": [`https://www.casetivo.com/blog/${slug}/opengraph-image`],
+    "image": [
+      post.featured_image_url
+        ? (post.featured_image_url.startsWith("http")
+            ? post.featured_image_url
+            : `https://www.casetivo.com${post.featured_image_url}`)
+        : "https://www.casetivo.com/og-image.png",
+    ],
     "datePublished": post.publish_date,
     "dateModified": post.updated_date || post.publish_date,
     "description": post.meta_description,
@@ -106,8 +124,8 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumb) }} />
       <div className="min-h-screen bg-background flex flex-col">
         <header className="border-b bg-card">
           <div className="container mx-auto flex items-center gap-3 px-4 py-4 max-w-3xl">

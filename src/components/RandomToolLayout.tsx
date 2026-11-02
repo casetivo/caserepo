@@ -13,7 +13,6 @@ import type { RandomToolTranslationKeys } from "@/i18n/randomToolTranslationsEn"
 import { useI18n } from "@/hooks/useI18n";
 import { ThemeToggle } from "@/components/theme-toggle";
 import RelatedTools from "@/components/RelatedTools";
-import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { usePathname } from "next/navigation";
 
 interface RandomToolLayoutProps {
@@ -29,9 +28,24 @@ interface RandomToolLayoutProps {
   seoFaqs?: FAQ[];
   relatedPostSlugs?: string[];
   relatedPostsTitle?: string;
+  recentBlogPostsSlot?: ReactNode;
 }
 
-const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, children, onGenerate, onClear, seoTitle, seoContent, seoFaqs, relatedPostSlugs, relatedPostsTitle }: RandomToolLayoutProps) => {
+const RandomToolLayout = memo(({
+  titleKey,
+  subtitleKey,
+  actionLabelKey,
+  output,
+  children,
+  onGenerate,
+  onClear,
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  relatedPostSlugs,
+  relatedPostsTitle,
+  recentBlogPostsSlot,
+}: RandomToolLayoutProps) => {
   const { locale, setLocale, t } = useI18n("random");
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
@@ -142,7 +156,7 @@ const RandomToolLayout = memo(({ titleKey, subtitleKey, actionLabelKey, output, 
             { href: "/random-month-generator", title: "Random Month Generator", description: "Pick a random month of the year." }
           ].filter(t => t.href !== pathname).slice(0, 8)} 
         />
-        <RecentBlogPosts postSlugs={relatedPostSlugs} title={relatedPostsTitle} />
+        {recentBlogPostsSlot}
       </main>
       <Footer />
     </div>

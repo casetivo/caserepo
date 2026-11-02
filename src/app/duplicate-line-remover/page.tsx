@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import { getSeoContent } from "@/data/seoContent";
 import ClientPage from "./_client";
 
@@ -28,16 +29,23 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const seoData = getSeoContent("duplicateLineRemover", "Duplicate Line Remover");
+
   return (
     <>
       <SchemaMarkup
         toolName="Duplicate Line Remover"
         url={`${BASE}/duplicate-line-remover`}
         description="Remove duplicate lines from text, lists, and CSV files instantly. Preserves original line sequence with optional case sensitivity and whitespace trimming. Free, secure, client-side processing."
-        faqs={getSeoContent("duplicateLineRemover", "Duplicate Line Remover").faqs}
+        faqs={seoData.faqs}
       />
 
-      <ClientPage />
+      <ClientPage
+        seoTitle={seoData.title}
+        seoContent={seoData.content}
+        seoFaqs={seoData.faqs}
+        recentBlogPostsSlot={<RecentBlogPosts />}
+      />
     </>
   );
 }

@@ -5,7 +5,19 @@ import TextToolLayout from "@/components/TextToolLayout";
 
 type FormatIndent = "2" | "4" | "tab" | "minify";
 
-export default function ClientPage() {
+interface ClientPageProps {
+  seoTitle?: string;
+  seoContent?: React.ReactNode;
+  seoFaqs?: any[];
+  recentBlogPostsSlot?: React.ReactNode;
+}
+
+export default function ClientPage({
+  seoTitle,
+  seoContent,
+  seoFaqs,
+  recentBlogPostsSlot,
+}: ClientPageProps = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [indent, setIndent] = useState<FormatIndent>("2");
@@ -140,6 +152,10 @@ export default function ClientPage() {
 
   return (
     <TextToolLayout
+      seoTitle={seoTitle}
+      seoContent={seoContent}
+      seoFaqs={seoFaqs}
+      recentBlogPostsSlot={recentBlogPostsSlot}
       titleKey="jsonFormatter"
       subtitleKey="jsonFormatterSubtitle"
       actionLabelKey="jsonFormatterAction"

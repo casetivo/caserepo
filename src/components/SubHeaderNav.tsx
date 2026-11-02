@@ -57,7 +57,7 @@ const SubHeaderNav = memo(({ children }: { children?: React.ReactNode }) => {
   const topCls = (active: boolean) =>
     `flex items-center gap-1 sm:gap-1.5 text-sm font-medium hover:text-primary transition-colors cursor-pointer ${active ? "text-primary underline underline-offset-8 decoration-2" : "text-foreground"}`;
 
-  const Divider = () => <li className="text-border/60 select-none px-1">|</li>;
+  const Divider = () => <li aria-hidden="true" className="text-border/60 select-none px-1">|</li>;
 
   return (
     <ul className="flex items-center flex-wrap justify-center gap-y-2 gap-x-1 sm:gap-x-2 list-none m-0 p-0">

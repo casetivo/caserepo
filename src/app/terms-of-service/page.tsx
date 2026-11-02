@@ -18,6 +18,12 @@ export const metadata = {
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Terms of Service | Casetivo" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | Casetivo",
+    description: "Read Casetivo's Terms of Service, including the conditions for using our free browser-based text, code, and image tools.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function TermsOfService() {

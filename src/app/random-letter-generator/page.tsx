@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { getSeoContent } from "@/data/seoContent";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import ClientPage from "./_client";
 
 const BASE = "https://www.casetivo.com";
@@ -37,7 +38,17 @@ export default function Page() {
         description="Generate random letters from the English alphabet in uppercase, lowercase, or mixed case. Filter vowels or consonants, draw unique letters, and customize delimiters."
         faqs={seo.faqs}
       />
-      <ClientPage />
+      <ClientPage
+        seoTitle={seo.title}
+        seoContent={seo.content}
+        seoFaqs={seo.faqs}
+        recentBlogPostsSlot={
+          <RecentBlogPosts
+            postSlugs={["how-to-generate-random-letters", "how-to-generate-random-numbers", "how-to-make-random-choices-online"]}
+            title="Combinatorics & Alphabet Guides"
+          />
+        }
+      />
     </>
   );
 }
